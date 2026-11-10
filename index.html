@@ -1071,7 +1071,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
 <main id="top">
   <!-- Первый экран на всю ширину: оборудование на студийном фоне -->
   <section class="hero full v-film" id="hero" aria-roledescription="карусель" aria-label="Предложения ЯрМеда">
-    <div class="hfilm" aria-hidden="true"><video muted playsinline preload="none" data-src="home-v4-film/film/film.mp4" data-src-m="home-v4-film/film/film-m.mp4"></video></div>
+    <div class="hfilm" aria-hidden="true"><video muted playsinline preload="metadata" data-src="home-v4-film/film/film.mp4" data-src-m="home-v4-film/film/film-m.mp4"></video></div>
     <div class="slides" id="slides">
 
       <article class="slide film-ch" id="s0" style="--sbg:#DCE1ED" aria-roledescription="слайд" aria-label="1 из 5">
@@ -1589,7 +1589,7 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
   let cur = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
   let visible = true, userPaused = false, pending = null, raf = 0;
   const small = () => (site ? site.clientWidth : innerWidth) <= 900;
-  const filmMode = () => hero.classList.contains('v-film') && !reduce;
+  const filmMode = () => hero.classList.contains('v-film');
   const isCh = i => i < CH.length;
   function seek(t) { if (film.readyState >= 1) { try { film.currentTime = t; } catch (e) {} } else pending = t; }
   film.addEventListener('loadedmetadata', () => { if (pending !== null) { film.currentTime = pending; pending = null; } });
@@ -1597,14 +1597,23 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
     const want = small() ? film.dataset.srcM : film.dataset.src;
     if (film.getAttribute('src') === want) return;
     if (film.getAttribute('src')) pending = film.currentTime;
+    film.muted = true; film.defaultMuted = true; film.playsInline = true; film.preload = 'auto';
     film.src = want;
+  }
+  let armed = false;
+  function retry() {
+    if (armed) return;
+    armed = true;
+    const go = () => { armed = false; ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'].forEach(e => removeEventListener(e, go, true)); film.removeEventListener('canplay', go); sync(); };
+    ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'].forEach(e => addEventListener(e, go, { capture: true, passive: true }));
+    film.addEventListener('canplay', go);
   }
   function clearProg() { tabs.forEach((t, k) => { if (isCh(k)) t.querySelector('.prog').style.transform = ''; }); }
   function sync() {
     if (!(filmMode() && isCh(cur))) { film.pause(); hero.classList.remove('film-on', 'film-live'); if (!filmMode()) clearProg(); return; }
     hero.classList.add('film-live');
     load();
-    if (visible && !userPaused) film.play().catch(() => { if (!film.paused) return; setMode('v-off'); }); else film.pause();
+    if (visible && !userPaused) { const pr = film.play(); if (pr) pr.catch(() => { if (film.paused) retry(); }); } else film.pause();
   }
   function tick() {
     cancelAnimationFrame(raf);
