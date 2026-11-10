@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Главная ЯрМед v4 · фильм</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap">
+<style>
+/* Layout: схема главной Stomart (баннер → бренды → разделы → бенто магазина → витрины → тёмная полоса услуг → доверие),
+   колонка 1240px. Усиление: бренды под баннером работают как вкладки слайдера, в слайде цена, лизинг и КП.
+   Адаптив на container queries, поэтому переключатель «Телефон» показывает настоящую мобильную вёрстку. */
+:root {
+  --page: #FFFFFF;
+  --tint: #EEF1F5;
+  --tint-2: #E3E8EE;
+  --ink: #1D2127;
+  --muted: #687180;
+  --line: #E0E4EA;
+  --graphite: #2A2E35;
+  --night: #111418;
+  --night-line: #2B3139;
+  --night-muted: #9AA3AF;
+  --accent: #0A8EDF;
+  --accent-ink: #0670B2;
+  --accent-soft: #E3F2FC;
+  --sale: #D7392E;
+  --todo: #7A5200;
+  --todo-bg: #FFF0C2;
+  --f: "Onest", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r: 18px;
+  --gut: max(16px, env(safe-area-inset-left, 0px));
+  --gut-r: max(16px, env(safe-area-inset-right, 0px));
+  --dur: 6500ms;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { background: var(--page); }
+body { background: var(--page); color: var(--ink); font: 400 15px/1.5 var(--f); margin: 0; -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { font-weight: 500; text-wrap: balance; letter-spacing: -0.01em; }
+.todo { color: var(--todo); background: var(--todo-bg); border-radius: 4px; padding: 0 4px; font-weight: 600; font-size: 0.92em; }
+.ico { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===== Сцена предпросмотра: компьютер / телефон ===== */
+.stage { min-height: 100%; }
+.site { container: site / inline-size; background: var(--page); position: relative; }
+body.view-phone { background: #1B1F24; min-height: 100vh; }
+html:has(body.view-phone) { background: #1B1F24; }
+body.view-phone .stage { display: grid; justify-items: center; padding-block: 28px 96px; }
+body.view-phone .site { width: 390px; max-width: calc(100vw - 32px); height: min(844px, calc(100vh - 140px)); overflow-y: auto; overflow-x: hidden; border-radius: 34px; box-shadow: 0 0 0 10px #050607, 0 30px 80px rgba(0,0,0,.45); scrollbar-width: none; }
+body.view-phone .site::-webkit-scrollbar { display: none; }
+.viewbar { position: fixed; z-index: 90; left: 50%; transform: translateX(-50%); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 4px; padding: 5px; border-radius: 999px; background: #15181D; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.viewbar button { border: 0; border-radius: 999px; background: transparent; color: #C9CFD8; height: 36px; padding: 0 16px; font-size: 0.82rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.viewbar button[aria-pressed="true"] { background: #fff; color: #15181D; }
+.viewbar button:not([aria-pressed="true"]):hover { color: #fff; }
+@media (max-width: 700px) { .viewbar [data-view] { display: none; } .viewbar { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); } .viewbar button { height: 32px; font-size: 0.76rem; } }
+
+/* ===== Общие ===== */
+.in { max-width: 1272px; margin: 0 auto; padding-left: var(--gut); padding-right: var(--gut-r); }
+.sec { padding-block: 48px 0; }
+.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.sec-head h2, .h2 { font-size: 1.85rem; line-height: 1.15; }
+.arrows { display: flex; gap: 6px; flex: none; }
+.arr { width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; cursor: pointer; color: var(--ink); }
+.arr:hover { border-color: var(--ink); }
+.seeall-row { display: flex; justify-content: flex-end; padding-block: 20px; }
+.seeall { display: inline-flex; align-items: center; gap: 10px; font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.seeall i { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-style: normal; }
+.seeall:hover i { background: var(--accent-ink); }
+.rule { border: 0; border-top: 1px solid var(--line); margin: 0; }
+.rail { display: grid; grid-auto-flow: column; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; scroll-behavior: smooth; }
+.rail::-webkit-scrollbar { display: none; }
+.rail > * { scroll-snap-align: start; }
+.btn { height: 48px; padding: 0 22px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid transparent; cursor: pointer; white-space: nowrap; }
+.btn.dark { background: var(--graphite); color: #fff; }
+.btn.dark:hover { background: #000; }
+.btn.blue { background: var(--accent); color: #fff; }
+.btn.blue:hover { background: var(--accent-ink); }
+.btn.line { background: rgba(255,255,255,.7); border-color: rgba(29,33,39,.25); color: var(--ink); }
+.btn.line:hover { border-color: var(--ink); background: #fff; }
+
+/* ===== Верхняя строка и шапка ===== */
+.topbar { background: var(--tint); font-size: 0.8rem; color: var(--muted); }
+.topbar .in { display: flex; justify-content: space-between; align-items: center; gap: 16px; height: 38px; }
+.topbar .city { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); }
+.topbar nav { display: flex; gap: 26px; }
+.topbar nav a:hover { color: var(--ink); }
+header.hd { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: #fff; }
+header.hd.scrolled { box-shadow: 0 6px 20px rgba(29,33,39,.07); }
+header.hd .in { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto auto; align-items: center; gap: 20px; height: 84px; }
+.logo img { height: 30px; width: auto; }
+.duo { display: flex; background: var(--tint); border-radius: 12px; padding: 4px; }
+.duo a { height: 42px; padding: 0 18px; border-radius: 9px; display: inline-flex; align-items: center; gap: 9px; font-weight: 600; font-size: 0.86rem; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+.duo a.on { background: var(--graphite); color: #fff; }
+.duo a:not(.on):hover { background: #fff; }
+.search { height: 46px; border: 1px solid #CDD3DB; border-radius: 8px; display: flex; align-items: center; padding: 0 8px 0 16px; min-width: 0; }
+.search:focus-within { border-color: var(--ink); }
+.search input { border: 0; outline: 0; flex: 1; min-width: 0; background: transparent; font-size: 0.92rem; }
+.search input::placeholder { color: #8E96A2; }
+.search button { border: 0; background: transparent; width: 34px; height: 34px; display: grid; place-items: center; cursor: pointer; color: var(--muted); }
+.phone { display: grid; text-align: right; line-height: 1.25; }
+.phone a { font-weight: 600; font-size: 1rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.phone button { border: 0; background: none; padding: 0; color: var(--accent-ink); font-size: 0.76rem; font-weight: 600; cursor: pointer; text-align: right; }
+.icons { display: flex; gap: 2px; }
+.icons a, .icons button { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 10px; border: 0; background: none; cursor: pointer; position: relative; }
+.icons a:hover, .icons button:hover { background: var(--tint); }
+.icons .cnt { position: absolute; top: 4px; right: 3px; min-width: 17px; height: 17px; border-radius: 9px; background: var(--accent); color: #fff; font-size: 0.66rem; font-weight: 600; display: grid; place-items: center; padding: 0 4px; }
+.m-only { display: none !important; }
+
+/* ===== HERO: баннер ===== */
+.hero { position: relative; background: var(--tint); }
+.slides { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth; }
+.slides::-webkit-scrollbar { display: none; }
+.slide { scroll-snap-align: start; position: relative; height: 540px; background: var(--sbg, var(--tint)); overflow: hidden; }
+.sl-photo { position: absolute; top: 0; bottom: 0; right: 0; width: 61%; }
+.sl-photo img { width: 100%; height: 100%; object-fit: cover; }
+.sl-in { position: relative; height: 100%; display: flex; align-items: center; }
+.sl-txt { width: min(470px, 37%); display: grid; gap: 18px; justify-items: start; }
+.sl-brand { display: flex; align-items: center; gap: 12px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.sl-brand img { height: 26px; width: auto; }
+.sl-brand .wm { font-size: 1.05rem; letter-spacing: 0.14em; color: var(--ink); font-weight: 600; }
+.sl-brand .dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; opacity: .6; }
+.sl-h { font-size: 3.1rem; line-height: 0.98; font-weight: 500; text-transform: uppercase; letter-spacing: -0.02em; }
+.sl-h small { display: block; font-size: 0.42em; letter-spacing: 0.02em; line-height: 1.25; margin-top: 12px; text-transform: none; font-weight: 400; color: #3A414B; }
+.sl-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.sl-price b { font-size: 1.7rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.sl-price span { font-size: 0.86rem; color: #3A414B; }
+.sl-price span strong { font-weight: 600; color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: 0.78rem; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.72); border: 1px solid rgba(29,33,39,.1); white-space: nowrap; }
+.sl-cta { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
+.slide.dark { color: #fff; }
+.hero-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; color: var(--ink); z-index: 2; }
+.hero-nav svg { width: 32px; height: 32px; stroke-width: 1.2; }
+.hero-nav.prev { left: max(6px, env(safe-area-inset-left, 0px)); }
+.hero-nav.next { right: max(6px, env(safe-area-inset-right, 0px)); }
+.hero-count { position: absolute; z-index: 2; bottom: 22px; right: max(24px, calc((100% - 1240px) / 2)); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; font-variant-numeric: tabular-nums; background: rgba(255,255,255,.85); padding: 6px 12px; border-radius: 999px; }
+
+/* ===== HERO: бренды-вкладки ===== */
+.brandbar { background: var(--tint); padding-block: 18px; border-top: 1px solid rgba(29,33,39,.06); }
+.bb { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; gap: 12px; align-items: center; }
+.bb .rail { gap: 10px; grid-auto-columns: max-content; align-items: stretch; padding-block: 2px; }
+.btab { position: relative; width: 168px; height: 72px; border-radius: 12px; border: 1px solid transparent; background: #fff; padding: 10px 14px 12px; display: grid; grid-template-rows: 1fr auto; justify-items: start; gap: 4px; cursor: pointer; text-align: left; overflow: hidden; transition: border-color .15s ease; }
+.btab:hover { border-color: #C3CAD3; }
+.btab .lg { height: 26px; display: flex; align-items: center; }
+.btab .lg img { max-height: 24px; max-width: 120px; width: auto; filter: grayscale(1) contrast(1.05); opacity: .8; transition: filter .2s ease, opacity .2s ease; }
+.btab .lg .wm { font-weight: 600; font-size: 0.86rem; letter-spacing: 0.12em; color: #59606B; }
+.btab span { font-size: 0.72rem; color: var(--muted); line-height: 1.2; }
+.btab .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+.btab[aria-selected="true"] { border-color: var(--ink); }
+.btab[aria-selected="true"] .lg img { filter: none; opacity: 1; }
+.btab[aria-selected="true"] .lg .wm { color: var(--ink); }
+.btab[aria-selected="true"] span { color: var(--ink); }
+.btab[aria-selected="true"] .prog { animation: prog var(--dur) linear forwards; }
+.btab.key { background: var(--graphite); }
+.btab.key .lg .wm { color: #fff; letter-spacing: 0.04em; font-size: 0.9rem; }
+.btab.key span { color: #B9C0CA; }
+.btab.key[aria-selected="true"] { border-color: var(--accent); }
+.btab.key[aria-selected="true"] span { color: #fff; }
+.paused .btab .prog { animation-play-state: paused !important; }
+@keyframes prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bsep { width: 1px; background: rgba(29,33,39,.14); margin: 10px 6px; }
+.brand { width: 124px; height: 72px; border-radius: 12px; background: #fff; display: grid; place-items: center; padding: 10px 16px; }
+.brand img { max-height: 28px; width: auto; max-width: 100%; object-fit: contain; filter: grayscale(1); opacity: .7; transition: filter .15s ease, opacity .15s ease; }
+.brand:hover img { filter: none; opacity: 1; }
+.brand.t { font-weight: 600; font-size: 0.82rem; letter-spacing: 0.08em; color: #5F6671; text-align: center; line-height: 1.15; }
+.brand.t:hover { color: var(--ink); }
+.brand.all { background: transparent; color: var(--muted); font-size: 0.82rem; grid-auto-flow: column; gap: 8px; width: auto; }
+
+/* ===== Разделы ===== */
+.cats { display: grid; grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 8px; align-items: center; padding-top: 32px; }
+.cats .rail { grid-auto-columns: 182px; gap: 10px; padding-block: 2px; }
+.cat { border: 1px solid var(--line); border-radius: 14px; height: 200px; padding: 14px 12px 14px; display: grid; grid-template-rows: 96px auto 1fr; justify-items: center; text-align: center; gap: 10px; background: #fff; transition: border-color .15s ease, box-shadow .15s ease; }
+.cat:hover { border-color: #BAC2CC; box-shadow: 0 8px 22px rgba(29,33,39,.06); }
+.cat img { height: 96px; width: 100%; object-fit: contain; }
+.cat b { font-size: 0.86rem; line-height: 1.25; font-weight: 500; }
+.cat em { font-style: normal; color: var(--muted); align-self: end; font-size: 0.76rem; }
+.cats .side { border: 0; background: none; cursor: pointer; color: var(--muted); display: grid; place-items: center; height: 100%; }
+
+/* ===== Бенто магазина ===== */
+.store-h { font-size: 1.85rem; line-height: 1.15; margin-bottom: 26px; }
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bcol { display: grid; gap: 14px; }
+.bcol.l { grid-template-rows: 300px 236px; }
+.bcol.r { grid-template-rows: 236px 300px; }
+.brow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bt { background: var(--tint); border-radius: 24px; padding: 22px 24px; position: relative; overflow: hidden; display: grid; align-content: start; gap: 12px; transition: background-color .15s ease; min-width: 0; }
+.bt:hover { background: var(--tint-2); }
+.bt h3 { font-size: 1.08rem; font-weight: 500; line-height: 1.3; position: relative; z-index: 1; }
+.bt h3 small { color: var(--muted); font-size: 0.8rem; font-weight: 400; }
+.bt .from { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #BFC6CF; border-radius: 6px; padding: 3px 10px; font-size: 0.8rem; width: fit-content; position: relative; z-index: 1; color: #3A414B; font-variant-numeric: tabular-nums; }
+.bt img { position: absolute; right: 18px; bottom: 12px; max-width: 58%; max-height: 74%; object-fit: contain; transition: transform .35s ease; }
+.bt:hover img { transform: scale(1.04); }
+.bt.big img { max-height: 94%; right: 36px; bottom: 0; }
+.bt.wide img { max-width: 52%; max-height: 82%; right: 30px; }
+.brow .bt img { max-height: 60%; max-width: 54%; }
+
+/* ===== Карточки товаров ===== */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px 30px; margin: -4px 0 22px; }
+.tabs button { border: 0; background: none; padding: 4px 0; cursor: pointer; font-size: 0.9rem; color: var(--muted); border-bottom: 1px solid transparent; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+.prods { grid-auto-columns: calc((100% - 4 * 14px) / 5); gap: 14px; padding: 2px 2px 4px; }
+.card { border: 1px solid var(--line); border-radius: 22px; padding: 14px 14px 16px; display: grid; grid-template-rows: 190px auto auto auto 1fr auto; gap: 8px; background: #fff; transition: box-shadow .15s ease, border-color .15s ease; position: relative; min-width: 0; }
+.card:hover { box-shadow: 0 10px 28px rgba(29,33,39,.09); border-color: #D2D8E0; }
+.card .im { position: relative; display: grid; place-items: center; }
+.card .im img { width: 100%; height: 190px; object-fit: contain; }
+.card .badges { position: absolute; left: 0; top: 0; display: grid; gap: 5px; z-index: 1; }
+.badge { font-size: 0.66rem; font-weight: 600; padding: 3px 7px; border-radius: 5px; border: 1px solid; letter-spacing: 0.04em; text-transform: uppercase; width: fit-content; background: #fff; }
+.badge.hit { color: var(--accent-ink); border-color: #9CCFF0; }
+.badge.sale { color: var(--sale); border-color: #F0B3AE; }
+.card .price { font-size: 1.22rem; font-weight: 500; font-variant-numeric: tabular-nums; margin-top: 6px; }
+.card .lease { font-size: 0.74rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.card .lease i { width: 14px; height: 14px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); display: grid; place-items: center; font-style: normal; font-size: 0.6rem; font-weight: 600; }
+.card .nm { font-size: 0.86rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card .br { font-size: 0.78rem; color: #9AA1AC; align-self: end; }
+.card .acts { display: grid; grid-template-columns: 1fr 40px; gap: 6px; }
+.card .kp { height: 40px; border-radius: 10px; border: 1px solid var(--line); background: #fff; font-weight: 600; font-size: 0.78rem; cursor: pointer; }
+.card .kp:hover { background: var(--graphite); color: #fff; border-color: var(--graphite); }
+.card .cart { height: 40px; border-radius: 10px; border: 1px solid var(--line); background: #fff; display: grid; place-items: center; cursor: pointer; }
+.card .cart:hover { border-color: var(--ink); }
+.card .cart[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ===== Тёмная полоса услуг ===== */
+.band { display: grid; grid-template-columns: 1fr 1fr; margin-top: 56px; background: var(--night); color: #fff; }
+.band .left { padding-block: 64px; padding-left: max(var(--gut), calc((100cqw - 1240px) / 2 + 16px)); padding-right: 48px; display: grid; gap: 48px; align-content: start; }
+.band .left h2 { font-size: 2rem; font-weight: 400; line-height: 1.2; max-width: 22ch; }
+.band .left .k { font-size: 1.05rem; }
+.svc { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 520px; }
+.svc a { border: 1px solid var(--night-line); border-radius: 14px; padding: 16px 18px 42px; position: relative; display: grid; gap: 4px; align-content: start; min-height: 126px; transition: background-color .15s ease, border-color .15s ease; }
+.svc a:hover { background: #1A1F25; border-color: #3D4550; }
+.svc b { font-weight: 500; font-size: 0.95rem; }
+.svc span { color: var(--night-muted); font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.svc a::after { content: "↗"; position: absolute; right: 14px; bottom: 12px; color: var(--night-muted); }
+.band .right { position: relative; min-height: 620px; }
+.band .right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.years { position: absolute; right: 0; bottom: 0; background: #fff; color: var(--ink); border-radius: 30px 0 0 0; padding: 28px 40px 30px 36px; display: grid; gap: 6px; justify-items: end; text-align: right; width: 300px; }
+.years b { font-size: 5rem; line-height: 0.9; font-weight: 600; letter-spacing: -0.04em; }
+.years span { font-size: 0.9rem; line-height: 1.35; }
+
+/* ===== Комплекты кабинета (дополнение) ===== */
+.kits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.kit { border: 1px solid var(--line); border-radius: 24px; padding: 22px 22px 22px; display: grid; gap: 16px; align-content: start; background: #fff; }
+.kit.mid { background: var(--tint); border-color: var(--tint); }
+.kit-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.kit-top h3 { font-size: 1.3rem; }
+.kit-top span { font-size: 0.78rem; color: var(--muted); text-align: right; }
+.kit ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.kit li a { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.kit.mid li a { border-bottom-color: #D5DBE3; }
+.kit li img { width: 52px; height: 44px; object-fit: contain; }
+.kit li b { font-size: 0.84rem; font-weight: 500; line-height: 1.25; }
+.kit li b small { display: block; color: var(--muted); font-weight: 400; font-size: 0.74rem; }
+.kit li em { font-style: normal; font-size: 0.82rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kit-sum { display: grid; gap: 2px; }
+.kit-sum b { font-size: 1.6rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.kit-sum span { font-size: 0.82rem; color: var(--muted); }
+.kit .btn { width: 100%; }
+.note { font-size: 0.8rem; color: var(--muted); margin-top: 14px; }
+
+/* ===== Помощь с выбором ===== */
+.ask { text-align: center; padding-block: 40px; display: grid; gap: 22px; justify-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 40px; }
+.ask p { font-size: 1.15rem; max-width: 40ch; }
+
+/* ===== Почему нас выбирают ===== */
+.why-h { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; font-weight: 500; }
+.why-h::before { content: ""; width: 18px; height: 14px; background: var(--accent); border-radius: 2px 10px 2px 10px; }
+.why { grid-auto-columns: calc((100% - 5 * 14px) / 6); gap: 14px; }
+.why div { border-radius: 24px; padding: 22px 22px 24px; min-height: 196px; display: grid; align-content: space-between; gap: 20px; background: var(--tint); }
+.why svg { width: 44px; height: 44px; stroke: var(--ink); stroke-width: 1.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.why span { font-size: 0.92rem; line-height: 1.3; }
+
+/* ===== Статьи ===== */
+.posts { grid-auto-columns: calc((100% - 2 * 32px) / 3); gap: 32px; }
+.post { display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 22px; align-items: stretch; }
+.post .ph { aspect-ratio: 1; border-radius: 4px; overflow: hidden; background: var(--tint); }
+.post .ph img { width: 100%; height: 100%; object-fit: cover; }
+.post .ph img.cut { object-fit: contain; padding: 14px; }
+.post div { display: grid; align-content: space-between; gap: 12px; }
+.post b { font-weight: 400; font-size: 1rem; line-height: 1.3; }
+.post span { font-size: 0.8rem; color: #9AA1AC; }
+
+/* ===== Рейтинг и отзывы ===== */
+.trust { background: var(--tint); padding-block: 56px; margin-top: 56px; }
+.trust .in { display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; }
+.tcard { background: #fff; border-radius: 34px; padding: 40px 44px; min-height: 340px; display: grid; align-content: space-between; gap: 22px; }
+.rate { display: flex; }
+.rate i { width: 96px; height: 96px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 2.2rem; font-weight: 600; }
+.rate i:first-child { background: var(--graphite); color: #fff; z-index: 1; }
+.rate i:last-child { background: var(--tint); margin-left: -12px; }
+.tcard h3 { font-size: 1.6rem; }
+.tcard p { color: var(--muted); font-size: 0.92rem; }
+.rev-q { font-size: 1.05rem; line-height: 1.45; }
+
+/* ===== SEO-текст и подвал ===== */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding-block: 48px 8px; font-size: 0.86rem; color: #3A414B; }
+.about p + p, .about ul { margin-top: 10px; }
+.about ul { padding-left: 18px; display: grid; gap: 3px; }
+.about b { color: var(--ink); font-weight: 600; }
+footer.ft { margin-top: 48px; background: var(--night); color: var(--night-muted); font-size: 0.86rem; }
+footer.ft .in { padding-block: 44px 28px; display: grid; gap: 32px; }
+.fgrid { display: grid; grid-template-columns: 1fr 1fr 1fr 1.2fr; gap: 28px; }
+.fgrid h4 { margin: 0 0 14px; color: #fff; font-size: 0.9rem; font-weight: 500; }
+.fgrid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.fgrid a:hover { color: #fff; }
+.fgrid .ph a { color: #fff; font-weight: 600; font-size: 1.05rem; }
+.flegal { border-top: 1px solid var(--night-line); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 0.76rem; }
+
+/* ===== Нижнее меню телефона ===== */
+.tabbar { display: none; }
+
+/* ===== Диалоги ===== */
+dialog { border: 0; border-radius: 22px; padding: 28px; width: min(440px, calc(100vw - 32px)); box-shadow: 0 20px 60px rgba(0,0,0,.25); color: var(--ink); background: #fff; }
+dialog::backdrop { background: rgba(17,20,24,.55); }
+dialog h3 { font-size: 1.3rem; margin-bottom: 6px; }
+dialog > p { color: var(--muted); font-size: 0.88rem; margin-bottom: 18px; }
+dialog form { display: grid; gap: 12px; }
+dialog label { display: grid; gap: 5px; font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+dialog input[type=text], dialog input[type=tel], dialog textarea { height: 46px; border: 1px solid var(--line); border-radius: 10px; padding: 0 12px; background: #fff; }
+dialog textarea { height: 76px; padding: 10px 12px; resize: vertical; }
+dialog .chk { display: flex; gap: 8px; align-items: start; font-weight: 400; }
+dialog .chk input { margin-top: 3px; accent-color: var(--accent); flex: none; }
+dialog .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+dialog .status { font-size: 0.82rem; color: var(--muted); }
+dialog .x { position: absolute; right: 14px; top: 12px; border: 0; background: none; font-size: 1.5rem; cursor: pointer; color: var(--muted); line-height: 1; }
+dialog.wide { width: min(980px, calc(100vw - 32px)); max-height: calc(100vh - 48px); }
+.anal { display: grid; gap: 18px; font-size: 0.88rem; }
+.anal h4 { margin: 4px 0 0; font-size: 1rem; font-weight: 600; }
+.anal p { color: #3A414B; }
+.tblw { overflow-x: auto; }
+.anal table { border-collapse: collapse; width: 100%; min-width: 680px; }
+.anal th, .anal td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+.anal th { font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.anal td:first-child { font-weight: 600; white-space: nowrap; }
+.anal .plus { color: var(--accent-ink); font-weight: 600; }
+
+/* ===== Скорость: блоки ниже первого экрана рисуются, только когда до них доходит прокрутка ===== */
+.lazy-block { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
+/* ===== Адаптив (по ширине самого сайта) ===== */
+/* ===== v4: три входа рядом с баннером, цифры, комплекты по типу кабинета, проекты, команда, заявка ===== */
+.hero.full { --hh: clamp(540px, calc(100vh - 236px), 780px); }
+.hero.full .slide { height: var(--hh); }
+/* картинка 7:4: справа к исходнику 3:2 дорисована полоса фона (1/7 ширины), она уходит за край экрана, а на широких экранах растворяется в фоне слайда */
+.hero.full .sl-photo { width: auto; height: 100%; aspect-ratio: 7 / 4; right: calc(max(0px, (100% - 1560px) / 2) - var(--hh) * 0.25); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 17%, #000 85.7%, transparent 99%); mask-image: linear-gradient(to right, transparent 0, #000 17%, #000 85.7%, transparent 99%); }
+.hero.full .sl-photo img { object-fit: cover; object-position: right center; }
+.hero.full .sl-txt { width: min(500px, 42%); gap: 20px; }
+.hero.full .hero-nav { top: auto; bottom: 16px; transform: none; width: 40px; height: 40px; background: rgba(255,255,255,.85); border-radius: 10px; }
+.hero.full .hero-nav svg { width: 22px; height: 22px; stroke-width: 1.6; }
+.hero.full .hero-nav.prev { left: auto; right: calc(max(24px, (100% - 1240px) / 2) + 142px); }
+.hero.full .hero-nav.next { right: calc(max(24px, (100% - 1240px) / 2) + 96px); }
+.hero.full .hero-count { bottom: 20px; }
+.hero.full .sl-h { font-size: 4rem; }
+.hero.full .sl-h small { font-size: 0.34em; max-width: 30ch; }
+.hero.full .sl-price b { font-size: 2rem; }
+.entries { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+.entry { border-radius: 20px; padding: 18px 20px; min-height: 132px; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-content: space-between; gap: 6px 12px; background: var(--tint); transition: background-color .15s ease; }
+.entry:hover { background: var(--tint-2); }
+.entry.main { background: var(--graphite); color: #fff; }
+.entry.main:hover { background: #1F2329; }
+.entry b { font-size: 1.15rem; font-weight: 600; line-height: 1.2; grid-column: 1; }
+.entry span { font-size: 0.82rem; color: var(--muted); grid-column: 1; line-height: 1.35; }
+.entry.main span { color: #C5CBD3; }
+.entry em { font-style: normal; font-size: 0.84rem; font-weight: 600; grid-column: 1; align-self: end; font-variant-numeric: tabular-nums; }
+.entry i { grid-column: 2; grid-row: 1 / span 3; align-self: end; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--ink); display: grid; place-items: center; font-style: normal; }
+.entry.main i { background: var(--accent); color: #fff; }
+
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 20px; margin-top: 28px; }
+.facts div { padding: 20px 24px; display: grid; gap: 4px; align-content: start; border-left: 1px solid var(--line); }
+.facts div:first-child { border-left: 0; }
+.facts b { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.15; }
+.facts b .todo { font-size: 0.6em; vertical-align: middle; }
+.facts span { font-size: 0.84rem; color: var(--muted); }
+
+.sec-head .seeall { flex: none; }
+.kpanel { border: 1px solid var(--line); border-radius: 24px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) minmax(0, 1.15fr); overflow: hidden; background: #fff; }
+.kp-photo { background: var(--tint); display: grid; place-items: center; padding: 28px; min-height: 380px; }
+.kp-photo img { max-width: 100%; max-height: 320px; object-fit: contain; mix-blend-mode: multiply; }
+.kp-info { padding: 28px; display: grid; gap: 16px; align-content: start; }
+.kp-info h3 { font-size: 1.5rem; line-height: 1.2; }
+.kp-info p { color: var(--muted); font-size: 0.9rem; }
+.kp-meta { display: grid; gap: 6px; font-size: 0.84rem; }
+.kp-meta div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.kp-meta span:first-child { color: var(--muted); }
+.kp-meta span:last-child { text-align: right; }
+.kp-sum { display: grid; gap: 2px; }
+.kp-sum b { font-size: 1.9rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.kp-sum span { font-size: 0.84rem; color: var(--muted); }
+.kp-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.kp-list { padding: 24px 26px; border-left: 1px solid var(--line); display: grid; align-content: start; }
+.kp-list h4 { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+.kp-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.kp-list li a { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--line); }
+.kp-list li a:hover b { color: var(--accent-ink); }
+.kp-list li img { width: 52px; height: 44px; object-fit: contain; }
+.kp-list li b { font-size: 0.86rem; font-weight: 500; line-height: 1.25; }
+.kp-list li b small { display: block; color: var(--muted); font-weight: 400; font-size: 0.74rem; }
+.kp-list li em { font-style: normal; font-size: 0.84rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kp-list .more { font-size: 0.8rem; color: var(--muted); padding-top: 12px; }
+
+.band-cta { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.band-cta span { color: var(--night-muted); font-size: 0.84rem; }
+
+.shot { background: var(--tint); border: 1px dashed #B4BDC9; border-radius: 18px; display: grid; justify-items: center; align-content: center; text-align: center; gap: 6px; padding: 16px; color: var(--muted); font-size: 0.8rem; min-height: 0; }
+.shot svg { width: 30px; height: 30px; }
+.shot b { color: var(--ink); font-weight: 600; font-size: 0.92rem; }
+
+.projs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.proj { border: 1px solid var(--line); border-radius: 24px; padding: 14px 14px 20px; display: grid; gap: 14px; align-content: start; background: #fff; }
+.proj .shot { aspect-ratio: 16 / 10; }
+.proj h3 { font-size: 1.1rem; padding-inline: 8px; }
+.proj dl { margin: 0; display: grid; gap: 6px; font-size: 0.84rem; padding-inline: 8px; }
+.proj dl div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.proj dt { color: var(--muted); }
+.proj dd { margin: 0; font-weight: 500; text-align: right; }
+
+.team { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 230px auto; gap: 14px; }
+.team .shot.big { grid-row: 1 / span 2; }
+.team-txt { grid-column: 2 / span 2; background: var(--tint); border-radius: 24px; padding: 26px 28px; display: grid; gap: 14px; align-content: start; }
+.team-txt h3 { font-size: 1.3rem; line-height: 1.25; }
+.team-txt p { font-size: 0.9rem; color: #3A414B; }
+.team-txt .row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.kpform { margin-top: 56px; display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; }
+.mgr { background: var(--tint); padding: 36px; display: grid; gap: 22px; align-content: start; }
+.mgr h2 { font-size: 1.7rem; line-height: 1.15; }
+.mgr > p { font-size: 0.92rem; color: #3A414B; }
+.mgr-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: center; }
+.mgr-card .shot { width: 96px; height: 96px; border-radius: 50%; padding: 6px; font-size: 0.66rem; }
+.mgr-card .shot svg { width: 22px; height: 22px; }
+.mgr-card div:last-child { display: grid; gap: 3px; font-size: 0.88rem; }
+.mgr-card b { font-size: 1.05rem; font-weight: 600; }
+.mgr-card span { color: var(--muted); font-size: 0.82rem; }
+.mgr-card a { font-weight: 600; font-variant-numeric: tabular-nums; }
+.kpform form { padding: 36px; display: grid; gap: 14px; align-content: start; }
+.kpform .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.kpform label { display: grid; gap: 5px; font-size: 0.8rem; color: var(--muted); font-weight: 500; }
+.kpform input[type=text], .kpform input[type=tel] { height: 48px; border: 1px solid var(--line); border-radius: 12px; padding: 0 14px; background: #fff; }
+.kpform .chk { display: flex; gap: 8px; align-items: start; font-weight: 400; }
+.kpform .chk input { margin-top: 3px; accent-color: var(--accent); flex: none; }
+.kpform .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.kpform .status { font-size: 0.82rem; color: var(--muted); }
+
+@container site (max-width: 1180px) {
+  .topbar nav { gap: 16px; }
+  header.hd .in { grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 14px; }
+  .phone { display: none; }
+  .prods { grid-auto-columns: calc((100% - 3 * 14px) / 4); }
+  .why { grid-auto-columns: calc((100% - 3 * 14px) / 4); }
+  .posts { grid-auto-columns: calc((100% - 32px) / 2); }
+  .sl-h { font-size: 2.5rem; }
+  .sl-txt { width: min(440px, 42%); }
+  .sl-photo { width: 56%; }
+}
+@container site (max-width: 900px) {
+  .topbar, .duo, .search, .icons .d-only, .cats .side, .bb .arr, .hero-nav { display: none !important; }
+  .m-only { display: grid !important; }
+  .sec { padding-block: 36px 0; }
+  .sec-head h2, .h2, .store-h { font-size: 1.45rem; }
+  .arrows { display: none; }
+  header.hd .in { grid-template-columns: auto minmax(0, 1fr) auto; height: 60px; gap: 2px; }
+  .logo { justify-self: center; }
+  .logo img { height: 22px; }
+  .icons a, .icons button { width: 40px; height: 40px; }
+  .slide { height: auto; display: grid; align-content: start; }
+  .sl-photo { position: relative; width: 100%; aspect-ratio: 16 / 11; max-width: 100%; }
+  .sl-in { height: auto; padding-block: 18px 22px; }
+  .chip { font-size: 0.72rem; padding: 5px 10px; }
+  .sl-txt { width: 100%; gap: 14px; }
+  .sl-h { font-size: 2rem; }
+  .sl-h small { font-size: 0.48em; margin-top: 8px; }
+  .sl-price b { font-size: 1.4rem; }
+  .sl-price { display: grid; gap: 2px; }
+  .sl-cta { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+  .sl-cta .btn { padding: 0 10px; letter-spacing: 0.04em; min-width: 0; font-size: 0.74rem; }
+  .hero-count { top: 12px; bottom: auto; right: var(--gut-r); }
+  .brandbar { padding-block: 12px; }
+  .bb { grid-template-columns: minmax(0, 1fr); }
+  .btab { width: 146px; height: 64px; padding: 8px 12px 10px; }
+  .brand { width: 108px; height: 64px; }
+  .cats { grid-template-columns: minmax(0, 1fr); padding-top: 22px; }
+  .cats .rail { grid-auto-columns: 136px; }
+  .cat { height: 168px; grid-template-rows: 74px auto 1fr; padding: 12px 8px; }
+  .cat img { height: 74px; }
+  .cat b { font-size: 0.8rem; }
+  .bento { grid-template-columns: 1fr; gap: 10px; }
+  .bcol { gap: 10px; }
+  .bcol.l { grid-template-rows: 250px 190px; }
+  .bcol.r { grid-template-rows: 190px 210px; }
+  .brow { gap: 10px; }
+  .bt { padding: 16px; border-radius: 20px; gap: 8px; }
+  .bt h3 { font-size: 0.92rem; }
+  .bt .from { font-size: 0.74rem; padding: 2px 8px; }
+  .bt img { max-width: 70%; max-height: 56%; right: 10px; bottom: 8px; }
+  .bt.big img { max-height: 78%; right: 16px; }
+  .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 22px; margin-bottom: 16px; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { white-space: nowrap; }
+  .prods { grid-auto-columns: 62%; gap: 10px; }
+  .card { grid-template-rows: 150px auto auto auto 1fr auto; border-radius: 18px; padding: 12px; }
+  .card .im img { height: 150px; }
+  .band { grid-template-columns: 1fr; margin-top: 40px; }
+  .band .left { padding: 40px var(--gut-r) 36px var(--gut); gap: 30px; }
+  .band .left h2 { font-size: 1.45rem; }
+  .svc { gap: 8px; }
+  .svc a { padding: 12px 12px 34px; min-height: 108px; }
+  .svc b { font-size: 0.86rem; }
+  .band .right { min-height: 320px; }
+  .years { width: 210px; padding: 18px 22px 20px; border-radius: 22px 0 0 0; }
+  .years b { font-size: 3.4rem; }
+  .years span { font-size: 0.8rem; }
+  .kits { grid-template-columns: minmax(0, 1fr); }
+  .kits { display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 86%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .kits::-webkit-scrollbar { display: none; }
+  .kit { scroll-snap-align: start; }
+  .ask p { font-size: 1rem; }
+  .why { grid-auto-columns: 44%; gap: 10px; }
+  .why div { min-height: 160px; padding: 18px; border-radius: 20px; }
+  .why svg { width: 36px; height: 36px; }
+  .why span { font-size: 0.84rem; }
+  .posts { grid-auto-columns: 86%; gap: 16px; }
+  .post { grid-template-columns: 120px minmax(0, 1fr); gap: 14px; }
+  .trust { padding-block: 28px; margin-top: 40px; }
+  .trust .in { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .tcard { padding: 26px; min-height: 0; border-radius: 26px; }
+  .rate i { width: 72px; height: 72px; font-size: 1.6rem; }
+  .about { grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 32px 0; }
+  footer.ft { margin-top: 36px; }
+  .fgrid { grid-template-columns: 1fr 1fr; }
+  .tabbar { display: grid; grid-template-columns: repeat(5, 1fr); position: sticky; bottom: 0; z-index: 45; background: #fff; border-top: 1px solid var(--line); padding: 6px var(--gut-r) calc(6px + env(safe-area-inset-bottom, 0px)) var(--gut); }
+  .tabbar a, .tabbar button { display: grid; justify-items: center; gap: 2px; font-size: 0.68rem; color: var(--ink); border: 0; background: none; padding: 4px 0; cursor: pointer; }
+  .tabbar svg { width: 24px; height: 24px; }
+  .tabbar .kpb svg { color: var(--accent); }
+}
+@container site (max-width: 440px) {
+  .fgrid { grid-template-columns: minmax(0, 1fr); }
+  .prods { grid-auto-columns: 72%; }
+  .sl-h { font-size: 1.8rem; }
+}
+@container site (max-width: 1180px) {
+  .hero.full .sl-h { font-size: 3rem; }
+  .hero.full .sl-txt { width: min(420px, 44%); }
+  .kpanel { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr) minmax(0, 1.2fr); }
+  .kp-info, .kp-list { padding: 22px; }
+}
+@container site (max-width: 900px) {
+  .hero.full .slide { height: auto; }
+  .hero.full .hero-count { bottom: auto; }
+  .hero.full .sl-photo { position: relative; right: auto; width: 100%; height: auto; aspect-ratio: 1 / 0.86; -webkit-mask-image: none; mask-image: none; }
+  .hero.full .sl-photo img { object-position: 57.5% center; }
+  .hero.full .sl-txt { width: 100%; gap: 14px; }
+  .hero.full .sl-h { font-size: 2.1rem; }
+  .hero.full .sl-h small { font-size: 0.46em; }
+  .hero.full .sl-price b { font-size: 1.5rem; }
+  .entries { grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 14px; }
+  .entry { padding: 12px 14px; border-radius: 14px; min-height: 0; align-content: center; gap: 2px 12px; }
+  .entry b { font-size: 0.98rem; }
+  .entry span { font-size: 0.76rem; }
+  .entry em { display: none; }
+  .entry i { grid-row: 1 / span 2; align-self: center; width: 32px; height: 32px; }
+  .facts { grid-template-columns: 1fr 1fr; margin-top: 20px; border-radius: 16px; }
+  .facts div { padding: 14px 16px; }
+  .facts div:nth-child(odd) { border-left: 0; }
+  .facts div:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .facts b { font-size: 1.5rem; }
+  .facts span { font-size: 0.78rem; }
+  .sec-head .seeall { font-size: 0.68rem; gap: 6px; }
+  .kpanel { grid-template-columns: minmax(0, 1fr); border-radius: 20px; }
+  .kp-photo { min-height: 0; padding: 18px; }
+  .kp-photo img { max-height: 190px; }
+  .kp-info { padding: 20px 18px; gap: 14px; }
+  .kp-info h3 { font-size: 1.25rem; }
+  .kp-sum b { font-size: 1.6rem; }
+  .kp-cta .btn { flex: 1 1 0; padding: 0 10px; font-size: 0.74rem; letter-spacing: 0.04em; }
+  .kp-list { border-left: 0; border-top: 1px solid var(--line); padding: 18px; }
+  .band-cta .btn { width: 100%; }
+  .projs { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: 10px; }
+  .projs::-webkit-scrollbar { display: none; }
+  .proj { scroll-snap-align: start; border-radius: 20px; }
+  .team { grid-template-columns: 1fr 1fr; grid-template-rows: 190px 130px auto; gap: 10px; }
+  .team .shot.big { grid-row: auto; grid-column: 1 / span 2; }
+  .team-txt { grid-column: 1 / span 2; padding: 20px 18px; border-radius: 20px; }
+  .team-txt .row .btn { flex: 1 1 100%; }
+  .kpform { grid-template-columns: minmax(0, 1fr); margin-top: 40px; border-radius: 22px; }
+  .mgr { padding: 24px 20px; gap: 16px; }
+  .mgr h2 { font-size: 1.35rem; }
+  .mgr-card { grid-template-columns: 72px minmax(0, 1fr); gap: 14px; }
+  .mgr-card .shot { width: 72px; height: 72px; }
+  .kpform form { padding: 22px 20px 26px; }
+  .kpform .two { grid-template-columns: minmax(0, 1fr); }
+  .kpform .row .btn { width: 100%; }
+}
+
+/* ===== v4 · фильм в первом экране ===== */
+.hfilm { position: absolute; top: 0; bottom: 0; right: 0; width: min(100%, calc(var(--hh) * 2.39)); z-index: 1; pointer-events: none; opacity: 0; transition: opacity .6s ease; overflow: hidden; }
+/* на очень широких экранах ролик не растягивается, а левым краем растворяется в фоне слайда */
+.hfilm, .hero.full .film-ch .sl-photo { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%); mask-image: linear-gradient(90deg, transparent 0, #000 14%); }
+.hfilm video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+.hero.film-on .hfilm { opacity: 1; }
+.hero.v-off .hfilm { display: none; }
+.hero.full .film-ch .sl-photo { top: 0; bottom: 0; right: 0; left: auto; width: min(100%, calc(var(--hh) * 2.39)); height: 100%; aspect-ratio: auto; }
+.hero.full .film-ch .sl-photo img { object-position: right center; }
+.hero .film-ch .sl-in { z-index: 2; }
+/* текст слева читается на любом плане: мягкая светлая подложка, которая сходит на нет к середине баннера */
+.hfilm::after, .hero.full .film-ch .sl-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; --g: max(24px, calc((100% - 1240px) / 2));
+  background: linear-gradient(90deg, rgba(240,243,247,.92) 0, rgba(240,243,247,.88) calc(var(--g) + 200px), rgba(240,243,247,.45) calc(var(--g) + 400px), rgba(240,243,247,0) calc(var(--g) + 600px)); }
+.hero.full .film-ch .sl-txt { width: min(460px, 40%); }
+.film-toggle { position: absolute; z-index: 2; bottom: 16px; right: calc(max(24px, (100% - 1240px) / 2) + 188px); width: 40px; height: 40px; border: 0; border-radius: 10px; background: rgba(255,255,255,.85); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.film-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.film-toggle .i-play { display: none; fill: currentColor; stroke: none; }
+.film-toggle[aria-pressed="true"] .i-play { display: block; }
+.film-toggle[aria-pressed="true"] .i-pause { display: none; }
+.hero:not(.film-live) .film-toggle, .hero.v-off .film-toggle { display: none; }
+/* полоса хода на вкладках глав идёт по времени фильма, а не по таймеру */
+.hero.v-film ~ .brandbar .btab.film .prog { animation: none !important; }
+.anal td a { text-decoration: underline; text-underline-offset: 2px; color: var(--accent); }
+.viewbar .sep { width: 1px; background: #3A4049; margin: 6px 4px; }
+@container site (max-width: 900px) {
+  .hfilm { top: 0; left: 0; right: 0; bottom: auto; width: 100%; aspect-ratio: 1 / 0.86; }
+  .hfilm, .hero.full .film-ch .sl-photo { -webkit-mask-image: none; mask-image: none; }
+  .hfilm video { object-position: center; }
+  .hfilm::after, .hero.full .film-ch .sl-photo::after { display: none; }
+  .hero.full .film-ch .sl-photo { position: relative; inset: auto; width: 100%; height: auto; aspect-ratio: 1 / 0.86; }
+  .hero.full .film-ch .sl-photo img { object-position: center; }
+  .hero.full .film-ch .sl-txt { width: 100%; }
+  .film-toggle { top: 12px; bottom: auto; right: auto; left: var(--gut); width: 36px; height: 36px; border-radius: 999px; }
+}
+@media (max-width: 700px) { .viewbar { max-width: calc(100vw - 24px); overflow-x: auto; scrollbar-width: none; } .viewbar::-webkit-scrollbar { display: none; } .viewbar [data-fmode] { padding: 0 11px; } .viewbar .sep:first-of-type { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .slides, .rail { scroll-behavior: auto; }
+  .btab[aria-selected="true"] .prog { animation: none; transform: scaleX(1); }
+  .bt img { transition: none; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></symbol>
+  <symbol id="i-compare" viewBox="0 0 24 24"><path d="M12 4v16M5 8l-3 6h6L5 8Zm14 0-3 6h6l-3-6ZM5 8h14M8 20h8"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11h11l2-8H6.2"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-aleft" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-aright" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12V4h8l9 9-8 8-9-9Z"/><circle cx="7.5" cy="8.5" r="1.2"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l2.5 2.5M14 9l2 2"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/></symbol>
+  <symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <!-- иконки «почему мы» -->
+  <symbol id="w-dealer" viewBox="0 0 48 48"><path d="M24 5 9 11v11c0 9.5 6.4 17.3 15 20 8.6-2.7 15-10.5 15-20V11L24 5Z"/><path d="m17 24 5 5 10-10"/></symbol>
+  <symbol id="w-truck" viewBox="0 0 48 48"><path d="M4 12h24v20H4zM28 19h8l7 7v6H28"/><circle cx="12" cy="35" r="3.5"/><circle cx="35" cy="35" r="3.5"/><path d="M9 18h12M9 23h8"/></symbol>
+  <symbol id="w-wrench" viewBox="0 0 48 48"><path d="M29 10a9 9 0 0 0-11.6 11.6L6 33l9 9 11.4-11.4A9 9 0 0 0 38 19l-5.5 5.5-6-1.5-1.5-6L29 10Z"/></symbol>
+  <symbol id="w-card" viewBox="0 0 48 48"><rect x="5" y="11" width="38" height="26" rx="4"/><path d="M5 19h38M11 30h10"/><path d="M33 27v6M30 30h6"/></symbol>
+  <symbol id="w-license" viewBox="0 0 48 48"><path d="M11 5h19l8 8v30H11z"/><path d="M30 5v8h8M17 21h14M17 27h14M17 33h8"/><circle cx="33" cy="35" r="5"/><path d="m31 40-1 5 3-2 3 2-1-5"/></symbol>
+  <symbol id="w-plan" viewBox="0 0 48 48"><path d="M5 9h38v30H5z"/><path d="M5 23h16v16M21 9v8M29 23h14M29 23v16"/><circle cx="13" cy="15" r="2"/></symbol>
+</svg>
+
+<div class="stage">
+<div class="site" id="site">
+
+<div class="topbar">
+  <div class="in">
+    <span class="city"><svg class="ico" style="width:15px;height:15px"><use href="#i-pin"/></svg>Москва · доставка по России</span>
+    <nav aria-label="Информация">
+      <a href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Акции</a>
+      <a href="https://yarmed.com/about/" target="_blank" rel="noopener">О компании</a>
+      <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener">Стоматология под ключ</a>
+      <a href="#kits">Оснащение кабинета</a>
+      <a href="https://yarmed.com/vendors/" target="_blank" rel="noopener">Производители</a>
+      <a href="https://yarmed.com/info/reviews/" target="_blank" rel="noopener">Проекты</a>
+      <a href="https://yarmed.com/contacts/" target="_blank" rel="noopener">Контакты</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hd" id="hd">
+  <div class="in">
+    <button class="icons m-only" type="button" aria-label="Меню каталога" style="width:40px;height:40px;place-items:center;border:0;background:none;cursor:pointer"><svg class="ico" style="width:24px;height:24px"><use href="#i-menu"/></svg></button>
+    <a class="logo" href="#top" aria-label="ЯрМед, на главную"><img src="img/logo/yarmed.png" alt="ЯрМед" width="311" height="45"></a>
+    <div class="duo">
+      <a class="on" href="#catalog"><svg class="ico" style="width:18px;height:18px"><use href="#i-menu"/></svg>Каталог</a>
+      <a href="#services"><svg class="ico" style="width:18px;height:18px"><use href="#i-tool"/></svg>Открытие клиник</a>
+    </div>
+    <form class="search" role="search" id="searchForm">
+      <label for="q" class="sr">Поиск по каталогу</label>
+      <input id="q" type="search" autocomplete="off" placeholder="Установка с нижней подачей">
+      <button type="submit" aria-label="Найти"><svg class="ico"><use href="#i-search"/></svg></button>
+    </form>
+    <div class="phone"><a href="tel:+74951201401">+7 (495) 120-14-01</a><button type="button" data-call>Заказать звонок</button></div>
+    <div class="icons">
+      <button class="m-only" type="button" aria-label="Поиск"><svg class="ico" style="width:22px;height:22px"><use href="#i-search"/></svg></button>
+      <a class="m-only" href="tel:+74951201401" aria-label="Позвонить"><svg class="ico" style="width:22px;height:22px"><use href="#i-phone"/></svg></a>
+      <a class="d-only" href="https://yarmed.com/catalog/compare.php" target="_blank" rel="noopener" aria-label="Сравнение"><svg class="ico"><use href="#i-compare"/></svg></a>
+      <a class="d-only" href="https://yarmed.com/personal/favorite/" target="_blank" rel="noopener" aria-label="Избранное"><svg class="ico"><use href="#i-heart"/></svg></a>
+      <a class="d-only" href="https://yarmed.com/basket/" target="_blank" rel="noopener" aria-label="Корзина"><svg class="ico"><use href="#i-cart"/></svg><span class="cnt" id="cartCnt" hidden>0</span></a>
+      <a class="d-only" href="https://yarmed.com/personal/" target="_blank" rel="noopener" aria-label="Личный кабинет"><svg class="ico"><use href="#i-user"/></svg></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Первый экран на всю ширину: оборудование на студийном фоне -->
+  <section class="hero full v-film" id="hero" aria-roledescription="карусель" aria-label="Предложения ЯрМеда">
+    <div class="hfilm" aria-hidden="true"><video muted playsinline preload="none" data-src="film/film.mp4" data-src-m="film/film-m.mp4"></video></div>
+    <div class="slides" id="slides">
+
+      <article class="slide film-ch" id="s0" style="--sbg:#DCE1ED" aria-roledescription="слайд" aria-label="1 из 5">
+        <div class="sl-photo"><picture><source media="(max-width: 700px)" srcset="film/ch1-m.webp"><img src="film/ch1.webp" alt="Стоматологическая установка Anthos L9" width="1920" height="804" fetchpriority="high" decoding="async"></picture></div>
+        <div class="in sl-in"><div class="sl-txt">
+          <div class="sl-brand"><img src="img/logo/anthos.webp" alt="Anthos"><span class="dot"></span>Италия</div>
+          <p class="sl-h">Anthos L9<small>Флагман Anthos. Кресло раскладывается в горизонталь, консоль с сенсорным экраном</small></p>
+          <div class="sl-price"><b>1 649 000 ₽</b><span>в лизинг от <strong>53 700 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
+          <div class="chips"><span class="chip">Anthos A5 — 1 070 000 ₽</span><span class="chip">Автоклав A-22 — 243 000 ₽</span></div>
+          <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/anthos/anthos-l9/" target="_blank" rel="noopener">Смотреть <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn line" type="button" data-kp="Anthos L9">Получить КП</button></div>
+        </div></div>
+      </article>
+
+      <article class="slide film-ch" id="s1" style="--sbg:#D7DDE7" aria-roledescription="слайд" aria-label="2 из 5">
+        <div class="sl-photo"><picture><source media="(max-width: 700px)" srcset="film/ch2-m.webp"><img src="film/ch2.webp" alt="Стоматологическая установка Castellini SKEMA 8" width="1920" height="804" loading="lazy"></picture></div>
+        <div class="in sl-in"><div class="sl-txt">
+          <div class="sl-brand"><img src="img/logo/castellini.webp" alt="Castellini"><span class="dot"></span>Италия</div>
+          <p class="sl-h">SKEMA 8<small>Старшая модель Castellini с верхней и нижней подачей инструментов</small></p>
+          <div class="sl-price"><b>1 940 000 ₽</b><span>в лизинг от <strong>63 100 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
+          <div class="chips"><span class="chip">Линейка SKEMA 5 · 6 · 8</span><span class="chip">Доставка и монтаж</span></div>
+          <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/castellini/castellini-skema-8-stomatologicheskaya-ustanovka-s-verkhney-nizhney-podachey-instrumentov-/" target="_blank" rel="noopener">Смотреть <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn line" type="button" data-kp="Castellini SKEMA 8">Получить КП</button></div>
+        </div></div>
+      </article>
+
+      <article class="slide film-ch" id="s2" style="--sbg:#DEE0EB" aria-roledescription="слайд" aria-label="3 из 5">
+        <div class="sl-photo"><picture><source media="(max-width: 700px)" srcset="film/ch3-m.webp"><img src="film/ch3.webp" alt="Автоклав MELAG" width="1920" height="804" loading="lazy"></picture></div>
+        <div class="in sl-in"><div class="sl-txt">
+          <div class="sl-brand"><span class="wm">MELAG</span><span class="dot"></span>Германия</div>
+          <p class="sl-h">Автоклавы класса B<small>Vacuklav 118, 123 и 550, мойка-дезинфектор MELAtherm 10</small></p>
+          <div class="sl-price"><b>от 397 000 ₽</b><span>в лизинг от <strong>12 900 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
+          <div class="chips"><span class="chip">Камеры 17–53 л</span><span class="chip">Для кабинета и ЦСО</span></div>
+          <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/avtoklavy/" target="_blank" rel="noopener">Все автоклавы <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn line" type="button" data-kp="Автоклав Melag">Получить КП</button></div>
+        </div></div>
+      </article>
+
+      <article class="slide" id="s3" style="--sbg:#D9DEE7" aria-roledescription="слайд" aria-label="4 из 5">
+        <div class="sl-photo"><picture><source media="(max-width: 700px)" srcset="img/hero/s380-m.webp"><img src="img/hero/s380.webp" alt="Стоматологическая установка Stern Weber S380 TRC" width="1792" height="1024" loading="lazy"></picture></div>
+        <div class="in sl-in"><div class="sl-txt">
+          <div class="sl-brand"><span class="wm">STERN WEBER</span><span class="dot"></span>Италия</div>
+          <p class="sl-h">S380<small>Установка для хирургии и имплантологии. В каталоге 10 моделей Stern Weber</small></p>
+          <div class="sl-price"><b>1 937 400 ₽</b><span>в лизинг от <strong>63 000 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
+          <div class="chips"><span class="chip">Модели от 910 000 ₽</span><span class="chip">S200 · S280 · S380</span></div>
+          <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/stern-weber/" target="_blank" rel="noopener">Все модели <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn line" type="button" data-kp="Stern Weber S380">Получить КП</button></div>
+        </div></div>
+      </article>
+
+      <article class="slide" id="s4" style="--sbg:#D6DBE5" aria-roledescription="слайд" aria-label="5 из 5">
+        <div class="sl-photo"><picture><source media="(max-width: 700px)" srcset="img/hero/vatech-m.webp"><img src="img/hero/vatech.webp" alt="Компьютерный томограф Vatech в рентген-кабинете" width="1792" height="1024" loading="lazy"></picture></div>
+        <div class="in sl-in"><div class="sl-txt">
+          <div class="sl-brand"><img src="img/logo/vatech.webp" alt="Vatech"><span class="dot"></span>Южная Корея</div>
+          <p class="sl-h">КТ и панорама<small>Томографы PaX-i 3D и Smart Plus, радиовизиографы EzSensor</small></p>
+          <div class="sl-price"><b>от 4 000 000 ₽</b><span>визиографы от <strong>169 400 ₽</strong></span></div>
+          <div class="chips"><span class="chip">FOV до 17 × 15 см</span><span class="chip">Помощь с лицензией на рентген <span class="todo">[?]</span></span></div>
+          <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/vendors/vatech/" target="_blank" rel="noopener">Все аппараты <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn line" type="button" data-kp="Томограф Vatech">Получить КП</button></div>
+        </div></div>
+      </article>
+
+    </div>
+    <button class="hero-nav prev" type="button" aria-label="Предыдущий слайд" data-go="-1"><svg class="ico"><use href="#i-left"/></svg></button>
+    <button class="hero-nav next" type="button" aria-label="Следующий слайд" data-go="1"><svg class="ico"><use href="#i-right"/></svg></button>
+    <span class="hero-count" id="heroCount" aria-hidden="true">01 / 05</span>
+    <button class="film-toggle" type="button" id="filmToggle" aria-pressed="false" aria-label="Остановить фильм"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M8 5v14M16 5v14"/><path class="i-play" d="M8 5l11 7-11 7V5Z"/></svg></button>
+  </section>
+
+  <!-- Полоса брендов: первые шесть плиток переключают баннер -->
+  <div class="brandbar" id="brandbar">
+    <div class="in bb">
+      <button class="arr" type="button" aria-label="Бренды назад" data-rail="brandRail" data-dir="-1"><svg class="ico"><use href="#i-aleft"/></svg></button>
+      <div class="rail" id="brandRail" role="tablist" aria-label="Слайды баннера">
+        <button class="btab film" role="tab" type="button" data-i="0" aria-controls="s0"><span class="lg"><img src="img/logo/anthos.webp" alt="Anthos"></span><span>Установки A5, L9</span><i class="prog"></i></button>
+        <button class="btab film" role="tab" type="button" data-i="1" aria-controls="s1"><span class="lg"><img src="img/logo/castellini.webp" alt="Castellini"></span><span>Установки SKEMA</span><i class="prog"></i></button>
+        <button class="btab film" role="tab" type="button" data-i="2" aria-controls="s2"><span class="lg"><span class="wm">MELAG</span></span><span>Автоклавы класса B</span><i class="prog"></i></button>
+        <button class="btab" role="tab" type="button" data-i="3" aria-controls="s3"><span class="lg"><span class="wm">STERN WEBER</span></span><span>10 установок</span><i class="prog"></i></button>
+        <button class="btab" role="tab" type="button" data-i="4" aria-controls="s4"><span class="lg"><img src="img/logo/vatech.webp" alt="Vatech"></span><span>КТ и рентген</span><i class="prog"></i></button>
+        <span class="bsep" aria-hidden="true"></span>
+        <a class="brand" href="https://yarmed.com/vendors/kavo/" target="_blank" rel="noopener"><img src="img/logo/kavo.webp" alt="KaVo"></a>
+        <a class="brand" href="https://yarmed.com/vendors/nsk/" target="_blank" rel="noopener"><img src="img/logo/nsk.webp" alt="NSK"></a>
+        <a class="brand" href="https://yarmed.com/vendors/myray/" target="_blank" rel="noopener"><img src="img/logo/myray.webp" alt="MyRay"></a>
+        <a class="brand" href="https://yarmed.com/vendors/cattani/" target="_blank" rel="noopener"><img src="img/logo/cattani.webp" alt="Cattani"></a>
+        <a class="brand" href="https://yarmed.com/vendors/ekom/" target="_blank" rel="noopener"><img src="img/logo/ekom.webp" alt="Ekom"></a>
+        <a class="brand" href="https://yarmed.com/vendors/ajax/" target="_blank" rel="noopener"><img src="img/logo/ajax.webp" alt="Ajax"></a>
+        <a class="brand t" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">W&amp;H</a>
+        <a class="brand t" href="https://yarmed.com/vendors/d-rr-dental/" target="_blank" rel="noopener">DÜRR<br>DENTAL</a>
+        <a class="brand t" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">ZEISS</a>
+        <a class="brand all" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">Все бренды <span aria-hidden="true">•••</span></a>
+      </div>
+      <button class="arr" type="button" aria-label="Бренды вперёд" data-rail="brandRail" data-dir="1"><svg class="ico"><use href="#i-aright"/></svg></button>
+    </div>
+  </div>
+
+  <!-- Три входа -->
+  <section class="in" aria-label="С чего начать">
+    <div class="entries">
+      <a class="entry main" href="#kits"><b>Оснащение кабинета</b><span>Готовые комплекты по типу кабинета со сметой</span><em>от 1,32 млн ₽</em><i aria-hidden="true"><svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></i></a>
+      <a class="entry" href="#services"><b>Открыть клинику</b><span>Проект, ремонт, оснащение, СЭЗ и лицензия</span><em>Лицензия за 7 рабочих дней</em><i aria-hidden="true"><svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></i></a>
+      <a class="entry" href="#projects"><b>Наши проекты</b><span>Клиники, которые мы оснастили и открыли</span><em>Смотреть проекты</em><i aria-hidden="true"><svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></i></a>
+    </div>
+  </section>
+
+  <!-- Цифры о компании -->
+  <section class="in" aria-label="ЯрМед в цифрах">
+    <div class="facts">
+      <div><b><span class="todo">[12]</span> лет</b><span>открываем стоматологии под ключ</span></div>
+      <div><b><span class="todo">[число]</span></b><span>клиник и кабинетов оснащено</span></div>
+      <div><b><span class="todo">[число]</span></b><span>инженеров монтажа и сервиса</span></div>
+      <div><b>7 дней</b><span>срок получения медицинской лицензии</span></div>
+    </div>
+  </section>
+
+  <!-- Разделы каталога -->
+  <section class="in" id="catalog" aria-label="Разделы каталога">
+    <div class="cats">
+      <button class="side" type="button" aria-label="Разделы назад" data-rail="catRail" data-dir="-1"><svg class="ico" style="width:28px;height:28px;stroke-width:1.2"><use href="#i-left"/></svg></button>
+      <div class="rail" id="catRail"></div>
+      <button class="side" type="button" aria-label="Разделы вперёд" data-rail="catRail" data-dir="1"><svg class="ico" style="width:28px;height:28px;stroke-width:1.2"><use href="#i-right"/></svg></button>
+    </div>
+    <div class="seeall-row"><a class="seeall" href="https://yarmed.com/catalog/" target="_blank" rel="noopener">В каталог <i aria-hidden="true">↗</i></a></div>
+    <hr class="rule">
+  </section>
+
+  <!-- Магазин: бенто -->
+  <section class="sec in">
+    <h1 class="store-h">ЯрМед — магазин стоматологического оборудования</h1>
+    <div class="bento">
+      <div class="bcol l">
+        <a class="bt big" href="https://yarmed.com/catalog/stomatologicheskie-mikroskopy/" target="_blank" rel="noopener">
+          <h3>Микроскопы <small>/ 8 моделей</small></h3>
+          <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 705 000 ₽</span>
+          <img src="img/p/mikroskop-zumax-oms-2380.webp" alt="Микроскоп Zumax OMS 2380" loading="lazy">
+        </a>
+        <div class="brow">
+          <a class="bt" href="https://yarmed.com/vendors/vatech/" target="_blank" rel="noopener">
+            <h3>Рентген Vatech <small>/ 9 товаров</small></h3>
+            <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 151 900 ₽</span>
+            <img src="img/p/rentgen-vatech-pax-i-3d.webp" alt="Томограф Vatech PaX-i 3D" loading="lazy">
+          </a>
+          <a class="bt" href="https://yarmed.com/catalog/kompressory_/" target="_blank" rel="noopener">
+            <h3>Компрессоры Lifedent <small>/ 11 товаров</small></h3>
+            <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 43 400 ₽</span>
+            <img src="img/p/kompressor-lifedent-sp150.webp" alt="Компрессор Lifedent SP150" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="bcol r">
+        <div class="brow">
+          <a class="bt" href="https://yarmed.com/catalog/castellini/" target="_blank" rel="noopener">
+            <h3>Установки Castellini <small>/ 3 модели</small></h3>
+            <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 1 300 000 ₽</span>
+            <img src="img/p/ustanovka-castellini-skema8.webp" alt="Castellini SKEMA 8" loading="lazy">
+          </a>
+          <a class="bt" href="https://yarmed.com/catalog/avtoklavy/" target="_blank" rel="noopener">
+            <h3>Автоклавы Melag <small>/ 8 товаров</small></h3>
+            <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 332 500 ₽</span>
+            <img src="img/p/avtoklav-melag-vacuclave-123.webp" alt="Автоклав Melag Vacuklav 123" loading="lazy">
+          </a>
+        </div>
+        <a class="bt wide" href="https://yarmed.com/catalog/introoralnye-skanery/" target="_blank" rel="noopener">
+          <h3>Интраоральные сканеры <small>/ Sirona, Medit, Planmeca, Shining 3D</small></h3>
+          <span class="from"><svg class="ico" style="width:14px;height:14px"><use href="#i-tag"/></svg>от 235 000 ₽</span>
+          <img src="img/p/skaner-sirona-primescan.webp" alt="Интраоральный сканер Sirona Primescan" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Комплекты по типу кабинета -->
+  <section class="lazy-block sec in" id="kits">
+    <hr class="rule" style="margin-bottom:40px">
+    <div class="sec-head"><h2>Оснащение кабинета: готовые комплекты</h2><a class="seeall" href="#kp">Собрать свой <i aria-hidden="true">↗</i></a></div>
+    <div class="tabs" role="tablist" id="kitTabs" aria-label="Тип кабинета"></div>
+    <div class="kpanel" id="kitPanel" role="tabpanel"></div>
+    <p class="note">Комплекты собраны из товаров каталога по ценам yarmed.com. Лизинг посчитан для примера: аванс 10 %, 36 месяцев <span class="todo">[условия партнёра уточнить]</span>. Полный состав по стандарту оснащения (приказ 786н) добавим после сверки <span class="todo">[список сверить]</span>.</p>
+  </section>
+
+  <!-- Хиты -->
+  <section class="lazy-block sec in" id="hits">
+    <div class="sec-head"><h2>Хиты продаж</h2><div class="arrows"><button class="arr" type="button" aria-label="Назад" data-rail="hitRail" data-dir="-1"><svg class="ico"><use href="#i-aleft"/></svg></button><button class="arr" type="button" aria-label="Вперёд" data-rail="hitRail" data-dir="1"><svg class="ico"><use href="#i-aright"/></svg></button></div></div>
+    <div class="tabs" role="tablist" id="hitTabs" aria-label="Разделы хитов"></div>
+    <div class="rail prods" id="hitRail" role="tabpanel"></div>
+    <div class="seeall-row"><a class="seeall" href="https://yarmed.com/catalog/stomatologicheskoe-oborudovanie/" target="_blank" rel="noopener">Смотреть всё <i aria-hidden="true">↗</i></a></div>
+  </section>
+
+  <!-- Услуги: тёмная полоса -->
+  <section class="lazy-block band" id="services">
+    <div class="left">
+      <h2>Открываем стоматологии под ключ: от проекта до лицензии</h2>
+      <div style="display:grid;gap:18px">
+        <span class="k">Услуги ЯрМеда</span>
+        <div class="svc">
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Медицинская лицензия</b><span>300 000 ₽ · 7 рабочих дней</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Санэпидзаключение</b><span>100 000 ₽ · 20 рабочих дней</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Ремонт под ключ</b><span>17 000–20 000 ₽ <span class="todo">[за м²?]</span></span></a>
+          <a href="#kits"><b>Оснащение кабинета</b><span>Комплекты от 1,32 млн ₽</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Документы клиники</b><span>от 5 000 ₽ за документ</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Лизинг и рассрочка</b><span><span class="todo">[партнёр и условия]</span></span></a>
+        </div>
+        <div class="band-cta"><button class="btn blue" type="button" data-kp="Открытие клиники под ключ">Получить расчёт</button><span>Посчитаем проект, оснащение и сроки для вашего помещения</span></div>
+      </div>
+    </div>
+    <div class="right">
+      <img src="img/hero/band.webp" alt="Кабинет с установкой Castellini SKEMA 6" loading="lazy">
+      <div class="years"><b><span class="todo" style="font-size:.5em;vertical-align:middle">[12]</span></b><span>лет открываем стоматологии под ключ</span></div>
+    </div>
+  </section>
+
+  <!-- Наши проекты -->
+  <section class="lazy-block sec in" id="projects">
+    <div class="sec-head"><h2>Наши проекты</h2><a class="seeall" href="https://yarmed.com/info/reviews/" target="_blank" rel="noopener">Все проекты <i aria-hidden="true">↗</i></a></div>
+    <div class="projs">
+      <article class="proj"><div class="shot"><svg class="ico"><use href="#i-cam"/></svg><b>Фото клиники</b><span>Swiss beauty Clinic после открытия</span></div>
+        <h3>Swiss beauty Clinic</h3>
+        <dl><div><dt>Город</dt><dd><span class="todo">[город]</span></dd></div><div><dt>Что сделали</dt><dd><span class="todo">[оснащение, лицензия]</span></dd></div><div><dt>Площадь</dt><dd><span class="todo">[м²]</span></dd></div></dl>
+      </article>
+      <article class="proj"><div class="shot"><svg class="ico"><use href="#i-cam"/></svg><b>Фото клиники</b><span>«Белый Сад» в гостинице «Метрополь»</span></div>
+        <h3>Клиника «Белый Сад»</h3>
+        <dl><div><dt>Город</dt><dd>Москва</dd></div><div><dt>Что сделали</dt><dd><span class="todo">[оснащение, лицензия]</span></dd></div><div><dt>Площадь</dt><dd><span class="todo">[м²]</span></dd></div></dl>
+      </article>
+      <article class="proj"><div class="shot"><svg class="ico"><use href="#i-cam"/></svg><b>Фото с монтажа</b><span>Инженер ЯрМеда у установки</span></div>
+        <h3><span class="todo">[третий проект]</span></h3>
+        <dl><div><dt>Город</dt><dd><span class="todo">[город]</span></dd></div><div><dt>Установок</dt><dd><span class="todo">[число]</span></dd></div><div><dt>Площадь</dt><dd><span class="todo">[м²]</span></dd></div></dl>
+      </article>
+    </div>
+  </section>
+
+  <!-- Команда, склад и шоурум -->
+  <section class="lazy-block sec in" id="team">
+    <div class="sec-head"><h2>Команда, склад и шоурум</h2></div>
+    <div class="team">
+      <div class="shot big"><svg class="ico"><use href="#i-cam"/></svg><b>Фото команды ЯрМеда</b><span>Общий снимок в офисе или на складе</span></div>
+      <div class="shot"><svg class="ico"><use href="#i-cam"/></svg><b>Фото склада</b><span>Установки и автоклавы в наличии</span></div>
+      <div class="shot"><svg class="ico"><use href="#i-cam"/></svg><b>Фото шоурума</b><span>Оборудование, которое можно посмотреть</span></div>
+      <div class="team-txt">
+        <h3>Оборудование можно посмотреть до покупки</h3>
+        <p>Приезжайте в офис: Москва, Кронштадтский бульвар, 5а. Покажем установки в работе, подберём комплект под ваш кабинет и посчитаем лизинг <span class="todo">[уточнить: что выставлено в шоуруме]</span>.</p>
+        <div class="row"><button class="btn dark" type="button" data-call>Записаться в шоурум</button><a class="btn line" href="tel:+74951201401">+7 (495) 120-14-01</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Рейтинг и отзывы -->
+  <section class="lazy-block trust">
+    <div class="in">
+      <div class="tcard">
+        <div class="rate"><i>Я</i><i><span class="todo" style="font-size:.5em">[5,0]</span></i></div>
+        <div style="display:grid;gap:8px"><h3>Рейтинг на Яндекс Картах и 2ГИС</h3><p><span class="todo">[число оценок после запуска карточки]</span></p></div>
+      </div>
+      <div class="tcard">
+        <div class="sec-head" style="margin:0"><h3>Отзывы клиник</h3></div>
+        <p class="rev-q"><span class="todo">[3–5 отзывов клиник: что купили, как привезли и смонтировали, имя врача и клиника]</span></p>
+        <p>Отзыв ставим с названием клиники, фамилией врача и фото кабинета.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Почему нас выбирают -->
+  <section class="sec in">
+    <div class="sec-head"><h2 class="why-h">Почему нас выбирают</h2><div class="arrows"><button class="arr" type="button" aria-label="Назад" data-rail="whyRail" data-dir="-1"><svg class="ico"><use href="#i-aleft"/></svg></button><button class="arr" type="button" aria-label="Вперёд" data-rail="whyRail" data-dir="1"><svg class="ico"><use href="#i-aright"/></svg></button></div></div>
+    <div class="rail why" id="whyRail">
+      <div><svg><use href="#w-dealer"/></svg><span>Официальный дилер Castellini, Anthos, Stern Weber <span class="todo">[сертификаты]</span></span></div>
+      <div><svg><use href="#w-license"/></svg><span>Лицензия на клинику за 7 рабочих дней</span></div>
+      <div><svg><use href="#w-plan"/></svg><span>Проект кабинета и подбор оборудования</span></div>
+      <div><svg><use href="#w-truck"/></svg><span>Доставка и монтаж по всей России</span></div>
+      <div><svg><use href="#w-card"/></svg><span>Лизинг и рассрочка для клиник <span class="todo">[условия]</span></span></div>
+      <div><svg><use href="#w-wrench"/></svg><span>Пусконаладка и сервис <span class="todo">[гарантия]</span></span></div>
+    </div>
+  </section>
+
+  <!-- Заявка на КП с менеджером -->
+  <section class="in" id="kp">
+    <div class="kpform">
+      <div class="mgr">
+        <h2>Получите коммерческое предложение</h2>
+        <p>Пришлём КП с ценами, сроком поставки и расчётом лизинга. Ответим в рабочее время в течение <span class="todo">[2 часов]</span>.</p>
+        <div class="mgr-card">
+          <div class="shot"><svg class="ico"><use href="#i-cam"/></svg><span>Фото менеджера</span></div>
+          <div><b><span class="todo">[Имя менеджера]</span></b><span>Подбор оборудования и расчёт лизинга</span><a href="tel:+74951201401">+7 (495) 120-14-01</a><a href="mailto:sale1@yarmed.com">sale1@yarmed.com</a></div>
+        </div>
+      </div>
+      <form id="kpForm2" novalidate>
+        <label for="f-what">Что нужно<input type="text" id="f-what" placeholder="Например, комплект для кабинета терапевта"></label>
+        <div class="two">
+          <label for="f-clinic">Клиника или ИНН<input type="text" id="f-clinic" autocomplete="organization"></label>
+          <label for="f-phone">Телефон или почта<input type="tel" id="f-phone" autocomplete="tel" placeholder="+7"></label>
+        </div>
+        <label class="chk" for="f-lease"><input type="checkbox" id="f-lease">Рассчитать лизинг</label>
+        <label class="chk" for="f-ok"><input type="checkbox" id="f-ok">Согласен на обработку персональных данных</label>
+        <div class="row"><button class="btn dark" type="submit">Отправить запрос</button><span class="status" role="status"></span></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="in">
+    <div class="about">
+      <div>
+        <p><b>ЯрМед — магазин стоматологического и медицинского оборудования в Москве.</b> В каталоге установки, рентген и томографы, стерилизация, микроскопы, сканеры, наконечники и компрессоры Castellini, Anthos, Stern Weber, KaVo, Melag, NSK, Vatech, MyRay и других производителей.</p>
+        <p>Мы открываем стоматологии под ключ: подбираем помещение, делаем проект и ремонт, получаем санэпидзаключение и медицинскую лицензию, поставляем и монтируем оборудование.</p>
+      </div>
+      <div>
+        <p><b>Как мы работаем:</b></p>
+        <ul>
+          <li>Подбираем оборудование под кабинет, специализацию и бюджет</li>
+          <li>Присылаем коммерческое предложение с ценами и сроками поставки</li>
+          <li>Оформляем покупку на юрлицо, в лизинг или рассрочку</li>
+          <li>Доставляем, монтируем и запускаем оборудование</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="lazy-block ft">
+  <div class="in">
+    <div class="fgrid">
+      <div><h4>Каталог</h4><ul>
+        <li><a href="https://yarmed.com/catalog/stomatologicheskoe-oborudovanie/" target="_blank" rel="noopener">Стоматологическое оборудование</a></li>
+        <li><a href="https://yarmed.com/catalog/meditsinskoe-oborudovanie/" target="_blank" rel="noopener">Медицинское оборудование</a></li>
+        <li><a href="https://yarmed.com/catalog/zubotekhnicheskaya-laboratoriya/" target="_blank" rel="noopener">Зуботехническая лаборатория</a></li>
+        <li><a href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Акции</a></li>
+      </ul></div>
+      <div><h4>Услуги</h4><ul>
+        <li><a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener">Стоматология под ключ</a></li>
+        <li><a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener">Лицензирование</a></li>
+        <li><a href="#kits">Оснащение кабинета</a></li>
+        <li><a href="#projects">Проекты</a></li>
+      </ul></div>
+      <div><h4>Компания</h4><ul>
+        <li><a href="https://yarmed.com/about/" target="_blank" rel="noopener">О компании</a></li>
+        <li><a href="https://yarmed.com/vendors/" target="_blank" rel="noopener">Производители</a></li>
+        <li><a href="https://yarmed.com/about/details/" target="_blank" rel="noopener">Реквизиты</a></li>
+        <li><a href="https://yarmed.com/include/licenses_detail.php" target="_blank" rel="noopener">Политика конфиденциальности</a></li>
+      </ul></div>
+      <div class="ph"><h4>Контакты</h4><ul>
+        <li><a href="tel:+74951201401">+7 (495) 120-14-01</a></li>
+        <li>+7 (985) 343-33-87</li>
+        <li>sale1@yarmed.com</li>
+        <li>Москва, Кронштадтский бульвар, 5а</li>
+      </ul></div>
+    </div>
+    <div class="flegal">
+      <span>© 2026 ООО «ЯРМЕД» <span class="todo">[ИНН сверить]</span></span>
+      <span>Медицинские изделия. Имеются противопоказания, необходима консультация специалиста.</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="tabbar" aria-label="Быстрое меню">
+  <a href="#catalog"><svg class="ico"><use href="#i-menu"/></svg>Каталог</a>
+  <a href="#services"><svg class="ico"><use href="#i-key"/></svg>Клиника</a>
+  <button class="kpb" type="button" data-kp="Подбор оборудования"><svg class="ico"><use href="#i-doc"/></svg>КП</button>
+  <a href="https://yarmed.com/personal/favorite/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-heart"/></svg>Избранное</a>
+  <a href="https://yarmed.com/basket/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-cart"/></svg>Корзина</a>
+</nav>
+
+</div>
+</div>
+
+<div class="viewbar" role="group" aria-label="Вид макета">
+  <button type="button" data-view="desk" aria-pressed="true"><svg class="ico" style="width:17px;height:17px"><use href="#i-monitor"/></svg>Компьютер</button>
+  <button type="button" data-view="phone" aria-pressed="false"><svg class="ico" style="width:17px;height:17px"><use href="#i-mobile"/></svg>Телефон</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button type="button" data-fmode="v-film" aria-pressed="true">Фильм</button>
+  <button type="button" data-fmode="v-off" aria-pressed="false">Кадры без движения</button>
+  <span class="sep" aria-hidden="true"></span>
+  <button type="button" id="analBtn" aria-pressed="false"><svg class="ico" style="width:17px;height:17px"><use href="#i-info"/></svg>Как сделан фильм</button>
+</div>
+
+<dialog id="callDlg" aria-labelledby="callTitle">
+  <button class="x" type="button" aria-label="Закрыть" data-close>×</button>
+  <h3 id="callTitle">Заказать звонок</h3>
+  <p>Перезвоним в рабочее время и поможем с выбором.</p>
+  <form id="callForm" novalidate>
+    <label for="c-name">Имя<input type="text" id="c-name" autocomplete="name"></label>
+    <label for="c-phone">Телефон<input type="tel" id="c-phone" autocomplete="tel" placeholder="+7"></label>
+    <label class="chk" for="c-ok"><input type="checkbox" id="c-ok">Согласен на обработку персональных данных</label>
+    <div class="row"><button class="btn dark" type="submit">Жду звонка</button><span class="status" role="status"></span></div>
+  </form>
+</dialog>
+
+<dialog id="kpDlg" aria-labelledby="kpTitle">
+  <button class="x" type="button" aria-label="Закрыть" data-close>×</button>
+  <h3 id="kpTitle">Получить коммерческое предложение</h3>
+  <p>Пришлём КП с ценой, сроком поставки и вариантами оплаты.</p>
+  <form id="kpForm" novalidate>
+    <label for="k-what">Что нужно<input type="text" id="k-what"></label>
+    <label for="k-clinic">Клиника или ИНН<input type="text" id="k-clinic" autocomplete="organization"></label>
+    <label for="k-phone">Телефон или почта<input type="tel" id="k-phone" autocomplete="tel" placeholder="+7"></label>
+    <label class="chk" for="k-lease"><input type="checkbox" id="k-lease">Рассчитать лизинг</label>
+    <label class="chk" for="k-ok"><input type="checkbox" id="k-ok">Согласен на обработку персональных данных</label>
+    <div class="row"><button class="btn dark" type="submit">Отправить запрос</button><span class="status" role="status"></span></div>
+  </form>
+</dialog>
+
+<dialog id="analDlg" class="wide" aria-labelledby="analTitle">
+  <button class="x" type="button" aria-label="Закрыть" data-close>×</button>
+  <h3 id="analTitle">Фильм в первом экране: как он сделан</h3>
+  <div class="anal">
+    <p><b>Идея.</b> Вместо трёх отдельных роликов один фильм на 29 секунд из трёх глав: Anthos L9, Castellini SKEMA 8, MELAG. Он идёт без остановки под текстом, а название, цена и кнопки меняются вместе с главой. Вкладки брендов под баннером работают как оглавление: клик перематывает фильм на нужную главу, полоса на вкладке показывает, сколько главы прошло. После фильма баннер листается дальше на Stern Weber и Vatech, для них роликов у брендов нет.</p>
+    <p><b>Что выбрано.</b> Из скачанных фильмов брендов взяты самые зрелищные моменты: кресло L9 раскладывается, пока камера обходит установку; подсветка плевательницы; кресло SKEMA 8 в кабинете с панорамными окнами; основание из карбона; в кабинете темнеет и светильник включается тёплым светом. Фильм Anthos есть в размере 2992 px по ширине, поэтому первый план очень чёткий.</p>
+    <p><b>Как собрано.</b> Кадр бренда стоит справа целиком, без обрезки сверху и снизу. Левая четверть баннера под текстом это размытое продолжение того же кадра, поэтому текст нигде не ложится на оборудование. Кадры Anthos сняты с частотой 30 в секунду и показаны как 25, это даёт лёгкое замедление. Между планами наплывы по полсекунды, цвет чуть контрастнее исходного, сверху лёгкое плёночное зерно. Подписи и названия из исходников убраны. Для телефона собрана отдельная версия с кадром почти квадратным, вырезанным вокруг главного объекта.</p>
+    <div class="tblw"><table>
+      <thead><tr><th>Глава</th><th>План</th><th>Источник и таймкод</th><th>В фильме</th></tr></thead>
+      <tbody>
+        <tr><td>Anthos L9</td><td>Кресло раскладывается, камера обходит установку</td><td><a href="https://www.anthos.it/en/dental-units/l9/" target="_blank" rel="noopener">Фильм Anthos об L9</a>, <a href="https://www.anthos.it/hubfs/ANTHOS/Prodotti/L9.mp4" target="_blank" rel="noopener">файл</a>, 0:05,6–0:09,8</td><td>5,0 с</td></tr>
+        <tr><td>Anthos L9</td><td>Плевательница с бирюзовой подсветкой</td><td><a href="https://www.anthos.it/en/dental-units/l9/" target="_blank" rel="noopener">Фильм Anthos об L9</a>, <a href="https://www.anthos.it/hubfs/ANTHOS/Prodotti/L9.mp4" target="_blank" rel="noopener">файл</a>, 1:12,8–1:15,5</td><td>3,24 с</td></tr>
+        <tr><td>Anthos L9</td><td>Кресло и блок врача (подпись внизу обрезана)</td><td><a href="https://www.anthos.it/en/dental-units/l9/" target="_blank" rel="noopener">Фильм Anthos об L9</a>, <a href="https://www.anthos.it/hubfs/ANTHOS/Prodotti/L9.mp4" target="_blank" rel="noopener">файл</a>, 1:58,7–2:01,8</td><td>3,72 с</td></tr>
+        <tr><td>Castellini SKEMA 8</td><td>Общий план кресла в кабинете</td><td><a href="https://www.castellini.com/en/dental-units/skema-8" target="_blank" rel="noopener">Фильм Castellini о SKEMA 8</a>, <a href="https://www.castellini.com/hubfs/Castellini%202025/Video/Castellini%20_Skema8_01.08.2025.mp4" target="_blank" rel="noopener">файл</a>, 0:22,2–0:25,4</td><td>3,2 с</td></tr>
+        <tr><td>Castellini SKEMA 8</td><td>Основание из карбона</td><td><a href="https://www.castellini.com/en/dental-units/skema-8" target="_blank" rel="noopener">Фильм Castellini о SKEMA 8</a>, <a href="https://www.castellini.com/hubfs/Castellini%202025/Video/Castellini%20_Skema8_01.08.2025.mp4" target="_blank" rel="noopener">файл</a>, 0:27,6–0:30,2</td><td>2,6 с</td></tr>
+        <tr><td>Castellini SKEMA 8</td><td>Подголовник</td><td><a href="https://www.castellini.com/en/dental-units/skema-8" target="_blank" rel="noopener">Фильм Castellini о SKEMA 8</a>, <a href="https://www.castellini.com/hubfs/Castellini%202025/Video/Castellini%20_Skema8_01.08.2025.mp4" target="_blank" rel="noopener">файл</a>, 0:36,0–0:38,8</td><td>2,8 с</td></tr>
+        <tr><td>Castellini SKEMA 8</td><td>Светильник: в кабинете темнеет, свет включается тёплым (подпись внизу обрезана)</td><td><a href="https://www.castellini.com/en/dental-units/skema-8" target="_blank" rel="noopener">Фильм Castellini о SKEMA 8</a>, <a href="https://www.castellini.com/hubfs/Castellini%202025/Video/Castellini%20_Skema8_01.08.2025.mp4" target="_blank" rel="noopener">файл</a>, 1:28,7–1:33,0</td><td>4,32 с</td></tr>
+        <tr><td>MELAG</td><td>Автоклав на столе, камера отъезжает (замедлено в 1,5 раза с достройкой кадров)</td><td><a href="https://www.melag.com/en" target="_blank" rel="noopener">Ролик MELAG «DentalEck Leipzig»</a>, <a href="https://videos.ctfassets.net/u7s89gwxh9vm/3PZUverYdJTSji2OsazF1V/43bbd95c79498cf72c56502fe4a83d7d/20241010-DentalEck-Leipzig_V15.mp4" target="_blank" rel="noopener">файл</a>, 0:00,0–0:01,9</td><td>2,84 с</td></tr>
+        <tr><td>MELAG</td><td>Загрузка лотка в камеру</td><td><a href="https://www.melag.com/en" target="_blank" rel="noopener">Ролик MELAG «DentalEck Leipzig»</a>, <a href="https://videos.ctfassets.net/u7s89gwxh9vm/3PZUverYdJTSji2OsazF1V/43bbd95c79498cf72c56502fe4a83d7d/20241010-DentalEck-Leipzig_V15.mp4" target="_blank" rel="noopener">файл</a>, 0:11,4–0:14,6</td><td>3,2 с</td></tr>
+        <tr><td>MELAG</td><td>Наконечник у камеры автоклава</td><td><a href="https://www.melag.com/en" target="_blank" rel="noopener">Ролик MELAG «Careclave Produktvideo»</a>, <a href="https://videos.ctfassets.net/u7s89gwxh9vm/1R7q1lVMEQdLQDfRfKBTrI/66855ad44e769181a1584551335864d0/Careclave_Produktvideo_DE_1.mp4" target="_blank" rel="noopener">файл</a>, 0:27,4–0:30,3</td><td>2,92 с</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Права.</b> Как и раньше: условия сайтов брендов разрешают показывать их видео в коммерческих целях только с письменного разрешения, Cefla (Anthos, Castellini) отдельно запрещает встраивание. Для тестового макета это допустимо. Перед выкладкой на yarmed.com нужно письмо ЯрМеда представителям брендов с просьбой разрешить использование и дать исходники.</p>
+  </div>
+</dialog>
+
+<script>
+/* Товары, цены и ссылки с yarmed.com (сбор 04–06.11.2026). Перед показом клиенту перепроверить. */
+window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model":"SKEMA 5","kind":"Стоматологическая установка","name":"SKEMA 5 - стоматологическая установка с верхней/нижней подачей инструментов","brand":"Castellini","country":"Италия","price":1300000,"url":"https://yarmed.com/catalog/castellini/skema-5-stomatologicheskaya-ustanovka-s-verkhney-nizhney-podachey-instrumentov-castellini-italiya/","badge":"Хит","img":"img/p/ustanovka-castellini-skema5.webp","cut":true},{"id":"ustanovka-castellini-skema6","sec":"ustanovka","model":"SKEMA 6","kind":"Стоматологическая установка","name":"SKEMA 6 - стоматологическая установка с верхней/нижней подачей инструментов","brand":"Castellini","country":"Италия","price":1600500,"url":"https://yarmed.com/catalog/castellini/skema-6-stomatologicheskaya-ustanovka-s-verkhney-nizhney-podachey-instrumentov-castellini-italiya/","badge":"Хит","img":"img/p/ustanovka-castellini-skema6.webp","cut":true},{"id":"ustanovka-castellini-skema8","sec":"ustanovka","model":"SKEMA 8","kind":"Стоматологическая установка","name":"Castellini SKEMA 8 - стоматологическая установка с верхней/нижней подачей инструментов","brand":"Castellini","country":"Италия","price":1940000,"url":"https://yarmed.com/catalog/castellini/castellini-skema-8-stomatologicheskaya-ustanovka-s-verkhney-nizhney-podachey-instrumentov-/","badge":"Акция","img":"img/p/ustanovka-castellini-skema8.webp","cut":true},{"id":"ustanovka-anthos-a5","sec":"ustanovka","model":"A5","kind":"Стоматологическая установка","name":"Стоматологическая установка Anthos A5 Верхняя подача","brand":"Anthos","country":"Италия","price":1070000,"url":"https://yarmed.com/catalog/anthos/anthos-a5-verkhnyaya-podacha/","badge":"Хит","img":"img/p/ustanovka-anthos-a5.webp","cut":true},{"id":"ustanovka-anthos-l9","sec":"ustanovka","model":"L9","kind":"Стоматологическая установка","name":"Стоматологическая установка Anthos L9","brand":"Anthos","country":"Италия","price":1649000,"url":"https://yarmed.com/catalog/anthos/anthos-l9/","badge":"Акция","img":"img/p/ustanovka-anthos-l9.webp","cut":true},{"id":"ustanovka-sternweber-s380","sec":"ustanovka","model":"S380","kind":"Стоматологическая установка","name":"Стоматологическая установка Stern Weber S380","brand":"Stern Weber","country":"Италия","price":1937400,"url":"https://yarmed.com/catalog/stern-weber/stern-weber-s380/","badge":"Хит","img":"img/p/ustanovka-sternweber-s380.webp","cut":true},{"id":"ustanovka-sternweber-s200","sec":"ustanovka","model":"S200 Continental","kind":"Стоматологическая установка","name":"Стоматологическая установка S200 CONTINENTAL","brand":"Stern Weber","country":"Италия","price":910000,"url":"https://yarmed.com/catalog/stern-weber/s200-continental/","badge":"","img":"img/p/ustanovka-sternweber-s200.webp","cut":true},{"id":"ustanovka-kavo-estetica-e70","sec":"ustanovka","model":"Estetica E70 Vision","kind":"Стоматологическая установка","name":"Стоматологическая установка KaVo Estetica E70 Vision","brand":"KaVo","country":"Германия","price":2905250,"url":"https://yarmed.com/catalog/kavo_/stomatologicheskaya-ustanovka-kavo-estetica-e70-vision/","badge":"","img":"img/p/ustanovka-kavo-estetica-e70.webp","cut":true},{"id":"ustanovka-kavo-primus-1058","sec":"ustanovka","model":"Primus 1058 Life","kind":"Стоматологическая установка","name":"Стоматологическая установка KaVo Primus 1058 LIFE","brand":"KaVo","country":"Германия","price":1212750,"url":"https://yarmed.com/catalog/kavo_/stomatologicheskaya-ustanovka-kavo-primus-1058-life/","badge":"","img":"img/p/ustanovka-kavo-primus-1058.webp","cut":true},{"id":"avtoklav-melag-vacuclave-123","sec":"avtoklav","model":"Vacuklav 123","kind":"Стерилизация","name":"Vacuclave 123 Паровой стерилизатор (автоклав)","brand":"MELAG","country":"Германия","price":397000,"url":"https://yarmed.com/catalog/avtoklavy/vacuclave-123-parovoy-sterilizator-avtoklav-melag-germaniya/","badge":"","img":"img/p/avtoklav-melag-vacuclave-123.webp","cut":true},{"id":"avtoklav-melag-vacuclave-118","sec":"avtoklav","model":"Vacuklav 118","kind":"Стерилизация","name":"Vacuclave 118 - автоклав с камерой на 17 л, автономный, класс B, глубина камеры 35 см","brand":"MELAG","country":"Германия","price":399000,"url":"https://yarmed.com/catalog/avtoklavy/vacuclave-118-avtoklav-s-kameroy-na-17-l-avtonomnyy-klass-b-glubina-kamery-35-sm-melag-germaniya/","badge":"","img":"img/p/avtoklav-melag-vacuclave-118.webp","cut":true},{"id":"avtoklav-melag-vacuclave-550","sec":"avtoklav","model":"Vacuklav 550","kind":"Стерилизация","name":"Vacuclave 550 - автоклав с камерой на 53 л, автономный, глубина камеры 45 см","brand":"MELAG","country":"Германия","price":1640000,"url":"https://yarmed.com/catalog/avtoklavy/vacuclave-550-avtoklav-s-kameroy-na-53-l-avtonomnyy-glubina-kamery-45-sm-melag-germaniya/","badge":"","img":"img/p/avtoklav-melag-vacuclave-550.webp","cut":true},{"id":"avtoklav-castellini-c22","sec":"avtoklav","model":"C-22","kind":"Стерилизация","name":"Castellini C-22 — автоклав класса В с монохромным LCD дисплеем, пультом управления и объемом камеры 22 литра.","brand":"Castellini","country":"Италия","price":245000,"url":"https://yarmed.com/catalog/avtoklavy/castellini-c-22-avtoklav-klassa-v-s-monokhromnym-lcd-displeem-pultom-upravleniya-i-obemom-kamery-22-/","badge":"","img":"img/p/avtoklav-castellini-c22.webp","cut":true},{"id":"avtoklav-anthos-a22","sec":"avtoklav","model":"A-22","kind":"Стерилизация","name":"Anthos A-22 - автономный автоклав B-класса, 22 л.","brand":"Anthos","country":"Италия","price":243000,"url":"https://yarmed.com/catalog/avtoklavy/anthos-a-22-avtonomnyy-avtoklav-b-klassa-22-l-anthos-italiya/","badge":"","img":"img/p/avtoklav-anthos-a22.webp","cut":true},{"id":"avtoklav-melag-melatherm-10","sec":"avtoklav","model":"MELAtherm 10","kind":"Стерилизация","name":"Melag MELAtherm 10 мойка-дезинфектор со вставками","brand":"MELAG","country":"Германия","price":852000,"url":"https://yarmed.com/catalog/avtoklavy/melag-melatherm-10-moyka-dezinfektor-so-vstavkami/","badge":"","img":"img/p/avtoklav-melag-melatherm-10.webp","cut":true},{"id":"nakonechnik-nsk-ti-max-x700l","sec":"nakonechnik","model":"Ti-Max X700L","kind":"Наконечник","name":"Турбинный наконечник NSK Ti-Max X700L с оптикой","brand":"NSK","country":"Япония","price":40090,"url":"https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-ti-max-x700l-s-optikoy/","badge":"","img":"img/p/nakonechnik-nsk-ti-max-x700l.webp","cut":true},{"id":"nakonechnik-nsk-s-max-m600l","sec":"nakonechnik","model":"S-Max M600L","kind":"Наконечник","name":"Турбинный наконечник NSK S-Max M600L","brand":"NSK","country":"Япония","price":29900,"url":"https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-s-max-m600l/","badge":"","img":"img/p/nakonechnik-nsk-s-max-m600l.webp","cut":true},{"id":"nakonechnik-kavo-mastertorque-m9000l","sec":"nakonechnik","model":"MASTERtorque M9000 L","kind":"Наконечник","name":"Турбинный наконечник KaVo MASTERtorque LUX M9000 L","brand":"KaVo","country":"Германия","price":75390,"url":"https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-mastertorque-lux-m9000-l/","badge":"","img":"img/p/nakonechnik-kavo-mastertorque-m9000l.webp","cut":true},{"id":"nakonechnik-kavo-smarttorque-s619l","sec":"nakonechnik","model":"SMARTtorque S619 L","kind":"Наконечник","name":"Турбинный наконечник KaVo SMARTtorque S619 L","brand":"KaVo","country":"Германия","price":34980,"url":"https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-smarttorque-s619-l/","badge":"","img":"img/p/nakonechnik-kavo-smarttorque-s619l.webp","cut":true},{"id":"nakonechnik-nsk-ti-max-z25l","sec":"nakonechnik","model":"Ti-Max Z25L","kind":"Наконечник","name":"NSK Ti-Max Z25L - угловой наконечник с оптикой, 1:1","brand":"NSK","country":"Япония","price":44890,"url":"https://yarmed.com/catalog/uglovye-nakonechniki/nsk-ti-max-z25l-uglovoy-nakonechnik-s-optikoy-1-1/","badge":"","img":"img/p/nakonechnik-nsk-ti-max-z25l.webp","cut":true},{"id":"nakonechnik-kavo-expertmatic-e20l","sec":"nakonechnik","model":"EXPERTmatic E20 L","kind":"Наконечник","name":"Угловой наконечник KaVo EXPERTmatic E20 L 1:1","brand":"KaVo","country":"Германия","price":42920,"url":"https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e20-l-1-1/","badge":"","img":"img/p/nakonechnik-kavo-expertmatic-e20l.webp","cut":true},{"id":"nakonechnik-wh-synea-fusion-wg56lt","sec":"nakonechnik","model":"Synea Fusion WG-56 LT","kind":"Наконечник","name":"Угловой наконечник Synea Fusion WG-56 LT","brand":"W&H","country":"Австрия","price":39590,"url":"https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-synea-fusion-wg-56-lt/","badge":"","img":"img/p/nakonechnik-wh-synea-fusion-wg56lt.webp","cut":true},{"id":"rentgen-vatech-smart-plus","sec":"rentgen","model":"Smart Plus","kind":"Рентген","name":"Smart Plus - панорамный аппарат и конусно-лучевой томограф с цефалостатом, FOV 10x8,5","brand":"Vatech","country":"Южная Корея","price":4000000,"url":"https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/smart-plus-panoramnyy-apparat-i-konusno-luchevoy-tomograf-s-tsefalostatom-fov-10x8-5-vatech-yu-koreya/","badge":"","img":"img/p/rentgen-vatech-smart-plus.webp","cut":true},{"id":"rentgen-vatech-pax-i-3d","sec":"rentgen","model":"PaX-i 3D","kind":"Рентген","name":"Pax-i 3D - панорамный аппарат и конусно-лучевой томограф, FOV 17x15 см","brand":"Vatech","country":"Южная Корея","price":7650300,"url":"https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/pax-i-3d-panoramnyy-apparat-i-konusno-luchevoy-tomograf-fov-17x15-sm-vatech-yu-koreya/","badge":"","img":"img/p/rentgen-vatech-pax-i-3d.webp","cut":true},{"id":"rentgen-castellini-x-radius-compact-3d","sec":"rentgen","model":"X-Radius Compact 3D","kind":"Рентген","name":"X-Radius Compact 3D - дентальный цифровой томограф, FOV 10х10","brand":"Castellini","country":"Италия","price":2720000,"url":"https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/x-radius-compact-3d-dentalnyy-tsifrovoy-tomograf-fov-10kh10-castellini-italiya/","badge":"","img":"img/p/rentgen-castellini-x-radius-compact-3d.webp","cut":true},{"id":"rentgen-myray-hyperion-x9-pro","sec":"rentgen","model":"Hyperion X9 PRO","kind":"Рентген","name":"Томограф дентальный Hyperion X9 PRO 160*180 мм","brand":"MyRay","country":"Италия","price":3520000,"url":"https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/tomograf-dentalnyy-hyperion-x9-pro-160-180-mm-myray-cefla-s-c-/","badge":"","img":"img/p/rentgen-myray-hyperion-x9-pro.webp","cut":false},{"id":"rentgen-genoray-papaya-plus","sec":"rentgen","model":"Papaya Plus","kind":"Рентген","name":"Papaya Plus - ортопантомограф с цефалостатом и функцией CUST","brand":"Genoray","country":"Южная Корея","price":2220000,"url":"https://yarmed.com/catalog/ortopantomograf-/papaya-plus-ortopantomograf-s-tsefalostatom-i-funktsiey-cust-genoray-yu-koreya/","badge":"","img":"img/p/rentgen-genoray-papaya-plus.webp","cut":true},{"id":"rentgen-vatech-ezsensor-hd","sec":"rentgen","model":"EzSensor HD","kind":"Рентген","name":"Радиовизиограф EzSensor HD","brand":"Vatech","country":"Южная Корея","price":169400,"url":"https://yarmed.com/catalog/radioviziografy-i-skanery-fosfornykh-plastin/radioviziograf-ezsensor-hd/","badge":"","img":"img/p/rentgen-vatech-ezsensor-hd.webp","cut":true},{"id":"rentgen-myray-zen-x-hd","sec":"rentgen","model":"Zen-X HD","kind":"Рентген","name":"Zen-X HD - цифровой радиовизиограф нового поколения, HD CMOS, позиционеры в комплекте","brand":"MyRay","country":"Италия","price":132500,"url":"https://yarmed.com/catalog/radioviziografy-i-skanery-fosfornykh-plastin/zen-x-hd-tsifrovoy-radioviziograf-novogo-pokoleniya-hd-cmos-pozitsionery-v-komplekte-myray-italiya/","badge":"","img":"img/p/rentgen-myray-zen-x-hd.webp","cut":true},{"id":"rentgen-carestream-rvg-6200","sec":"rentgen","model":"RVG 6200","kind":"Рентген","name":"Kodak RVG 6200 - радиовизиограф, 24 пар линий/мм","brand":"Carestream Dental","country":"США","price":270000,"url":"https://yarmed.com/catalog/radioviziografy-i-skanery-fosfornykh-plastin/kodak-rvg-6200-radioviziograf-24-par-liniy-mm-carestream-dental-ssha/","badge":"","img":"img/p/rentgen-carestream-rvg-6200.webp","cut":true},{"id":"skaner-medit-i700","sec":"skaner","model":"i700","kind":"Интраоральный сканер","name":"Medit i700","brand":"Medit","country":"Южная Корея","price":875000,"url":"https://yarmed.com/catalog/introoralnye-skanery/medit-i700/","badge":"","img":"img/p/skaner-medit-i700.webp","cut":true},{"id":"skaner-sirona-primescan","sec":"skaner","model":"Primescan","kind":"Интраоральный сканер","name":"Primescan - высокоскоростной интраоральный сканер","brand":"Sirona","country":"Германия","price":2143000,"url":"https://yarmed.com/catalog/introoralnye-skanery/primescan-vysokoskorostnoy-intraoralnyy-skaner-sirona-germaniya/","badge":"","img":"img/p/skaner-sirona-primescan.webp","cut":true},{"id":"skaner-shining3d-aoralscan3-wireless","sec":"skaner","model":"Aoralscan 3 Wireless","kind":"Интраоральный сканер","name":"Aoralscan 3 Wireless NEO - беспроводной интраоральный сканер","brand":"Shining 3D","country":"Китай","price":750000,"url":"https://yarmed.com/catalog/introoralnye-skanery/aoralscan-3-wireless-neo-besprovodnoy-intraoralnyy-skaner-shining-3d-kitay/","badge":"","img":"img/p/skaner-shining3d-aoralscan3-wireless.webp","cut":true},{"id":"skaner-planmeca-emerald-s","sec":"skaner","model":"Emerald S","kind":"Интраоральный сканер","name":"Planmeca Emerald S","brand":"Planmeca","country":"Финляндия","price":1779090,"url":"https://yarmed.com/catalog/introoralnye-skanery/planmeca-emerald-s/","badge":"","img":"img/p/skaner-planmeca-emerald-s.webp","cut":true},{"id":"skaner-runyes-ios-11","sec":"skaner","model":"IOS-11","kind":"Интраоральный сканер","name":"IOS-11 - интраоральный 3D-сканер с системой антизапотевания насадок Runyes (Китай)","brand":"Runyes","country":"Китай","price":235000,"url":"https://yarmed.com/catalog/introoralnye-skanery/ios-11-intraoralnyy-3d-skaner-s-sistemoy-antizapotevaniya-nasadok-runyes-kitay/","badge":"","img":"img/p/skaner-runyes-ios-11.webp","cut":true},{"id":"mikroskop-zeiss-extaro-300","sec":"mikroskop","model":"EXTARO 300","kind":"Микроскоп","name":"Микроскоп EXTARO 300","brand":"Zeiss","country":"Германия","price":2226500,"url":"https://yarmed.com/catalog/mikroskopy/mikroskop-extaro-300/","badge":"","img":"img/p/mikroskop-zeiss-extaro-300.webp","cut":false},{"id":"mikroskop-alltion-am-5000vfr","sec":"mikroskop","model":"AM-5000VFR","kind":"Микроскоп","name":"ALLTION AM-5000VFR стоматологический микроскоп с вариоскопом, флуоресценцией и маятниковой системой FORA","brand":"Alltion","country":"Китай","price":1566650,"url":"https://yarmed.com/catalog/mikroskopy/alltion-am-5000vfr-s-tomatologicheskiy-mikroskop-s-varioskopom-fluorestsentsiey-i-mayatnikovoy-siste/","badge":"","img":"img/p/mikroskop-alltion-am-5000vfr.webp","cut":true},{"id":"mikroskop-zumax-oms-2380","sec":"mikroskop","model":"OMS 2380","kind":"Микроскоп","name":"Стоматологические микроскопы OMS 2380","brand":"Zumax","country":"Китай","price":1600000,"url":"https://yarmed.com/catalog/mikroskopy/stomatologicheskie-mikroskopy-zumax-oms-2380/","badge":"","img":"img/p/mikroskop-zumax-oms-2380.webp","cut":true},{"id":"mikroskop-greenmed-c-clear-2","sec":"mikroskop","model":"C-Clear-2","kind":"Микроскоп","name":"GREENMED C-Clear-2 – Микроскоп стоматологический операционный","brand":"Greenmed","country":"","price":705000,"url":"https://yarmed.com/catalog/mikroskopy/greenmed-c-clear-2-mikroskop-stomatologicheskiy-operatsionnyy/","badge":"","img":"img/p/mikroskop-greenmed-c-clear-2.webp","cut":true},{"id":"mikroskop-alltion-am-2000v","sec":"mikroskop","model":"AM-2000V","kind":"Микроскоп","name":"Микроскоп Alltion AM-2000V","brand":"Alltion","country":"Китай","price":988000,"url":"https://yarmed.com/catalog/stomatologicheskie-mikroskopy/mikroskop-alltion-am-2000v/","badge":"","img":"img/p/mikroskop-alltion-am-2000v.webp","cut":true},{"id":"kompressor-lifedent-sp150","sec":"kompressor","model":"SP150","kind":"Компрессор","name":"Lifedent SP150 безмасляный компрессор для 3-4 установок, с осушителем, с ресивером 60 л, 160 л/мин","brand":"Lifedent","country":"Китай","price":158000,"url":"https://yarmed.com/catalog/lifedent./lifedent-sp150-bezmaslyanyy-kompressor-dlya-3-4-ustanovok-s-osushitelem-s-resiverom-60-l-160-l-min/","badge":"","img":"img/p/kompressor-lifedent-sp150.webp","cut":true},{"id":"kompressor-lifedent-sa075","sec":"kompressor","model":"SA075","kind":"Компрессор","name":"Lifedent SA075 безмасляный компрессор для 1-2 установок, без осушителя, с ресивером 32 л, 80 л/мин","brand":"Lifedent","country":"Китай","price":43400,"url":"https://yarmed.com/catalog/lifedent./lifedent-sa075-bezmaslyanyy-kompressor-dlya-1-2-ustanovok-bez-osushitelya-s-resiverom-32-l-80-l-min/","badge":"","img":"img/p/kompressor-lifedent-sa075.webp","cut":true},{"id":"kompressor-mercury-hk-2ew-35","sec":"kompressor","model":"HK-2EW-35","kind":"Компрессор","name":"Mercury HK-2EW-35 воздушный безмасляный компрессор для двух стоматологических установок с осушителем","brand":"Mercury","country":"","price":60500,"url":"https://yarmed.com/catalog/mercury-yarmed/mercury-hk-2ew-35-vozdushnyy-bezmaslyanyy-kompressor-dlya-dvukh-stomatologicheskikh-ustanovok-s-osush/","badge":"","img":"img/p/kompressor-mercury-hk-2ew-35.webp","cut":true},{"id":"kompressor-mercury-hk-10ew-180","sec":"kompressor","model":"HK-10EW-180","kind":"Компрессор","name":"Mercury HK-10EW-180 безмасляный компрессор для 5-ти стоматологических установок, с ресивером 180 л (500 л/мин)","brand":"Mercury","country":"","price":249000,"url":"https://yarmed.com/catalog/mercury-yarmed/mercury-hk-10ew-180-bezmaslyanyy-kompressor-dlya-5-ti-stomatologicheskikh-ustanovok-s-resiverom-180-/","badge":"","img":"img/p/kompressor-mercury-hk-10ew-180.webp","cut":true},{"id":"kompressor-ekom-duo-2v","sec":"kompressor","model":"DUO 2V","kind":"Компрессор","name":"Компрессор безмасляный Ekom DUO 2V","brand":"Ekom","country":"Словакия","price":323900,"url":"https://yarmed.com/catalog/ekom/kompressor-bezmaslyanyy-ekom-duo-2v/","badge":"","img":"img/p/kompressor-ekom-duo-2v.webp","cut":false}];
+</script>
+<script>
+(function () {
+  const P = window.PRODUCTS || [];
+  const byId = id => P.find(p => p.id === id);
+  const rub = n => n.toLocaleString('ru-RU').replace(/ /g, ' ') + ' ₽';
+  const lease = (price, n = 36, adv = 0.1, rate = 0.18) => { const s = price * (1 - adv), r = rate / 12; return Math.round(s * r / (1 - Math.pow(1 + r, -n)) / 100) * 100; };
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const site = document.getElementById('site');
+
+  /* ---------- HERO: баннер + бренды-вкладки ---------- */
+  const slides = document.getElementById('slides');
+  const tabs = [...document.querySelectorAll('.btab')];
+  const count = document.getElementById('heroCount');
+  const brandRail = document.getElementById('brandRail');
+  const heroZone = [document.getElementById('hero'), document.getElementById('brandbar')];
+  const N = tabs.length;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur = -1, lock = 0;
+
+  function setActive(i, scroll) {
+    i = (i + N) % N;
+    if (i === cur && !scroll) return;
+    cur = i;
+    if (window.heroVideo) window.heroVideo(i);
+    tabs.forEach((t, k) => {
+      const on = k === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on) { const pr = t.querySelector('.prog'); pr.style.animation = 'none'; void pr.offsetWidth; pr.style.animation = ''; }
+    });
+    count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(N).padStart(2, '0');
+    const t = tabs[i];
+    const left = t.offsetLeft - brandRail.offsetLeft - 8;
+    if (left < brandRail.scrollLeft || left + t.offsetWidth > brandRail.scrollLeft + brandRail.clientWidth) brandRail.scrollTo({ left: Math.max(0, left), behavior: reduce ? 'auto' : 'smooth' });
+    if (scroll) { lock = Date.now(); slides.scrollTo({ left: i * slides.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }
+  }
+  tabs.forEach((t, k) => {
+    t.addEventListener('click', () => setActive(k, true));
+    let hv;
+    t.addEventListener('mouseenter', () => { if (!matchMedia('(hover: hover)').matches) return; hv = setTimeout(() => { if (k !== cur) setActive(k, true); }, 220); });
+    t.addEventListener('mouseleave', () => clearTimeout(hv));
+    t.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); const j = (k + (e.key === 'ArrowRight' ? 1 : -1) + N) % N; setActive(j, true); tabs[j].focus(); } });
+    t.querySelector('.prog').addEventListener('animationend', () => { if (k === cur) setActive(cur + 1, true); });
+  });
+  document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => setActive(cur + Number(b.dataset.go), true)));
+  let st;
+  slides.addEventListener('scroll', () => {
+    clearTimeout(st);
+    st = setTimeout(() => { if (Date.now() - lock < 700) return; const i = Math.round(slides.scrollLeft / slides.clientWidth); if (i !== cur) setActive(i, false); }, 90);
+  }, { passive: true });
+  const pause = on => heroZone.forEach(z => z.classList.toggle('paused', on));
+  heroZone.forEach(z => {
+    z.addEventListener('mouseenter', () => pause(true));
+    z.addEventListener('mouseleave', () => pause(false));
+    z.addEventListener('focusin', () => pause(true));
+    z.addEventListener('focusout', () => pause(false));
+  });
+  addEventListener('resize', () => { slides.scrollLeft = cur * slides.clientWidth; });
+  setActive(0, false);
+
+  /* ---------- Прокрутка лент стрелками ---------- */
+  site.addEventListener('click', e => {
+    const b = e.target.closest('[data-rail]'); if (!b) return;
+    const r = document.getElementById(b.dataset.rail);
+    r.scrollBy({ left: Number(b.dataset.dir) * r.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- Разделы ---------- */
+  const CATS = [
+    ['Стоматологические установки', 'img/cat/cat-ustanovki.webp', 'от 113 300 ₽', 'https://yarmed.com/catalog/stomatologicheskie-ustanovki/'],
+    ['Рентген и томографы', 'img/p/rentgen-vatech-pax-i-3d.webp', 'от 132 500 ₽', 'https://yarmed.com/catalog/rentgenologiya/'],
+    ['Стерилизация', 'img/p/avtoklav-melag-vacuclave-123.webp', 'от 243 000 ₽', 'https://yarmed.com/catalog/avtoklavy/'],
+    ['Наконечники и микромоторы', 'img/cat/cat-nakonechniki.webp', 'от 29 900 ₽', 'https://yarmed.com/catalog/turbinnye-nakonechniki/'],
+    ['Микроскопы', 'img/cat/cat-mikroskopy.webp', 'от 705 000 ₽', 'https://yarmed.com/catalog/mikroskopy/'],
+    ['Интраоральные сканеры', 'img/cat/cat-skanery.webp', 'от 235 000 ₽', 'https://yarmed.com/catalog/introoralnye-skanery/'],
+    ['Компрессоры и аспирация', 'img/cat/cat-kompressory.webp', 'от 43 400 ₽', 'https://yarmed.com/catalog/kompressory_/'],
+    ['Эндодонтия', 'img/cat/cat-endo.webp', '', 'https://yarmed.com/catalog/'],
+    ['Хирургия и имплантология', 'img/cat/cat-khirurgiya.webp', '', 'https://yarmed.com/catalog/'],
+    ['Зуботехническая лаборатория', 'img/cat/cat-laboratoriya.webp', '', 'https://yarmed.com/catalog/zubotekhnicheskaya-laboratoriya/'],
+    ['Медицинская мебель', 'img/cat/cat-mebel.webp', '', 'https://yarmed.com/catalog/'],
+    ['Медицинское оборудование', 'img/cat/cat-medoborudovanie.webp', '343 товара', 'https://yarmed.com/catalog/meditsinskoe-oborudovanie/']
+  ];
+  document.getElementById('catRail').innerHTML = CATS.map(c =>
+    `<a class="cat" href="${c[3]}" target="_blank" rel="noopener"><img src="${c[1]}" alt="" loading="lazy"><b>${esc(c[0])}</b><em>${c[2] ? esc(c[2]) : '→'}</em></a>`).join('');
+
+  /* ---------- Карточки ---------- */
+  const inCart = new Set();
+  function card(p) {
+    const badge = p.badge === 'Хит' ? '<span class="badge hit">Хит</span>' : p.badge === 'Акция' ? '<span class="badge sale">Акция</span>' : '';
+    return `<article class="card">
+      <a class="im" href="${p.url}" target="_blank" rel="noopener"><span class="badges">${badge}</span><img src="${p.img}" alt="${esc(p.brand + ' ' + p.model)}" loading="lazy"></a>
+      <div class="price">${rub(p.price)}</div>
+      <div class="lease"><i>Л</i>в лизинг от ${rub(lease(p.price))}/мес</div>
+      <a class="nm" href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a>
+      <div class="br">${esc(p.brand)}, ${esc(p.country)}</div>
+      <div class="acts"><button class="kp" type="button" data-kp="${esc(p.brand + ' ' + p.model)}">Получить КП</button><button class="cart" type="button" aria-label="В корзину" aria-pressed="${inCart.has(p.id)}" data-cart="${p.id}"><svg class="ico" style="width:18px;height:18px"><use href="#i-cart"/></svg></button></div>
+    </article>`;
+  }
+  const SECS = [['ustanovka', 'Установки'], ['rentgen', 'Рентген и КТ'], ['avtoklav', 'Стерилизация'], ['nakonechnik', 'Наконечники'], ['mikroskop', 'Микроскопы'], ['skaner', 'Сканеры'], ['kompressor', 'Компрессоры']];
+  const hitTabs = document.getElementById('hitTabs'), hitRail = document.getElementById('hitRail');
+  hitTabs.innerHTML = SECS.map((s, i) => `<button type="button" role="tab" aria-selected="${i === 0}" data-sec="${s[0]}">${s[1]}</button>`).join('');
+  const showSec = sec => { hitRail.innerHTML = P.filter(p => p.sec === sec).map(card).join(''); hitRail.scrollLeft = 0; };
+  hitTabs.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    hitTabs.querySelectorAll('button').forEach(x => x.setAttribute('aria-selected', x === b ? 'true' : 'false'));
+    showSec(b.dataset.sec);
+  });
+  showSec('ustanovka');
+  const POP = ['nakonechnik-nsk-ti-max-x700l', 'skaner-medit-i700', 'avtoklav-anthos-a22', 'rentgen-vatech-ezsensor-hd', 'mikroskop-alltion-am-2000v', 'kompressor-lifedent-sa075', 'ustanovka-kavo-primus-1058', 'nakonechnik-kavo-expertmatic-e20l', 'rentgen-myray-zen-x-hd'];
+  site.addEventListener('click', e => {
+    const b = e.target.closest('[data-cart]'); if (!b) return;
+    const id = b.dataset.cart; inCart.has(id) ? inCart.delete(id) : inCart.add(id);
+    document.querySelectorAll(`[data-cart="${id}"]`).forEach(x => x.setAttribute('aria-pressed', inCart.has(id)));
+    const c = document.getElementById('cartCnt'); c.textContent = inCart.size; c.hidden = !inCart.size;
+  });
+
+  /* ---------- Комплекты по типу кабинета ---------- */
+  const KITS = [
+    { n: 'Терапевтический', t: 'Кабинет терапевта', d: 'Установка с верхней подачей, компрессор, визиограф и наконечники. Хватает, чтобы начать приём.', who: 'Терапия, первый кабинет',
+      ids: ['ustanovka-anthos-a5', 'kompressor-lifedent-sa075', 'rentgen-myray-zen-x-hd', 'nakonechnik-nsk-s-max-m600l', 'nakonechnik-kavo-expertmatic-e20l'] },
+    { n: 'Хирургический', t: 'Кабинет хирурга-имплантолога', d: 'Установка для хирургии и имплантологии, производительный компрессор и наконечники.', who: 'Хирургия, имплантация',
+      ids: ['ustanovka-sternweber-s380', 'kompressor-lifedent-sp150', 'nakonechnik-nsk-ti-max-z25l', 'nakonechnik-wh-synea-fusion-wg56lt'], more: 'Физиодиспенсер и хирургический светильник добавим из каталога <span class="todo">[подобрать модели]</span>' },
+    { n: 'Эндодонтия', t: 'Кабинет с микроскопом', d: 'Установка, операционный микроскоп, визиограф и турбина. Для эндодонтии и точной реставрации.', who: 'Эндодонтия, реставрация',
+      ids: ['ustanovka-castellini-skema6', 'mikroskop-zumax-oms-2380', 'rentgen-vatech-ezsensor-hd', 'nakonechnik-nsk-ti-max-x700l', 'kompressor-lifedent-sp150'] },
+    { n: 'Рентген-кабинет', t: 'Рентген-кабинет с томографом', d: 'Компьютерный томограф и радиовизиограф. Поможем с проектом защиты и лицензией на рентген.', who: 'КТ и прицельные снимки',
+      ids: ['rentgen-vatech-smart-plus', 'rentgen-vatech-ezsensor-hd'], more: 'Рентгенозащита и документы для лицензии <span class="todo">[состав и цену уточнить]</span>' },
+    { n: 'Стерилизационная', t: 'Стерилизационная', d: 'Автоклав класса B и мойка-дезинфектор Melag. Для клиники на несколько кабинетов.', who: 'Клиника от 2 кабинетов',
+      ids: ['avtoklav-melag-vacuclave-123', 'avtoklav-melag-melatherm-10'], more: 'Упаковочную машину, дистиллятор и ультразвуковую мойку добавим из каталога <span class="todo">[подобрать модели]</span>' }
+  ];
+  const kitTabs = document.getElementById('kitTabs'), kitPanel = document.getElementById('kitPanel');
+  const drawKit = i => {
+    const k = KITS[i], items = k.ids.map(byId).filter(Boolean), sum = items.reduce((a, p) => a + p.price, 0), main = items[0];
+    kitPanel.innerHTML = `<div class="kp-photo"><img src="${main.img}" alt="${esc(main.brand + ' ' + main.model)}" loading="lazy"></div>
+      <div class="kp-info">
+        <h3>${k.t}</h3>
+        <p>${k.d}</p>
+        <div class="kp-meta"><div><span>Назначение</span><span>${k.who}</span></div><div><span>Позиций в комплекте</span><span>${items.length}</span></div><div><span>Монтаж и запуск</span><span>наши инженеры</span></div></div>
+        <div class="kp-sum"><b>${rub(sum)}</b><span>в лизинг от ${rub(lease(sum))}/мес <span class="todo">[пример]</span></span></div>
+        <div class="kp-cta"><button class="btn dark" type="button" data-kp="Комплект «${k.t}»">Получить смету</button><button class="btn line" type="button" data-kp="Изменить состав: ${k.t}">Изменить состав</button></div>
+      </div>
+      <div class="kp-list"><h4>Состав комплекта</h4>
+        <ul>${items.map(p => `<li><a href="${p.url}" target="_blank" rel="noopener"><img src="${p.img}" alt="" loading="lazy"><b>${esc(p.brand + ' ' + p.model)}<small>${esc(p.kind)}</small></b><em>${rub(p.price)}</em></a></li>`).join('')}</ul>
+        ${k.more ? `<p class="more">${k.more}</p>` : ''}
+      </div>`;
+    kitTabs.querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+  };
+  kitTabs.innerHTML = KITS.map((k, i) => `<button type="button" role="tab" aria-selected="${i === 0}" data-kit="${i}">${k.n}</button>`).join('');
+  kitTabs.addEventListener('click', e => { const b = e.target.closest('[data-kit]'); if (b) drawKit(Number(b.dataset.kit)); });
+  drawKit(0);
+
+  /* ---------- Поиск: печатающиеся подсказки, как у Stomart ---------- */
+  const q = document.getElementById('q');
+  const HINTS = ['Установка с нижней подачей', 'Автоклав класса B', 'Микроскоп стоматологический', 'Радиовизиограф', 'Компрессор на 2 установки', 'Наконечник NSK', 'Интраоральный сканер'];
+  if (!reduce) {
+    let h = 0, c = 0, dir = 1;
+    setInterval(() => {
+      if (document.hidden || document.activeElement === q || q.value || q.offsetParent === null) return;
+      const w = HINTS[h];
+      c += dir;
+      if (c > w.length + 14) dir = -1;
+      if (c <= 0 && dir < 0) { dir = 1; h = (h + 1) % HINTS.length; c = 0; }
+      q.placeholder = w.slice(0, Math.min(c, w.length)) || ' ';
+    }, 90);
+  }
+  document.getElementById('searchForm').addEventListener('submit', e => { e.preventDefault(); if (q.value.trim()) window.open('https://yarmed.com/catalog/?q=' + encodeURIComponent(q.value.trim()), '_blank', 'noopener'); });
+
+  /* ---------- Шапка с тенью ---------- */
+  const hd = document.getElementById('hd');
+  const onScroll = () => hd.classList.toggle('scrolled', (document.body.classList.contains('view-phone') ? site.scrollTop : scrollY) > 40);
+  addEventListener('scroll', onScroll, { passive: true }); site.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ---------- Диалоги ---------- */
+  const callDlg = document.getElementById('callDlg'), kpDlg = document.getElementById('kpDlg'), analDlg = document.getElementById('analDlg');
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-call]')) callDlg.showModal();
+    const k = e.target.closest('[data-kp]');
+    if (k) { document.getElementById('k-what').value = k.dataset.kp; kpDlg.showModal(); }
+    if (e.target.closest('[data-close]')) e.target.closest('dialog').close();
+  });
+  [callDlg, kpDlg, analDlg].forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
+  function wire(form, phoneId, okId) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const st = form.querySelector('.status');
+      if (document.getElementById(phoneId).value.trim().length < 5) { st.textContent = 'Укажите телефон или почту, чтобы мы могли ответить.'; return; }
+      if (!document.getElementById(okId).checked) { st.textContent = 'Отметьте согласие на обработку данных.'; return; }
+      st.textContent = 'Это макет: на живом сайте заявка уйдёт менеджеру.';
+    });
+  }
+  wire(document.getElementById('callForm'), 'c-phone', 'c-ok');
+  wire(document.getElementById('kpForm'), 'k-phone', 'k-ok');
+  wire(document.getElementById('kpForm2'), 'f-phone', 'f-ok');
+  document.getElementById('analBtn').addEventListener('click', () => analDlg.showModal());
+
+  /* ---------- Компьютер / телефон ---------- */
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => {
+    const ph = b.dataset.view === 'phone';
+    document.body.classList.toggle('view-phone', ph);
+    document.querySelectorAll('[data-view]').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+    site.scrollTop = 0; scrollTo(0, 0);
+    requestAnimationFrame(() => { slides.scrollLeft = cur * slides.clientWidth; });
+    try { localStorage.setItem('ym-view', b.dataset.view); } catch (e) {}
+  }));
+  try { if (localStorage.getItem('ym-view') === 'phone' && innerWidth > 700) document.querySelector('[data-view="phone"]').click(); } catch (e) {}
+})();
+</script>
+
+<script>
+/* Фильм первого экрана: один ролик под тремя слайдами. Глава переключается по времени ролика,
+   клик по вкладке бренда перематывает на начало главы. Телефону отдаётся версия 720x620. */
+(function () {
+  const CH = [{"t0": 0.0, "t1": 10.71}, {"t0": 10.71, "t1": 21.63}, {"t0": 21.63, "t1": 29.34}];
+  const hero = document.getElementById('hero'), site = document.getElementById('site');
+  const film = hero.querySelector('.hfilm video'), toggle = document.getElementById('filmToggle');
+  const tabs = [...document.querySelectorAll('.btab')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur = Math.max(0, tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'));
+  let visible = true, userPaused = false, pending = null, raf = 0;
+  const small = () => (site ? site.clientWidth : innerWidth) <= 900;
+  const filmMode = () => hero.classList.contains('v-film') && !reduce;
+  const isCh = i => i < CH.length;
+  function seek(t) { if (film.readyState >= 1) { try { film.currentTime = t; } catch (e) {} } else pending = t; }
+  film.addEventListener('loadedmetadata', () => { if (pending !== null) { film.currentTime = pending; pending = null; } });
+  function load() {
+    const want = small() ? film.dataset.srcM : film.dataset.src;
+    if (film.getAttribute('src') === want) return;
+    if (film.getAttribute('src')) pending = film.currentTime;
+    film.src = want;
+  }
+  function clearProg() { tabs.forEach((t, k) => { if (isCh(k)) t.querySelector('.prog').style.transform = ''; }); }
+  function sync() {
+    if (!(filmMode() && isCh(cur))) { film.pause(); hero.classList.remove('film-on', 'film-live'); if (!filmMode()) clearProg(); return; }
+    hero.classList.add('film-live');
+    load();
+    if (visible && !userPaused) film.play().catch(() => { if (!film.paused) return; setMode('v-off'); }); else film.pause();
+  }
+  function tick() {
+    cancelAnimationFrame(raf);
+    if (film.paused || !filmMode() || !isCh(cur)) return;
+    const t = film.currentTime, c = CH[cur];
+    tabs.forEach((tb, k) => { if (isCh(k)) tb.querySelector('.prog').style.transform = k === cur ? 'scaleX(' + Math.min(1, Math.max(0, (t - c.t0) / (c.t1 - c.t0))).toFixed(4) + ')' : ''; });
+    if (t >= c.t1 && isCh(cur + 1)) tabs[cur + 1].click();
+    raf = requestAnimationFrame(tick);
+  }
+  film.addEventListener('playing', () => { if (filmMode() && isCh(cur)) hero.classList.add('film-on'); tick(); });
+  film.addEventListener('ended', () => { if (filmMode() && isCh(cur)) { const n = document.querySelector('[data-go="1"]'); if (n) n.click(); } });
+  window.heroVideo = i => {
+    cur = i;
+    if (filmMode() && isCh(i)) { const c = CH[i], t = film.currentTime || 0; if (!(t >= c.t0 - 0.3 && t < c.t1 - 0.05) || film.ended) seek(i ? c.t0 + 0.25 : 0); }
+    sync();
+  };
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }, { threshold: 0.2 }).observe(hero);
+  toggle.addEventListener('click', () => {
+    userPaused = !userPaused;
+    toggle.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+    toggle.setAttribute('aria-label', userPaused ? 'Запустить фильм' : 'Остановить фильм');
+    sync();
+  });
+  function setMode(m) {
+    hero.classList.remove('v-film', 'v-off'); hero.classList.add(m);
+    document.querySelectorAll('[data-fmode]').forEach(x => x.setAttribute('aria-pressed', x.dataset.fmode === m ? 'true' : 'false'));
+    if (m === 'v-film') window.heroVideo(cur); else sync();
+  }
+  document.querySelectorAll('[data-fmode]').forEach(b => b.addEventListener('click', () => { setMode(b.dataset.fmode); try { localStorage.setItem('ym-fmode', b.dataset.fmode); } catch (e) {} }));
+  document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setTimeout(sync, 80)));
+  try { if (localStorage.getItem('ym-fmode') === 'v-off') setMode('v-off'); } catch (e) {}
+  window.heroVideo(cur);
+})();
+</script>
+</html>
