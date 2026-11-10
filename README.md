@@ -4,6 +4,8 @@
 
 Файлы собираются скриптом `preview/publish_pages.py` из репозитория `yarmed-site`, здесь их руками не правим.
 
+- Корень сайта (`index.html`, файлы в `start/`): стартовая страница для клиента, собирается `preview/start/build_client.py` в yarmed-site (ветка `client/start-v5`).
+- [Список макетов](maketi.html)
 - [Главная v5: фильм + стилистика Dexellence](home-v5/)
 - [Главная с фильмом в первом экране](home-v4-film/)
 - [Главная с роликами по слайдам](home-v4-video/)
