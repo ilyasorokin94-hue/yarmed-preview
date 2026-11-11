@@ -6,6 +6,8 @@
 <title>Главная ЯрМед v5</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="img/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="img/logo/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
@@ -687,7 +689,8 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.015em; }
 .hd5 { background: #fff; position: relative; z-index: 41; }
 .hd5-top { display: grid; grid-template-columns: auto minmax(220px, 520px) 1fr auto; align-items: center; gap: 28px; height: 96px; }
 .hd5 .logo { display: grid; gap: 4px; justify-items: start; }
-.hd5 .logo img { height: 34px; width: auto; }
+.hd5 .logo img { height: 64px; width: auto; }
+.hd5 .logo .lg-m { display: none; }
 .logo-sub { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #8C8F98; padding-left: 2px; }
 .search5 { height: 48px; border-radius: 999px; background: var(--tint); border: 1px solid transparent; display: flex; align-items: center; gap: 10px; padding: 0 20px; transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease; }
 .search5:focus-within { background: #fff; border-color: var(--accent); box-shadow: 0 0 0 4px rgba(10, 134, 232, .12); }
@@ -790,7 +793,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.015em; }
 .wide5 > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 62%; transition: transform .8s ease; }
 .wide5:hover > img { transform: scale(1.02); }
 .wide5-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 120px 40px 30px; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: end; gap: 32px; background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, .86) 52%, #fff 100%); }
-.wide5-bar .wl { height: 34px; width: auto; }
+.wide5-bar .wl { height: 60px; width: auto; }
 .wide5-bar div { display: grid; gap: 4px; text-align: center; }
 .wide5-bar b { font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; }
 .wide5-bar span { color: var(--muted); font-size: 0.92rem; }
@@ -875,7 +878,7 @@ h1, h2, h3 { font-weight: 700; letter-spacing: -0.015em; }
 footer.ft { background: var(--tint); color: var(--muted); position: relative; }
 footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; background: var(--grad); }
 .fhead { display: flex; align-items: center; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid #DADFE6; }
-.fhead img { height: 32px; width: auto; }
+.fhead img { height: 58px; width: auto; }
 .fhead span { color: var(--muted); font-size: 0.86rem; max-width: 46ch; }
 .fhead .soc { margin-left: auto; gap: 8px; }
 .fhead .soc a { color: var(--graphite); width: 42px; height: 42px; display: grid; place-items: center; border-radius: 999px; background: #fff; box-shadow: 0 2px 8px rgba(17, 24, 39, .06); transition: background-color .15s ease, color .15s ease; }
@@ -911,7 +914,10 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
 }
 @container site (max-width: 900px) {
   .hd5-top { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 64px auto; height: auto; gap: 0 8px; padding-bottom: 12px; }
-  .hd5 .logo img { height: 26px; }
+  .hd5 .logo img { height: 42px; }
+  .hd5 .logo .lg-d { display: none; }
+  .hd5 .logo .lg-m { display: block; }
+  .hd5 .logo { justify-self: start; }
   .logo-sub { font-size: 0.5rem; letter-spacing: 0.16em; }
   .search5 { grid-column: 1 / -1; grid-row: 2; height: 44px; }
   .tel5, .ic5 .d5 { display: none; }
@@ -946,7 +952,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
   .wide5 { height: 420px; border-radius: 24px; margin-top: 30px; }
   .wide5 > img { object-position: 30% center; }
   .wide5-bar { grid-template-columns: minmax(0, 1fr); padding: 90px 20px 20px; gap: 10px; justify-items: center; text-align: center; }
-  .wide5-bar .wl { height: 24px; }
+  .wide5-bar .wl { height: 46px; }
   .wide5-bar b { font-size: 1.15rem; }
   .wide5-bar span { font-size: 0.82rem; }
   .hits5 { margin-top: 48px; padding-block: 40px 30px; }
@@ -1002,7 +1008,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
 
 <header class="hd5" id="hdTop">
   <div class="in hd5-top">
-    <a class="logo" href="#top" aria-label="ЯрМед, на главную"><img src="img/logo/yarmed.png" alt="ЯрМед" width="311" height="45"><span class="logo-sub">стоматологическое оборудование</span></a>
+    <a class="logo" href="#top" aria-label="ЯрМед, на главную"><img class="lg-d" src="img/logo/yarmed-logo.svg" alt="ЯрМед, оборудование для медицинских центров" width="283" height="80"><img class="lg-m" src="img/logo/yarmed-logo-bez-slogana.svg" alt="ЯрМед" width="283" height="79"></a>
     <form class="search5" role="search" id="searchForm">
       <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
       <label for="q" class="sr">Поиск по каталогу</label>
@@ -1150,7 +1156,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
     <a class="wide5" href="#services">
       <img src="img/hero/band.webp" alt="Кабинет с установкой Castellini SKEMA 6" loading="lazy">
       <div class="wide5-bar">
-        <img class="wl" src="img/logo/yarmed.png" alt="ЯрМед" width="311" height="45" loading="lazy">
+        <img class="wl" src="img/logo/yarmed-logo.svg" alt="ЯрМед" width="283" height="80" loading="lazy">
         <div><b>Открываем стоматологии под ключ.</b><span>Проект, ремонт, оснащение, санэпидзаключение и лицензия</span></div>
         <em>Подробнее <svg class="ico"><use href="#i-aright"/></svg></em>
       </div>
@@ -1290,7 +1296,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
 
 <footer class="lazy-block ft">
   <div class="in">
-    <div class="fhead"><img src="img/logo/yarmed.png" alt="ЯрМед" width="311" height="45" loading="lazy"><span>Стоматологическое и медицинское оборудование. Открытие клиник под ключ.</span><span class="soc"><a href="#" aria-label="Telegram (ссылку уточнить)"><svg class="ico"><use href="#s-tg"/></svg></a><a href="#" aria-label="WhatsApp (ссылку уточнить)"><svg class="ico"><use href="#s-wa"/></svg></a><a href="#" aria-label="ВКонтакте (ссылку уточнить)"><svg class="ico"><use href="#s-vk"/></svg></a></span></div>
+    <div class="fhead"><img src="img/logo/yarmed-logo.svg" alt="ЯрМед" width="283" height="80" loading="lazy"><span>Стоматологическое и медицинское оборудование. Открытие клиник под ключ.</span><span class="soc"><a href="#" aria-label="Telegram (ссылку уточнить)"><svg class="ico"><use href="#s-tg"/></svg></a><a href="#" aria-label="WhatsApp (ссылку уточнить)"><svg class="ico"><use href="#s-wa"/></svg></a><a href="#" aria-label="ВКонтакте (ссылку уточнить)"><svg class="ico"><use href="#s-vk"/></svg></a></span></div>
     <div class="fgrid">
       <div><h4>Каталог</h4><ul>
         <li><a href="https://yarmed.com/catalog/stomatologicheskoe-oborudovanie/" target="_blank" rel="noopener">Стоматологическое оборудование</a></li>
