@@ -1048,6 +1048,100 @@ a .ico:has(use[href="#i-right"]), a .ico:has(use[href="#i-aright"]), .btn .ico:h
   .hero .sl-cta { flex-direction: row; }
 }
 
+/* =====================================================================
+   Утверждено 11.11.2026, нижние секции (Илья и Ксения выбрали на странице вариантов):
+   хиты 4 «Наклон за мышью», оснащение 4 «Фото крупно», услуги 1 «Этапы по линии»,
+   подвал 3 «Крупный телефон». Проекты 4 и офис с формой 3 разметкой есть только в клиентской
+   версии, их стили в start/build_client.py. Везде без стрелок ↗ и овальных кнопок.
+   ===================================================================== */
+.seeall i, .pj em .ico { display: none; }
+.svc a::after { content: none; }
+.sec-head > .seeall { color: var(--ink); padding-bottom: 4px; box-shadow: inset 0 -1.5px 0 currentColor; }
+.sec-head > .seeall:hover { color: #00A0E3; }
+#kits .kp-cta .btn, .band-cta .btn, #team .btn, #kp .btn, #hits .seeall-row .btn { border-radius: 12px; }
+#kp .kpform input[type=text], #kp .kpform input[type=tel] { border-radius: 12px; }
+
+/* хиты продаж: вкладки сегментом; карточки выплывают из глубины, когда секция в кадре
+   (скрипт ставит #hits.pre и .go), и наклоняются за мышью с подсветкой */
+#hits .tabs { width: fit-content; max-width: 100%; margin: 0 auto 26px; gap: 2px; padding: 5px; border-radius: 14px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .28); flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+#hits .tabs button { border: 0; border-radius: 10px; padding: 9px 18px; white-space: nowrap; }
+#hits .tabs button[aria-selected="true"] { background: #fff; color: #2B539F; }
+#hitRail { padding: 28px 10px 48px; margin: -28px -10px -48px; }
+@keyframes hk4 { from { opacity: 0; transform: perspective(900px) translateZ(-260px) rotateX(18deg); filter: blur(8px); } to { opacity: 1; transform: perspective(900px); filter: blur(0); } }
+#hits.pre:not(.go) .card { opacity: 0; }
+#hits.go .card { animation: hk4 1s cubic-bezier(.2, .8, .2, 1) backwards; animation-delay: calc(var(--i, 0) * 100ms); }
+#hits .card { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2, .8, .2, 1), box-shadow .3s ease; }
+#hits .card.tilt { transition: transform .12s linear, box-shadow .3s ease; box-shadow: 0 30px 52px rgba(3, 38, 92, .4); }
+#hits .card .im { transform: translateZ(34px); }
+#hits .card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 30%), rgba(0, 160, 227, .2), rgba(0, 160, 227, 0) 70%); box-shadow: inset 0 0 0 1.5px rgba(0, 160, 227, .35); opacity: 0; transition: opacity .3s ease; }
+#hits .card.tilt::after { opacity: 1; }
+
+/* оснащение кабинета: крупное фото и сумма справа, состав плитками под фото */
+#kitTabs { width: fit-content; max-width: 100%; margin: 0 auto 24px; gap: 2px; padding: 5px; background: #F2F5F8; border-radius: 14px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+#kitTabs button { border: 0; border-radius: 10px; white-space: nowrap; }
+#kitTabs button[aria-selected="true"] { background: #fff; color: #2B539F; box-shadow: 0 4px 12px rgba(43, 83, 159, .14); }
+.kpanel { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); grid-template-areas: "photo info" "list info"; }
+.kp-photo { grid-area: photo; min-height: 400px; background: radial-gradient(ellipse 65% 70% at 50% 60%, #fff 0%, #E8EFF5 80%); }
+.kp-photo img { max-height: 360px; }
+.kp-info { grid-area: info; border-left: 1px solid var(--line); padding: 40px 36px; align-content: center; gap: 18px; }
+.kp-info h3 { font-size: 2rem; letter-spacing: -0.02em; line-height: 1.1; }
+.kp-sum b { font-size: 2.5rem; letter-spacing: -0.02em; }
+.kp-list { grid-area: list; border-left: 0; border-top: 1px solid var(--line); padding: 18px 20px 20px; background: #FAFBFC; }
+.kp-list ul { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 10px; }
+.kp-list li a { grid-template-columns: 1fr; grid-template-rows: 68px auto 1fr; justify-items: center; text-align: center; gap: 6px; border: 1px solid var(--line); border-radius: 14px; background: #fff; padding: 10px 8px 12px; height: 100%; transition: border-color .2s ease, box-shadow .2s ease; }
+.kp-list li a:hover { border-color: #9CCFF0; box-shadow: 0 8px 18px rgba(43, 83, 159, .1); }
+.kp-list li img { width: 100%; height: 64px; }
+.kp-list li b { font-size: 0.76rem; font-weight: 600; }
+.kp-list li em { align-self: end; font-size: 0.78rem; color: #2B539F; font-weight: 700; }
+
+/* услуги «под ключ»: путь открытия клиники по линии, значки в кругах */
+.band { grid-template-columns: minmax(0, 1fr); background: #fff; }
+.band .right { display: none; }
+.band .left { padding-right: max(var(--gut), calc((100cqw - 1240px) / 2 + 16px)); padding-block: 72px 76px; justify-items: center; text-align: center; gap: 40px; }
+.band .left > div { width: 100%; justify-items: center; }
+.svc { max-width: none; width: 100%; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; position: relative; margin-top: 8px; }
+.svc::before { content: ""; position: absolute; left: 8.33%; right: 8.33%; top: 36px; height: 2px; background: linear-gradient(90deg, #73CBF3, #00A0E3 50%, #2B539F); }
+.svc a { background: none; box-shadow: none; border-radius: 0; padding: 0 10px; min-height: 0; justify-items: center; text-align: center; gap: 6px; }
+.svc a:nth-child(1) { order: 5; } .svc a:nth-child(2) { order: 4; } .svc a:nth-child(3) { order: 1; }
+.svc a:nth-child(4) { order: 2; } .svc a:nth-child(5) { order: 3; } .svc a:nth-child(6) { order: 6; }
+.svc .si { display: block; width: 36px; height: 36px; padding: 18px; box-sizing: content-box; border-radius: 50%; background: #fff; color: #2B539F; box-shadow: inset 0 0 0 2px #00A0E3, 0 0 0 10px #fff; position: relative; margin-bottom: 12px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: background-color .2s ease, color .2s ease; }
+.svc a:hover .si { background: #00A0E3; color: #fff; }
+.svc b { font-size: 0.98rem; }
+.band-cta { justify-content: center; margin-top: 10px; }
+
+/* подвал: белый, крупный телефон и кнопка КП рядом с логотипом */
+footer.ft { background: #fff; border-top: 1px solid var(--line); }
+footer.ft::before { display: none; }
+.fhead { flex-wrap: wrap; border-bottom-color: var(--line); padding-bottom: 32px; }
+.fcta { display: flex; align-items: center; gap: 22px; margin-left: auto; }
+.fcta-tel { font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fcta-tel:hover { color: #00A0E3; }
+.fcta .btn { border-radius: 12px; }
+.fgrid h4 { color: #1F3B73; }
+.fgrid .ph a { color: #1F3B73; }
+.flegal { border-top-color: var(--line); }
+
+@container site (max-width: 900px) {
+  #hits .tabs { margin-inline: 0; }
+  #hitRail { padding-inline: 0; margin-inline: 0; }
+  #hits .card .im { transform: none; }
+  .kpanel { grid-template-columns: minmax(0, 1fr); grid-template-areas: none; grid-template-rows: none; }
+  .kpanel > * { grid-area: auto; grid-column: auto; }
+  .kp-info { border-left: 0; border-top: 1px solid var(--line); padding: 22px 18px; }
+  .kp-photo { min-height: 240px; }
+  .kp-photo img { max-height: 210px; }
+  .kp-info h3 { font-size: 1.4rem; }
+  .kp-sum b { font-size: 1.8rem; }
+  .kp-list ul { grid-auto-columns: 128px; overflow-x: auto; scrollbar-width: none; }
+  .band .left { padding: 44px var(--gut-r) 44px var(--gut); }
+  .svc { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .svc::before { left: 35px; right: auto; top: 10px; bottom: 10px; width: 2px; height: auto; background: linear-gradient(180deg, #73CBF3, #2B539F); }
+  .svc a { grid-template-columns: 70px minmax(0, 1fr); justify-items: start; text-align: left; column-gap: 16px; padding: 0; }
+  .svc .si { grid-row: 1 / span 2; width: 30px; height: 30px; padding: 18px; margin: 0; box-shadow: inset 0 0 0 2px #00A0E3, 0 0 0 6px #fff; }
+  .fcta { margin-left: 0; flex-wrap: wrap; gap: 12px; }
+  .fcta-tel { font-size: 1.5rem; }
+}
+
 /* ---------- клиентская версия ---------- */
 .projs .pj { display: grid; gap: 8px; align-content: start; padding: 14px 14px 22px; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; background: #fff; transition: transform .25s ease, box-shadow .25s ease; }
 .projs .pj:hover { transform: translateY(-4px); box-shadow: var(--sh-2); }
@@ -1073,9 +1167,44 @@ a .ico:has(use[href="#i-right"]), a .ico:has(use[href="#i-aright"]), .btn .ico:h
   .mgr-ava { width: 72px; height: 72px; font-size: 1.8rem; }
   .band .right { min-height: 300px; }
 }
+/* утверждено 11.11.2026: проекты 4 «Голубые подложки», офис и форма КП 3 «Белый строгий» */
+.projs .pj { background: linear-gradient(170deg, #E1F2FC 0%, #F4FAFE 58%, #fff 100%); box-shadow: none; border-radius: 26px; padding: 18px 18px 24px; }
+.pj-ph { background: transparent; }
+.pj-ph img { filter: drop-shadow(0 18px 18px rgba(30, 60, 110, .2)); }
+.pj h3 { color: #1F3B73; font-size: 1.3rem; }
+.pj p { color: #4F6C9F; }
+.pj em { margin: 6px 8px 0; justify-self: start; background: #fff; color: #2B539F; border-radius: 10px; padding: 13px 18px; box-shadow: 0 6px 16px rgba(43, 83, 159, .12); transition: background-color .2s ease, color .2s ease; }
+.pj:hover em { background: #2B539F; color: #fff; }
+.projs .pj.next { background: linear-gradient(160deg, #2B539F 0%, #1F3B73 100%); }
+.pj.next .pj-ph { background: transparent; }
+.pj.next .pj-ph img { filter: brightness(0) invert(1); }
+.pj.next h3, .pj.next p { color: #fff; }
+.pj.next em { background: #00A0E3; color: #fff; box-shadow: none; }
+.office { gap: 0; border: 1px solid #DCE1E7; border-radius: 8px; overflow: hidden; }
+.office-ph { border-radius: 0; }
+.office .team-txt { background: #fff; border-radius: 0; }
+.team-txt h3 { font-size: 1.6rem; }
+#team .btn, #kp .btn { border-radius: 6px; }
+#team .btn.grad { background: #1E1F25; box-shadow: none; }
+#kp .kpform { border: 1px solid #DCE1E7; box-shadow: none; border-radius: 8px; }
+.mgr { background: #fff; color: var(--ink); border-right: 1px solid #DCE1E7; }
+.mgr > p { color: #3A414B; }
+.mgr-card span { color: var(--muted); }
+.mgr-card a { color: #2B539F; }
+.mgr-ava { font-size: 0; background: #F2F5F8 url(start/img/logo/yarmed-znak.svg) center / 56% no-repeat; border: 1px solid #DCE1E7; }
+#kp form label { text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.68rem; font-weight: 600; color: #6A6D77; }
+#kp form .chk { text-transform: none; letter-spacing: 0; font-size: 0.8rem; font-weight: 400; }
+#kp .kpform input[type=text], #kp .kpform input[type=tel] { border: 0; border-bottom: 1.5px solid #C9D0D9; border-radius: 0; background: none; padding: 0; height: 44px; }
+#kp .kpform input:focus { box-shadow: none; background: none; border-bottom-color: #00A0E3; }
+#kp .btn.dark { background: #1E1F25; box-shadow: none; }
+#kp .btn.dark:hover { background: #2B539F; }
+@container site (max-width: 900px) {
+  .mgr { border-right: 0; border-bottom: 1px solid #DCE1E7; }
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="w-tooth" viewBox="0 0 48 48"><path d="M15 6c-5 0-8 4-8 9 0 6 3 9 4 15 .8 5 2 12 5 12s3-8 8-8 5 8 8 8 4.2-7 5-12c1-6 4-9 4-15 0-5-3-9-8-9-4 0-5.6 2-9 2s-5-2-9-2Z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
   <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4 2.6-2.6Z"/></symbol>
@@ -1296,12 +1425,12 @@ a .ico:has(use[href="#i-right"]), a .ico:has(use[href="#i-aright"]), .btn .ico:h
       <div style="display:grid;gap:18px">
         <span class="k">Услуги ЯрМеда</span>
         <div class="svc">
-          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Медицинская лицензия</b><span>300 000 ₽ · 7 рабочих дней</span></a>
-          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Санэпидзаключение</b><span>100 000 ₽ · 20 рабочих дней</span></a>
-          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Ремонт под ключ</b><span>Смета под ваше помещение</span></a>
-          <a href="#kits"><b>Оснащение кабинета</b><span>Комплекты от 1,32 млн ₽</span></a>
-          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Документы клиники</b><span>от 5 000 ₽ за документ</span></a>
-          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><b>Лизинг и рассрочка</b><span>Подберём программу для клиники</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><svg class="si" aria-hidden="true"><use href="#w-license"/></svg><b>Медицинская лицензия</b><span>300 000 ₽, 7 рабочих дней</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><svg class="si" aria-hidden="true"><use href="#w-dealer"/></svg><b>Санэпидзаключение</b><span>100 000 ₽, 20 рабочих дней</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><svg class="si" aria-hidden="true"><use href="#w-plan"/></svg><b>Ремонт под ключ</b><span>Смета под ваше помещение</span></a>
+          <a href="#kits"><svg class="si" aria-hidden="true"><use href="#w-tooth"/></svg><b>Оснащение кабинета</b><span>Комплекты от 1,32 млн ₽</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><svg class="si" aria-hidden="true"><use href="#b-doc"/></svg><b>Документы клиники</b><span>от 5 000 ₽ за документ</span></a>
+          <a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener"><svg class="si" aria-hidden="true"><use href="#w-card"/></svg><b>Лизинг и рассрочка</b><span>Подберём программу для клиники</span></a>
         </div>
         <div class="band-cta"><button class="btn blue" type="button" data-kp="Открытие клиники под ключ">Получить расчёт</button><span>Посчитаем проект, оснащение и сроки для вашего помещения</span></div>
       </div>
@@ -1382,7 +1511,7 @@ a .ico:has(use[href="#i-right"]), a .ico:has(use[href="#i-aright"]), .btn .ico:h
 
 <footer class="lazy-block ft">
   <div class="in">
-    <div class="fhead"><img src="start/img/logo/yarmed-logo.svg" alt="ЯрМед" width="283" height="80" loading="lazy"><span>Стоматологическое и медицинское оборудование. Открытие клиник под ключ.</span></div>
+    <div class="fhead"><img src="start/img/logo/yarmed-logo.svg" alt="ЯрМед" width="283" height="80" loading="lazy"><span>Стоматологическое и медицинское оборудование. Открытие клиник под ключ.</span><div class="fcta"><a class="fcta-tel" href="tel:+74951201401">+7 (495) 120-14-01</a><button class="btn grad" type="button" data-kp="Подбор оборудования">Получить КП</button></div></div>
     <div class="fgrid">
       <div><h4>Каталог</h4><ul>
         <li><a href="https://yarmed.com/catalog/stomatologicheskoe-oborudovanie/" target="_blank" rel="noopener">Стоматологическое оборудование</a></li>
@@ -1735,6 +1864,35 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
   document.querySelectorAll('[data-fmode]').forEach(b => b.addEventListener('click', () => { setMode(b.dataset.fmode); try { localStorage.setItem('ym-fmode', b.dataset.fmode); } catch (e) {} }));
   document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setTimeout(sync, 80)));
   window.heroVideo(cur);
+})();
+</script>
+<script>
+/* Хиты продаж, утверждено 11.11.2026: появление карточек и наклон за мышью. */
+(function () {
+  const hits = document.getElementById('hits'), rail = document.getElementById('hitRail'), tabs = document.getElementById('hitTabs');
+  if (!hits || !rail || !('IntersectionObserver' in window)) return;
+  let vis = false;
+  const mark = () => [...rail.children].forEach((el, i) => el.style.setProperty('--i', i));
+  const replay = () => { hits.classList.remove('go'); if (!vis) return; void hits.offsetWidth; mark(); hits.classList.add('go'); };
+  new MutationObserver(mark).observe(rail, { childList: true });
+  new IntersectionObserver(es => es.forEach(en => {
+    vis = en.isIntersecting;
+    if (vis) { mark(); hits.classList.add('go'); } else hits.classList.remove('go');
+  }), { threshold: 0.25 }).observe(hits);
+  hits.classList.add('pre');
+  if (tabs) tabs.addEventListener('click', e => { if (e.target.closest('button')) replay(); });
+  rail.addEventListener('pointermove', e => {
+    if (e.pointerType === 'touch') return;
+    const c = e.target.closest('.card'); if (!c) return;
+    const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    c.classList.add('tilt');
+    c.style.setProperty('--rx', ((0.5 - y) * 12).toFixed(2) + 'deg'); c.style.setProperty('--ry', ((x - 0.5) * 14).toFixed(2) + 'deg');
+    c.style.setProperty('--gx', (x * 100).toFixed(1) + '%'); c.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+  });
+  rail.addEventListener('pointerout', e => {
+    const c = e.target.closest('.card'); if (!c || c.contains(e.relatedTarget)) return;
+    c.classList.remove('tilt'); c.style.removeProperty('--rx'); c.style.removeProperty('--ry');
+  });
 })();
 </script>
 </html>
