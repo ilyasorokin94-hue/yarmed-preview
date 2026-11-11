@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="img/logo/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;1,400&family=Manrope:wght@800&display=swap">
 <style>
 /* Layout: схема главной Stomart (баннер → бренды → разделы → бенто магазина → витрины → тёмная полоса услуг → доверие),
    колонка 1240px. Усиление: бренды под баннером работают как вкладки слайдера, в слайде цена, лизинг и КП.
@@ -963,6 +963,90 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
   .fhead { flex-wrap: wrap; gap: 14px; }
   .fhead span { flex: 1 1 100%; order: 3; }
 }
+
+/* ================================================================
+   Утверждено 11.11.2026 (Илья и Ксения выбрали на странице вариантов):
+   шапка 1 «Стекло», первый экран 2 «Премиум», вкладки брендов 4 «Логотипы в цвете»,
+   каталог 5 «Мягкий градиент», баннер «Под ключ» 5 «Крупно по центру».
+   Плюс общее правило: без стрелок в ссылках и кнопках, без точек-разделителей.
+   ================================================================ */
+a .ico:has(use[href="#i-right"]), a .ico:has(use[href="#i-aright"]), .btn .ico:has(use[href="#i-right"]) { display: none; }
+.sl-brand .dot { display: none; }
+/* ---------- шапка: матовое стекло поверх фильма, синие надписи ---------- */
+.hd5 { position: absolute; left: 0; right: 0; top: 0; background: rgba(255, 255, 255, .42); -webkit-backdrop-filter: blur(22px) saturate(1.6); backdrop-filter: blur(22px) saturate(1.6); border-bottom: 1px solid rgba(255, 255, 255, .6); }
+.nav5 { background: transparent; margin-top: 96px; margin-bottom: -162px; padding: 0 0 12px; }
+.nav5.scrolled { box-shadow: none; padding-top: 10px; }
+.hero.full .slide { height: calc(var(--hh) + 162px); }
+.hero.full .sl-in { padding-top: 162px; }
+.hero.full .hfilm { width: min(100%, calc((var(--hh) + 162px) * 2.39)); }
+.bar5 { background: rgba(255, 255, 255, .55); -webkit-backdrop-filter: blur(20px) saturate(1.5); backdrop-filter: blur(20px) saturate(1.5); border: 1px solid rgba(255, 255, 255, .8); color: #2B539F; box-shadow: 0 12px 34px rgba(43, 83, 159, .14); }
+.bar5 a:hover { background: rgba(0, 160, 227, .12); }
+.bar5 .catbtn { background: #2B539F; color: #fff; }
+.bar5 .catbtn:hover { background: #1F4387; }
+.bar5 .hot { background: #00A0E3; color: #fff; }
+.search5 { background: rgba(255, 255, 255, .6); border-color: rgba(255, 255, 255, .85); }
+.search5 .ico, .search5 input::placeholder { color: #4F6C9F; }
+.tel5 > .ico, .tel5 b, .tel5 a, .ic5 a, .ic5 button { color: #2B539F; }
+.ic5 a:hover, .ic5 button:hover { background: rgba(255, 255, 255, .6); }
+.ic5 .cnt { background: #00A0E3; }
+/* ---------- первый экран: антиква Playfair Display, кнопка-ссылка ---------- */
+.hero .sl-brand { gap: 0; }
+.hero .sl-brand > :first-child { padding-right: 16px; margin-right: 16px; border-right: 1px solid rgba(29, 33, 39, .22); line-height: 1; }
+.hero .sl-cta .btn { gap: 0; }
+.hero .chips { display: none; }
+.hero.full .sl-h { font-family: 'Playfair Display', serif; font-weight: 500; text-transform: none; font-size: 4.3rem; letter-spacing: -0.01em; line-height: 1; }
+.hero.full .sl-h small { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 0.33em; color: #3A414B; margin-top: 16px; letter-spacing: 0; }
+.hero .sl-brand { letter-spacing: 0.32em; font-size: 0.7rem; }
+.hero.full .sl-price b { font-family: 'Playfair Display', serif; font-weight: 500; font-size: 2rem; }
+.hero .sl-cta { align-items: center; gap: 28px; flex-direction: row-reverse; justify-content: flex-end; }
+.hero .sl-cta .btn.grad { background: #1E1F25; border-radius: 0; height: 54px; padding: 0 34px; letter-spacing: 0.2em; box-shadow: none; }
+.hero .sl-cta .btn.grad:hover { background: #2B539F; }
+.hero .sl-cta .btn.dark { background: none; color: #1E1F25; padding: 0 0 4px; height: auto; border-radius: 0; border-bottom: 1px solid #1E1F25; letter-spacing: 0.2em; }
+.hero .sl-cta .btn.dark:hover { color: #2B539F; border-color: #2B539F; }
+/* ---------- вкладки брендов: крупные логотипы без рамок ---------- */
+.brandbar { background: #fff; border-top: 0; padding-block: 30px 18px; }
+.btab { background: none; border: 0; width: 210px; height: 96px; justify-items: center; text-align: center; grid-template-rows: 46px auto; padding: 6px 10px 14px; }
+.btab .lg { height: 46px; }
+.btab .lg img { max-height: 38px; max-width: 160px; filter: none; opacity: .4; }
+.btab .lg .wm { font-size: 1.15rem; color: #1E1F25; opacity: .4; }
+.btab span { font-size: 0.8rem; opacity: .6; }
+.btab:hover .lg img, .btab:hover .lg .wm { opacity: .75; }
+.btab[aria-selected="true"] { border: 0; }
+.btab[aria-selected="true"] .lg img, .btab[aria-selected="true"] .lg .wm, .btab[aria-selected="true"] span { opacity: 1; }
+.btab .prog { left: 30%; right: 30%; height: 3px; border-radius: 2px; background: #00A0E3; }
+/* ---------- каталог: мягкий голубой градиент, подписи Manrope ---------- */
+.catgrid .cat { border: 0; border-radius: 24px; background: linear-gradient(170deg, #E9F5FC 0%, #F7FBFE 55%, #fff 100%); box-shadow: 0 1px 0 rgba(43, 83, 159, .06), 0 14px 30px rgba(43, 83, 159, .07); height: 236px; grid-template-rows: 116px auto 1fr; }
+.catgrid .cat img { height: 116px; filter: drop-shadow(0 12px 14px rgba(30, 45, 80, .18)); mix-blend-mode: multiply; }
+.catgrid .cat b { font-family: 'Manrope', sans-serif; font-weight: 800; color: #1F3B73; font-size: 0.92rem; }
+.catgrid .cat em { color: #00A0E3; font-weight: 600; }
+.catgrid .cat:hover { transform: translateY(-3px); }
+/* ---------- баннер «Под ключ»: крупный белый заголовок по центру ---------- */
+.wide5 > img { filter: brightness(.72) saturate(.9); }
+.wide5-bar { top: 0; padding: 40px; background: radial-gradient(ellipse at center, rgba(16, 24, 40, .35) 0, rgba(16, 24, 40, 0) 70%); grid-template-columns: 1fr; align-content: center; justify-items: center; gap: 26px; }
+.wide5-bar .wl { display: none; }
+.wide5-bar div { gap: 14px; }
+.wide5-bar b { color: #fff; font-size: 3.3rem; letter-spacing: -0.035em; line-height: 1.04; max-width: 16ch; margin-inline: auto; }
+.wide5-bar span { color: rgba(255, 255, 255, .86); font-size: 1.05rem; }
+.wide5-bar em { height: 54px; padding: 0 32px; border-radius: 999px; background: rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .6); color: #fff; }
+@container site (max-width: 900px) {
+  .btab { width: 156px; height: 80px; grid-template-rows: 36px auto; padding: 6px 8px 12px; }
+  .btab .lg { height: 36px; }
+  .btab .lg img { max-height: 28px; max-width: 120px; }
+  .wide5-bar { padding: 24px 18px; gap: 18px; }
+  .wide5-bar b { font-size: 1.9rem; }
+  .wide5-bar span { font-size: 0.9rem; }
+  .wide5-bar em { height: 48px; padding: 0 26px; }
+  /* на телефоне шапка над фото, а не поверх: иначе стекло закрывает аппарат */
+  .hd5 { position: relative; background: #fff; border-bottom: 0; }
+  .search5 { background: var(--tint); border-color: transparent; }
+  .hero.full .slide { height: auto; }
+  .hero.full .sl-in { padding-top: 0; }
+  .hero.full .sl-photo { margin-top: 0; }
+  .hero.full { padding-top: 0; }
+  .hero.full .sl-h { font-size: 2.7rem; }
+  .hero.full .sl-price b { font-size: 1.5rem; }
+  .hero .sl-cta { flex-direction: row; }
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1071,7 +1155,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
           <div class="sl-brand"><img src="img/logo/castellini.webp" alt="Castellini"><span class="dot"></span>Италия</div>
           <p class="sl-h">SKEMA 8<small>Старшая модель Castellini с верхней и нижней подачей инструментов</small></p>
           <div class="sl-price"><b>1 940 000 ₽</b><span>в лизинг от <strong>63 100 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
-          <div class="chips"><span class="chip">Линейка SKEMA 5 · 6 · 8</span><span class="chip">Доставка и монтаж</span></div>
+          <div class="chips"><span class="chip">Линейка SKEMA 5, 6, 8</span><span class="chip">Доставка и монтаж</span></div>
           <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/castellini/castellini-skema-8-stomatologicheskaya-ustanovka-s-verkhney-nizhney-podachey-instrumentov-/" target="_blank" rel="noopener">Смотреть <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn grad" type="button" data-kp="Castellini SKEMA 8">Получить КП</button></div>
         </div></div>
       </article>
@@ -1093,7 +1177,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
           <div class="sl-brand"><span class="wm">STERN WEBER</span><span class="dot"></span>Италия</div>
           <p class="sl-h">S380<small>Установка для хирургии и имплантологии. В каталоге 10 моделей Stern Weber</small></p>
           <div class="sl-price"><b>1 937 400 ₽</b><span>в лизинг от <strong>63 000 ₽/мес</strong> <span class="todo">[пример]</span></span></div>
-          <div class="chips"><span class="chip">Модели от 910 000 ₽</span><span class="chip">S200 · S280 · S380</span></div>
+          <div class="chips"><span class="chip">Модели от 910 000 ₽</span><span class="chip">S200, S280, S380</span></div>
           <div class="sl-cta"><a class="btn dark" href="https://yarmed.com/catalog/stern-weber/" target="_blank" rel="noopener">Все модели <svg class="ico" style="width:16px;height:16px"><use href="#i-right"/></svg></a><button class="btn grad" type="button" data-kp="Stern Weber S380">Получить КП</button></div>
         </div></div>
       </article>
@@ -1157,7 +1241,7 @@ footer.ft::before { content: ""; position: absolute; left: 0; right: 0; top: 0; 
       <img src="img/hero/band.webp" alt="Кабинет с установкой Castellini SKEMA 6" loading="lazy">
       <div class="wide5-bar">
         <img class="wl" src="img/logo/yarmed-logo.svg" alt="ЯрМед" width="283" height="80" loading="lazy">
-        <div><b>Открываем стоматологии под ключ.</b><span>Проект, ремонт, оснащение, санэпидзаключение и лицензия</span></div>
+        <div><b>Открываем стоматологии под ключ</b><span>Проект, ремонт, оснащение, санэпидзаключение и лицензия</span></div>
         <em>Подробнее <svg class="ico"><use href="#i-aright"/></svg></em>
       </div>
     </a>
