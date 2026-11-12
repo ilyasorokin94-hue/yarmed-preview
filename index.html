@@ -1880,6 +1880,10 @@ html:root #hitRail .card .acts {grid-template-columns: minmax(0, 1fr) 48px; marg
 html:root #hitRail .card .kp {height: 48px; border: 0; background: var(--grad); color: #fff; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
 html:root #hitRail .card .cart {height: 48px; }
 html:root #hits .tx-prog {display: none; }
+html:root #hits .tabs {display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; max-width: none; margin: 0 0 18px; gap: 4px; padding: 5px; overflow: visible; }
+html:root #hits .tabs button {grid-column: span 2; min-width: 0; display: block; padding: 11px 2px; font-size: clamp(0.68rem, 3.3cqw, 0.84rem); text-align: center; white-space: nowrap; }
+html:root #hits .tabs button::after {content: none; }
+html:root #hits .tabs button:nth-child(3n+1):nth-last-child(4), html:root #hits .tabs button:nth-child(3n+1):nth-last-child(4) ~ button, html:root #hits .tabs button:nth-child(3n+1):nth-last-child(2), html:root #hits .tabs button:nth-child(3n+1):nth-last-child(2) ~ button {grid-column: span 3; }
 html:root #hits .hdeck {display: flex; align-items: center; gap: 14px; margin-top: 12px; position: relative; z-index: 2; }
 html:root .hdeck-seg {flex: 1 1 0; min-width: 0; display: flex; gap: 5px; }
 html:root .hdeck-seg button {flex: 1 1 0; min-width: 0; height: 28px; padding: 0; border: 0; background: none; display: grid; align-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
