@@ -1767,6 +1767,7 @@ html:root .fx1.live .sheet, html:root .sh-items .it {animation: none; }
 @media (max-width: 700px) {
 .viewbar {display: none; }
 }
+.hero.he-swipe .hfilm {opacity: 0 !important; transition: opacity .12s linear !important; }
 [hidden] { display: none !important; }
 /* sh: sh-0 sh-1 sh-2 sh-3 sh-4 sh-5 */
 @container site (min-width: 901px) {
@@ -3178,6 +3179,37 @@ window.V3 = { st: {"sh": 0, "he": 5, "bt": 0, "ct": 0, "bn": 0, "ht": 3, "kt": 3
   }
   new MutationObserver(fit).observe(hd, { attributes: true, attributeFilter: ['class'] });
   addEventListener('resize', fit);
+})();
+
+/* первый экран: кадр едет вместе с подписью. Фильм лежит поверх слайдов и сам не двигается, поэтому при листании
+   пальцем он сразу уступает место кадрам слайдов и возвращается, когда ролик уже стоит на нужной главе.
+   Фото остальных слайдов подгружаются заранее, а не в момент, когда слайд показался. */
+(function () {
+  const V = window.V3, hero = document.getElementById('hero'), slides = document.getElementById('slides');
+  if (!hero || !slides) return;
+  const eager = () => V.$$('img[loading="lazy"]', slides).forEach(i => { i.loading = 'eager'; });
+  if (document.readyState === 'complete') eager(); else addEventListener('load', eager);
+  const film = V.$('.hfilm video', hero);
+  if (!film) return;
+  let touch = false, on = false, st = 0, guard = 0;
+  const show = () => { clearTimeout(guard); film.removeEventListener('seeked', show); if (on) { on = false; hero.classList.remove('he-swipe'); } };
+  /* к этому времени основной скрипт уже выбрал слайд и перемотал ролик: ждём конца перемотки */
+  function settle() {
+    if (touch) return;
+    if (film.seeking) { film.addEventListener('seeked', show); guard = setTimeout(show, 1500); } else show();
+  }
+  const later = () => { clearTimeout(st); st = setTimeout(settle, 220); };
+  slides.addEventListener('touchstart', () => { touch = true; }, { passive: true });
+  const end = () => { touch = false; later(); };
+  slides.addEventListener('touchend', end);
+  slides.addEventListener('touchcancel', end);
+  slides.addEventListener('scroll', () => {
+    const w = slides.clientWidth || 1;
+    if (!on && touch && Math.abs(slides.scrollLeft - Math.round(slides.scrollLeft / w) * w) > 3) {
+      on = true; clearTimeout(guard); film.removeEventListener('seeked', show); hero.classList.add('he-swipe');
+    }
+    if (on) later();
+  }, { passive: true });
 })();
 
 /* ---------- he ---------- */
