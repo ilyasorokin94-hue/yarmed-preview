@@ -1768,6 +1768,7 @@ html:root .fx1.live .sheet, html:root .sh-items .it {animation: none; }
 .viewbar {display: none; }
 }
 .hero.he-swipe .hfilm {opacity: 0 !important; transition: opacity .12s linear !important; }
+.hero.he-in .hfilm {transition: opacity .2s linear !important; }
 [hidden] { display: none !important; }
 /* sh: sh-0 sh-1 sh-2 sh-3 sh-4 sh-5 */
 @container site (min-width: 901px) {
@@ -3191,24 +3192,36 @@ window.V3 = { st: {"sh": 0, "he": 5, "bt": 0, "ct": 0, "bn": 0, "ht": 3, "kt": 3
   if (document.readyState === 'complete') eager(); else addEventListener('load', eager);
   const film = V.$('.hfilm video', hero);
   if (!film) return;
-  let touch = false, on = false, st = 0, guard = 0;
-  const show = () => { clearTimeout(guard); film.removeEventListener('seeked', show); if (on) { on = false; hero.classList.remove('he-swipe'); } };
-  /* к этому времени основной скрипт уже выбрал слайд и перемотал ролик: ждём конца перемотки */
-  function settle() {
-    if (touch) return;
-    if (film.seeking) { film.addEventListener('seeked', show); guard = setTimeout(show, 1500); } else show();
+  let touch = false, on = false, st = 0, guard = 0, fade = 0, pre = -1;
+  function show() {
+    clearTimeout(guard); clearTimeout(st); film.removeEventListener('seeked', show);
+    if (!on) return;
+    on = false;
+    hero.classList.add('he-in'); hero.classList.remove('he-swipe');
+    clearTimeout(fade); fade = setTimeout(() => hero.classList.remove('he-in'), 320);
   }
-  const later = () => { clearTimeout(st); st = setTimeout(settle, 220); };
+  /* лента встала на место: ролик уже перемотан заранее, остаётся дождаться конца перемотки, если она ещё идёт */
+  function settle() {
+    if (touch || !on) return;
+    clearTimeout(st);
+    if (film.seeking) { film.addEventListener('seeked', show); clearTimeout(guard); guard = setTimeout(show, 1200); } else show();
+  }
+  const later = () => { clearTimeout(st); st = setTimeout(settle, 160); };
   slides.addEventListener('touchstart', () => { touch = true; }, { passive: true });
   const end = () => { touch = false; later(); };
   slides.addEventListener('touchend', end);
   slides.addEventListener('touchcancel', end);
   slides.addEventListener('scroll', () => {
-    const w = slides.clientWidth || 1;
-    if (!on && touch && Math.abs(slides.scrollLeft - Math.round(slides.scrollLeft / w) * w) > 3) {
-      on = true; clearTimeout(guard); film.removeEventListener('seeked', show); hero.classList.add('he-swipe');
+    const w = slides.clientWidth || 1, x = slides.scrollLeft, i = Math.round(x / w), off = Math.abs(x - i * w);
+    if (!on && touch && off > 3) {
+      on = true; pre = i; clearTimeout(guard); clearTimeout(fade); film.removeEventListener('seeked', show);
+      hero.classList.remove('he-in'); hero.classList.add('he-swipe');
     }
-    if (on) later();
+    if (!on) return;
+    /* как только лента перешла середину, ролик сразу встаёт на главу нового слайда: к концу свайпа он готов,
+       и после остановки кадр не стоит на месте в ожидании перемотки */
+    if (i !== pre && window.heroVideo) { pre = i; window.heroVideo(i); }
+    if (!touch && off < 1) settle(); else later();
   }, { passive: true });
 })();
 
