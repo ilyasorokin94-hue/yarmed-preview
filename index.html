@@ -1919,6 +1919,192 @@ html:root .rw.you > i {background: #fff; color: #1F3B73; }
 html:root .fx1-stage, html:root .fx1 .fx-lead {display: none; }
 html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
 }
+/* common: * */
+html:root .pm {padding-top: 56px; }
+html:root .pm .sec-head {margin-bottom: 26px; }
+html:root .pm .sh5 p {max-width: 72ch; }
+.pm-grid {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pm-card {display: grid; grid-template-rows: auto 1fr; border: 1px solid #DCE1E7; border-radius: 24px; background: #fff; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease; }
+.pm-card:hover {transform: translateY(-4px); box-shadow: 0 18px 40px rgba(31, 59, 115, .14); }
+.pm-ph {display: grid; place-items: center; height: 210px; background: linear-gradient(170deg, #E1F2FC 0%, #F4FAFE 60%, #fff 100%); }
+.pm-ph img {max-height: 176px; max-width: 62%; width: auto; object-fit: contain; mix-blend-mode: multiply; }
+.pm-body {display: grid; grid-template-rows: auto auto auto 1fr auto auto; gap: 10px; padding: 24px 28px 28px; align-content: start; }
+.pm-body h3 {font-size: 1.28rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; color: #1E1F25; }
+.pm-price {display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.pm-price b {font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; color: #1F3B73; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pm-price span {flex-basis: 100%; font-size: 0.82rem; color: var(--muted); }
+.pm-inc {font-size: 0.92rem; color: #5B6472; }
+.pm-term {font-size: 0.82rem; color: var(--muted); padding-top: 12px; border-top: 1px solid var(--line); }
+.pm-act {display: flex; align-items: center; gap: 20px; margin-top: 6px; }
+.pm-act .lnk {font-size: 0.74rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2B539F; box-shadow: inset 0 -1.5px 0 currentColor; padding: 0 0 3px; white-space: nowrap; }
+.pm-act .lnk:hover {color: #00A0E3; }
+html:root .pm .btn {border-radius: 6px; }
+html:root .pm .btn.dark {background: #1E1F25; }
+html:root .pm .btn.dark:hover {background: #2B539F; }
+.pm-more {display: none; }
+@container site (max-width: 1100px) and (min-width: 901px) {
+.pm-body {padding: 20px 20px 22px; }
+.pm-act {flex-wrap: wrap; gap: 12px 16px; }
+}
+@container site (max-width: 900px) {
+html:root .pm {padding-top: 36px; }
+html:root .pm .sec-head {margin-bottom: 18px; }
+html:root .pm .sec-head .seeall {display: none; }
+.pm-grid {grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.pm-card:nth-child(n+3) {display: none; }
+.pm-card {grid-template-rows: none; grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; row-gap: 6px; border-radius: 20px; }
+.pm-card:hover {transform: none; box-shadow: none; }
+.pm-ph {grid-column: 1; grid-row: 1 / span 5; height: auto; align-self: stretch; }
+.pm-ph img {max-width: 84%; max-height: 120px; }
+.pm-body {display: contents; }
+.pm-body > * {grid-column: 2; margin-right: 16px; }
+.pm-body > .fx-k {margin-top: 16px; }
+.pm-body h3 {font-size: 1.02rem; }
+.pm-price b {font-size: 1.3rem; }
+.pm-price span {font-size: 0.76rem; }
+.pm-inc {font-size: 0.82rem; }
+.pm-term {font-size: 0.76rem; padding: 8px 0 12px; }
+.pm-body > .pm-act {grid-column: 1 / -1; margin: 0; padding: 14px 16px; gap: 18px; border-top: 1px solid var(--line); }
+html:root .pm .pm-act .btn {flex: 1; height: 44px; padding: 0 12px; font-size: 0.72rem; }
+html:root .pm-more {display: flex; margin-top: 12px; width: 100%; }
+}
+html:root .perks {gap: 14px; }
+html:root .perks div {font-size: 0.84rem; line-height: 1.3; }
+html:root .perks b {display: block; }
+@container site (max-width: 900px) {
+html:root .perks div:last-child {grid-column: auto; }
+}
+html:root .dealer-logos img {mix-blend-mode: multiply; }
+html:root .dealer-logos .all {display: none; }
+html:root .mg-brands img {mix-blend-mode: multiply; }
+html:root .mg-brands a:nth-child(n+10) {display: none; }
+@container site (max-width: 900px) {
+html:root .dealer-logos .all {display: grid; color: #2B539F; text-transform: uppercase; }
+html:root .dealer-logos .all ~ a {display: none; }
+}
+html:root .card .pm-ln {display: block; margin-top: 4px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0; line-height: 1.35; color: var(--sale); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+html:root .card .pm-ln:hover {color: #1E1F25; }
+.badge.new {color: #1F7A4D; border-color: #A9DDC2; }
+html:root .ox3 .ox-hours {font-size: 0.86rem; line-height: 1.6; color: #1E1F25; font-variant-numeric: tabular-nums; }
+html:root .ox3 .ox-hours b {font-size: inherit; font-weight: 700; letter-spacing: 0; display: inline-block; min-width: 3.6em; }
+@container site (min-width: 1101px) {
+html:root .fgrid {grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.25fr); }
+}
+html:root .brandbar .btab .prog {animation: none !important; }
+html:root .hero.v-film .film-toggle {display: grid; }
+@container site (max-width: 900px) {
+html:root .cx1 .pn {scroll-margin: 84px 0 96px; }
+}
+@keyframes hdnudge4 { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 38%, 56% { transform: translate3d(-62px, 0, 0) rotate(-4.5deg); } }
+@container site (max-width: 900px) {
+html:root #hitRail .card {transition: transform .52s cubic-bezier(.22, .7, .2, 1), opacity .4s ease, box-shadow .3s ease; }
+html:root #hitRail .card[data-d="0"] {transform: translate3d(var(--dx, 0px), calc(12px * var(--q, 0)), 0) rotate(var(--rot, 0deg)) scale(calc(1 - .06 * var(--q, 0))); }
+html:root #hitRail .card[data-d="1"] {transform: translate3d(0, calc(12px - 12px * var(--p, 0)), 0) scale(calc(.94 + .06 * var(--p, 0))); }
+html:root #hitRail .card[data-d="2"] {transform: translate3d(0, calc(24px - 12px * var(--p, 0)), 0) scale(calc(.88 + .06 * var(--p, 0))); }
+html:root #hitRail .card.out {z-index: 4; opacity: 0; transform: translate3d(-128%, 0, 0) rotate(-14deg); transition: transform .52s cubic-bezier(.4, .1, .5, 1), opacity .2s ease .32s; }
+html:root #hitRail .card.back {z-index: 4; opacity: 1; pointer-events: none; transform: translate3d(calc(-112% + var(--bx, 0px)), 0, 0) rotate(calc(-10deg * (1 - var(--bp, 0)))); }
+html:root #hitRail .card.drag, html:root #hitRail.dragging .card {transition: none; }
+html:root #hitRail.nudge .card[data-d="0"] {animation: hdnudge4 1.5s .4s cubic-bezier(.45, 0, .3, 1) 1; }
+html:root #hits.pre:not(.go) #hitRail .card:not([data-d="x"]):not(.out) {opacity: 1; }
+}
+@container site (max-width: 900px) {
+html:root #kitTabs {display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; max-width: none; margin: 0 0 20px; gap: 4px; padding: 5px; overflow: visible; }
+html:root #kitTabs button {min-width: 0; padding: 12px 4px; font-size: clamp(0.76rem, 3.6cqw, 0.88rem); text-align: center; white-space: nowrap; }
+html:root #kitTabs button:last-child:nth-child(odd) {grid-column: 1 / -1; }
+}
+@container site (max-width: 900px) {
+html:root .px1 {display: block; overflow: visible; position: relative; margin: 0; padding: 2px 0 0 42px; counter-reset: pj; }
+html:root .px1::before, html:root .px1::after {content: ''; position: absolute; left: 13px; top: 30px; width: 2px; border-radius: 1px; }
+html:root .px1::before {height: var(--pl, calc(100% - 60px)); background: #DCE6F2; }
+html:root .px1::after {height: var(--pf, 0px); background: linear-gradient(180deg, #08BDF8 0%, #1F3B73 100%); }
+html:root .px1 .rw, html:root .px1 .rw:first-child {position: relative; display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: 4px; flex: none; width: 100%; margin: 0 0 14px; padding: 14px 18px 20px; border: 0; border-radius: 22px; background: linear-gradient(170deg, #E1F2FC 0%, #F4FAFE 62%, #fff 100%); box-shadow: 0 1px 0 rgba(43, 83, 159, .06), 0 12px 26px rgba(43, 83, 159, .08); counter-increment: pj; }
+html:root .px1 .rw:last-child {margin-bottom: 0; }
+html:root .px1 .rw::before {content: counter(pj); position: absolute; z-index: 1; left: -42px; top: 14px; width: 30px; height: 30px; border-radius: 50%; box-sizing: border-box; border: 2px solid #DCE6F2; background: #fff; color: #8A97AB; font: 800 0.8rem/26px 'Manrope', var(--f); text-align: center; transition: background-color .3s ease, border-color .3s ease, color .3s ease, transform .3s ease; }
+html:root .px1 .rw.hit::before {background: #1F3B73; border-color: #1F3B73; color: #fff; transform: scale(1.1); }
+html:root .px1 .rw .ph {grid-column: 1; grid-row: 1; width: 100%; height: 176px; margin: 0 0 6px; background: none; }
+html:root .px1 .rw .ph img {width: auto; height: 158px; max-width: 86%; max-height: none; }
+html:root .px1 .rw b {font-size: 1.5rem; }
+html:root .px1 .rw .d {font-size: 0.88rem; }
+html:root .px1 .rw > i {margin-top: 10px; }
+html:root .px1 .rw.you {padding-top: 22px; background: linear-gradient(160deg, #2B539F 0%, #1F3B73 100%); }
+html:root .px1 .rw.you > i {justify-self: stretch; margin-top: 14px; }
+html:root .px1.anim .rw {opacity: 0; transform: translate3d(0, 30px, 0); transition: opacity .6s ease, transform .7s cubic-bezier(.2, .8, .2, 1); }
+html:root .px1.anim .rw.in {opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+html:root .px1.anim .rw {opacity: 1; transform: none; transition: none; }
+}
+[hidden] { display: none !important; }
+/* common: * */
+html:root .hx-ic .hx-kpl, html:root .hx3 .hx-ic .hx-kpl {width: auto; padding: 0 12px 0 10px; gap: 6px; grid-auto-flow: column; color: #1F3B73; border: 1px solid #D5DEEA; border-radius: 12px; }
+html:root .hx-ic .hx-kpl:hover {border-color: #00A0E3; background: #F3F9FD; }
+html:root .hx-kpw {font: 700 0.76rem/1 var(--f); letter-spacing: 0.07em; }
+html:root .hx-ic .hx-kpl .hx-cnt {position: static; margin-left: 2px; }
+html:root .hx-ic .m {display: none; }
+@container site (max-width: 900px) {
+html:root .hx-ic .m {display: grid; }
+html:root .hx-ic .hx-kpl, html:root .hx-ic .hx-fav {display: none; }
+}
+[data-fav] svg {transition: fill .15s ease, color .15s ease; }
+[data-fav][aria-pressed="true"] {color: #E0457B; }
+[data-fav][aria-pressed="true"] svg {fill: currentColor; }
+.in-kp {background: #E8F6FD !important; color: #0670B2 !important; border-color: #9FD5F3 !important; box-shadow: none !important; }
+.tb6 .tb-ic {position: relative; display: grid; place-items: center; }
+.tb6 .tb-cnt {position: absolute; top: -4px; right: -10px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: #00A0E3; color: #fff; font: 700 0.62rem/17px var(--f); text-align: center; }
+.tb6 .tb-cnt[hidden] {display: none; }
+.tb6 .kpb {color: #0670B2; font-weight: 600; }
+.ksh {border: 0; padding: 0; background: transparent; max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; display: none; }
+.ksh[open] {display: grid; place-items: center; }
+.ksh::backdrop {background: rgba(17, 20, 24, .45); }
+.ksh-in {width: min(520px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow: auto; background: #fff; border-radius: 20px; padding: 22px 22px 18px; box-shadow: 0 24px 60px rgba(17, 20, 24, .28); font: 400 15px/1.5 var(--f); color: var(--ink); animation: ksh-in .22s ease; }
+@keyframes ksh-in { from { transform: translateY(16px); opacity: 0; } }
+.ksh-hd {display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.ksh-t {font-size: 1.15rem; font-weight: 800; letter-spacing: -0.01em; }
+.ksh-x {width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--tint); cursor: pointer; font-size: 0.9rem; flex: none; }
+.ksh-it {display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 10px; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; }
+.ksh-it img {width: 64px; height: 64px; object-fit: contain; background: #F6F8FA; border-radius: 10px; }
+.ksh-it b {display: block; font-weight: 700; line-height: 1.3; }
+.ksh-it small {display: block; color: var(--muted); font-size: 0.8rem; line-height: 1.35; margin-top: 2px; }
+.ksh-it em {font-style: normal; font-weight: 800; text-align: right; white-space: nowrap; }
+.ksh-it em i {display: block; font-style: normal; font-weight: 500; font-size: 0.74rem; color: #0670B2; }
+.ksh-more {color: var(--muted); font-size: 0.85rem; margin: 0 0 6px 4px; }
+.ksh-sum {margin: 12px 2px 16px; color: var(--ink); font-size: 0.92rem; }
+.ksh-sum b {font-weight: 800; }
+.ksh-sum span {display: block; color: var(--muted); font-size: 0.8rem; }
+.ksh-acts {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ksh-acts[hidden], .ksh-form[hidden] {display: none; }
+.ksh-acts .btn {width: 100%; padding: 0 14px; }
+.ksh-form {display: grid; gap: 10px; }
+.ksh-form label {display: grid; gap: 4px; font-size: 0.82rem; color: var(--muted); }
+.ksh-form input[type=text], .ksh-form input[type=tel] {height: 46px; border: 1px solid var(--line); border-radius: 12px; padding: 0 14px; font-size: 1rem; color: var(--ink); }
+.ksh-form .chk {display: flex; align-items: center; gap: 8px; color: var(--ink); font-size: 0.86rem; }
+.ksh-form .chk input {width: 18px; height: 18px; accent-color: #0A8EDF; }
+.ksh-form .status {color: var(--sale); font-size: 0.85rem; min-height: 1em; }
+.ksh-open {display: block; text-align: center; margin-top: 14px; font-size: 0.85rem; font-weight: 600; color: #0670B2; }
+.csh-row {display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 12px; border: 1px solid var(--line); border-radius: 14px; margin-bottom: 8px; background: #fff; cursor: pointer; }
+.csh-row .ico {width: 40px; height: 40px; padding: 9px; border-radius: 12px; background: #E8F6FD; color: #0670B2; }
+.csh-row b {display: block; font-weight: 700; }
+.csh-row small {color: var(--muted); font-size: 0.8rem; }
+.csh-note {color: var(--muted); font-size: 0.82rem; margin: 10px 2px 0; }
+@container site (max-width: 520px) {
+.ksh-it {grid-template-columns: 56px minmax(0, 1fr); }
+.ksh-it img {width: 56px; height: 56px; }
+.ksh-it em {grid-column: 2; text-align: left; }
+}
+@container site (max-width: 900px) {
+.ksh[open] {place-items: end stretch; }
+.ksh-in {width: 100%; border-radius: 20px 20px 0 0; padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); animation-name: ksh-up; }
+}
+@keyframes ksh-up { from { transform: translateY(40px); opacity: 0; } }
+@media (max-width: 520px) {
+.ksh-it {grid-template-columns: 56px minmax(0, 1fr); }
+.ksh-it em {grid-column: 2; text-align: left; }
+}
+@media (max-width: 700px) {
+.ksh[open] {place-items: end stretch; }
+.ksh-in {width: 100%; border-radius: 20px 20px 0 0; padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+}
+[hidden] { display: none !important; }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1979,7 +2165,10 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
       <a class="tel" href="tel:+74951201401">+7 (495) 120-14-01</a>
       <div class="hx-ic">
         <button type="button" aria-label="Поиск по каталогу" data-hx-find aria-expanded="false"><svg class="ico"><use href="#i-search"/></svg></button>
-        <a href="https://yarmed.com/basket/" target="_blank" rel="noopener" aria-label="Корзина"><svg class="ico"><use href="#i-cart"/></svg><span class="hx-cnt" hidden>0</span></a>
+        <a class="hx-fav" href="favorites.html" aria-label="Избранное" title="Избранное"><svg class="ico"><use href="#i-heart"/></svg><span class="hx-cnt" data-cnt="fav" hidden>0</span></a>
+        <a class="hx-kpl" href="kp.html" aria-label="Список КП" title="Список КП"><svg class="ico"><use href="#i-doc"/></svg><span class="hx-kpw">КП</span><span class="hx-cnt" data-cnt="kp" hidden>0</span></a>
+        <a class="m" href="tel:+74951201401" aria-label="Позвонить"><svg class="ico"><use href="#i-phone"/></svg></a>
+
       </div>
     </div>
   </div>
@@ -2119,7 +2308,7 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
   <!-- Бренды: как «Distribuitor oficial» у Dexellence -->
   <section class="in dealer" aria-label="Бренды">
     <div class="dealer-cap"><b>Бренды в каталоге</b><span>Оборудование ведущих производителей Италии, Германии, Японии и Кореи</span></div>
-    <div class="dealer-logos"><a href="https://yarmed.com/vendors/anthos/" target="_blank" rel="noopener"><img src="start/img/logo/anthos.webp" alt="Anthos" loading="lazy"></a><a href="https://yarmed.com/vendors/castellini/" target="_blank" rel="noopener"><img src="start/img/logo/castellini.webp" alt="Castellini" loading="lazy"></a><a href="https://yarmed.com/vendors/kavo/" target="_blank" rel="noopener"><img src="start/img/logo/kavo.webp" alt="KaVo" loading="lazy"></a><a href="https://yarmed.com/vendors/nsk/" target="_blank" rel="noopener"><img src="start/img/logo/nsk.webp" alt="NSK" loading="lazy"></a><a href="https://yarmed.com/vendors/vatech/" target="_blank" rel="noopener"><img src="start/img/logo/vatech.webp" alt="Vatech" loading="lazy"></a><a href="https://yarmed.com/vendors/myray/" target="_blank" rel="noopener"><img src="start/img/logo/myray.webp" alt="MyRay" loading="lazy"></a><a href="https://yarmed.com/vendors/cattani/" target="_blank" rel="noopener"><img src="start/img/logo/cattani.webp" alt="Cattani" loading="lazy"></a><a href="https://yarmed.com/vendors/ekom/" target="_blank" rel="noopener"><img src="start/img/logo/ekom.webp" alt="Ekom" loading="lazy"></a><a href="https://yarmed.com/vendors/ajax/" target="_blank" rel="noopener"><img src="start/img/logo/ajax.webp" alt="Ajax" loading="lazy"></a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">STERN WEBER</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">MELAG</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">W&amp;H</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">DÜRR DENTAL</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">ZEISS</a></div>
+    <div class="dealer-logos"><a href="https://yarmed.com/vendors/anthos/" target="_blank" rel="noopener"><img src="start/img/logo/anthos.webp" alt="Anthos" loading="lazy"></a><a href="https://yarmed.com/vendors/castellini/" target="_blank" rel="noopener"><img src="start/img/logo/castellini.webp" alt="Castellini" loading="lazy"></a><a href="https://yarmed.com/vendors/kavo/" target="_blank" rel="noopener"><img src="start/img/logo/kavo.webp" alt="KaVo" loading="lazy"></a><a href="https://yarmed.com/vendors/nsk/" target="_blank" rel="noopener"><img src="start/img/logo/nsk.webp" alt="NSK" loading="lazy"></a><a href="https://yarmed.com/vendors/vatech/" target="_blank" rel="noopener"><img src="start/img/logo/vatech.webp" alt="Vatech" loading="lazy"></a><a href="https://yarmed.com/vendors/myray/" target="_blank" rel="noopener"><img src="start/img/logo/myray.webp" alt="MyRay" loading="lazy"></a><a href="https://yarmed.com/vendors/cattani/" target="_blank" rel="noopener"><img src="start/img/logo/cattani.webp" alt="Cattani" loading="lazy"></a><a href="https://yarmed.com/vendors/ekom/" target="_blank" rel="noopener"><img src="start/img/logo/ekom.webp" alt="Ekom" loading="lazy"></a><a href="https://yarmed.com/vendors/ajax/" target="_blank" rel="noopener"><img src="start/img/logo/ajax.webp" alt="Ajax" loading="lazy"></a><a href="https://yarmed.com/vendors/stern-weber/" target="_blank" rel="noopener"><img src="start/img/logo/stern-weber.webp" alt="Stern Weber" loading="lazy"></a><a href="https://yarmed.com/vendors/d-rr-dental/" target="_blank" rel="noopener"><img src="start/img/logo/durr-dental.webp" alt="Dürr Dental" loading="lazy"></a><a class="w all" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">Все бренды</a><a href="https://yarmed.com/vendors/sirona/" target="_blank" rel="noopener"><img src="start/img/logo/dentsply-sirona.webp" alt="Dentsply Sirona" loading="lazy"></a><a class="w" href="https://yarmed.com/vendors/newtom/" target="_blank" rel="noopener">NEWTOM</a><a href="https://yarmed.com/vendors/shining-3d/" target="_blank" rel="noopener"><img src="start/img/logo/shining-3d.webp" alt="Shining 3D" loading="lazy"></a><a href="https://yarmed.com/vendors/satelec-acteon-group/" target="_blank" rel="noopener"><img src="start/img/logo/acteon.webp" alt="Acteon" loading="lazy"></a><a href="https://yarmed.com/vendors/shenzhen-piocreat-3d-technology-co-ltd/" target="_blank" rel="noopener"><img src="start/img/logo/piocreat.webp" alt="Piocreat" loading="lazy"></a><a href="https://yarmed.com/vendors/armed/" target="_blank" rel="noopener"><img src="start/img/logo/armed.webp" alt="Армед" loading="lazy"></a><a href="https://yarmed.com/vendors/koungsun/" target="_blank" rel="noopener"><img src="start/img/logo/koungsun.webp" alt="Koungsun" loading="lazy"></a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">MELAG</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">W&amp;H</a><a class="w" href="https://yarmed.com/vendors/" target="_blank" rel="noopener">ZEISS</a></div>
   </section>
 
   <!-- Разделы каталога: «Magazin produse stomatologice» -->
@@ -2133,13 +2322,109 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
   <!-- Полоса преимуществ -->
   <section class="in perks" aria-label="Преимущества">
     <div><svg><use href="#b-talk"/></svg><span>Подбор оборудования <b>бесплатно</b></span></div>
-    <div><svg><use href="#b-show"/></svg><span>Доставка <b>по России</b></span></div>
-    <div><svg><use href="#b-tool"/></svg><span>Монтаж <b>и сервис</b></span></div>
+    <div><svg><use href="#b-show"/></svg><span>Доставка и монтаж <b>по России</b></span></div>
+
+    <div><svg viewBox="0 0 32 32"><circle cx="16" cy="17" r="10"/><path d="M16 11v6l4 3M12 4h8"/></svg><span>Возможна доставка <b>в день заказа</b></span></div>
+    <div><svg viewBox="0 0 32 32"><path d="M16 4l10 4v8c0 6-4.2 10.4-10 12-5.8-1.6-10-6-10-12V8z"/><path d="M11.5 16l3.2 3.2 6-6.4"/></svg><span>Все товары <b>сертифицированы</b></span></div>
+
     <div><svg><use href="#b-lease"/></svg><span>Лизинг <b>для клиник</b></span></div>
     <div><svg><use href="#b-doc"/></svg><span>Лицензия <b>за 7 дней</b></span></div>
   </section>
 
-  <!-- Широкий баннер: «Inovație în stomatologie» -->
+    <style>
+/* Акции на телефоне: вариант 5 пятой волны, «Карточки наезжают при прокрутке» (preview/varianty-5) */
+
+.pv { display: none; }
+@container site (max-width: 900px) {
+  html:root #promo .pm-grid, html:root #promo .pm-more { display: none; }
+
+  .pv .k { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #00A0E3; }
+  .pv h3 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; color: #1E1F25; }
+  .pv .pr { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: #1F3B73; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pv .nt { font-size: 0.76rem; line-height: 1.35; color: var(--muted); }
+  .pv .inc { font-size: 0.84rem; line-height: 1.45; color: #5B6472; }
+  .pv .term { font-size: 0.76rem; color: var(--muted); }
+  .pv .act { display: flex; align-items: center; gap: 18px; }
+  html:root .pv .btn { border-radius: 6px; }
+  html:root .pv .act .btn { flex: 1 1 auto; min-width: 0; height: 48px; padding: 0 12px; font-size: 0.74rem; }
+  html:root .pv .btn.dark { background: #1E1F25; }
+  html:root .pv .btn.ghost { background: none; border-color: rgba(255, 255, 255, .5); color: #fff; }
+  .pv .lnk { flex: none; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #2B539F; box-shadow: inset 0 -1.5px 0 currentColor; padding: 0 0 3px; white-space: nowrap; }
+  html:root .pv .pv-all { display: flex; width: 100%; margin-top: 14px; }
+  .pv img { -webkit-user-drag: none; }
+    .pv-seg { flex: 1 1 0; min-width: 0; display: flex; gap: 5px; }
+  .pv-seg button { flex: 1 1 0; min-width: 0; height: 28px; padding: 0; border: 0; background: none; display: grid; align-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .pv-seg i { display: block; height: 3px; border-radius: 2px; background: rgba(31, 59, 115, .2); transition: background-color .2s ease; }
+  .pv-seg button[aria-current="true"] i { background: #1F3B73; }
+  .pv-n { font-size: 0.8rem; font-weight: 700; color: #1F3B73; font-variant-numeric: tabular-nums; white-space: nowrap; }
+}
+@container site (max-width: 900px) {
+  html:root .pv-5 { display: block; }
+    .pv5-stack { padding-bottom: 28px; }
+  html:root .pv-5 .pv-all { margin-top: 0; }
+  .pv5-card { position: sticky; top: calc(76px + var(--i) * 14px); display: grid; gap: 8px; align-content: start; margin-bottom: 14px; padding: 16px 18px 20px; border-radius: 24px; transform: scale(var(--s, 1)); transform-origin: 50% 0; box-shadow: 0 -10px 26px rgba(15, 30, 60, .14); will-change: transform; }
+  .pv5-card:last-child { margin-bottom: 0; }
+  .pv5-card.c1 { background: #E6F3FC; }
+  .pv5-card.c2 { background: linear-gradient(160deg, #0A8EEA 0%, #1F3B73 100%); color: #fff; }
+  .pv5-card.c3 { background: #1E1F25; color: #fff; }
+  .pv5-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .pv5-no { font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; opacity: .62; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pv5-ph { display: grid; place-items: center; height: 156px; border-radius: 16px; background: #fff; margin-bottom: 6px; }
+  .pv5-ph img { max-height: 136px; max-width: 62%; width: auto; object-fit: contain; }
+  .pv5-card .pr { font-size: 2.1rem; margin-top: 2px; }
+  .pv5-card .act { margin-top: 6px; }
+  .pv5-card:is(.c2, .c3) :is(h3, .pr, .lnk) { color: #fff; }
+  .pv5-card:is(.c2, .c3) .k { color: #8FD6FA; }
+  .pv5-card.c2 :is(.nt, .term) { color: rgba(255, 255, 255, .74); }
+  .pv5-card.c2 .inc { color: rgba(255, 255, 255, .9); }
+  .pv5-card.c3 :is(.nt, .term) { color: #9AA3AF; }
+  .pv5-card.c3 .inc { color: #C9CFD8; }
+}
+</style>
+  <!-- Акции -->
+  <section class="sec in pm" id="promo" aria-labelledby="pmTitle">
+    <div class="sec-head"><div class="sh5"><h2 id="pmTitle">Акции</h2><p>Комплектации по специальной цене и оборудование с платежом в месяц</p></div><a class="seeall" href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Все акции <i aria-hidden="true">↗</i></a></div>
+    <div class="pm-grid">
+      <article class="pm-card">
+        <a class="pm-ph" href="https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/p/ustanovka-anthos-l9.webp" alt="" loading="lazy"></a>
+        <div class="pm-body">
+          <span class="fx-k">Комплектация с ценой</span>
+          <h3>Установка Anthos L9 в&nbsp;полной комплектации</h3>
+          <p class="pm-price"><b>1 990 000 ₽</b><span>базовая в каталоге 1 649 000 ₽</span></p>
+          <p class="pm-inc">В комплектации 14 позиций: скалер U-PZ7, микромоторы i-MMs и i-MMr L, физиодиспенсер, апекслокатор, два стула.</p>
+          <p class="pm-term">Срок акции: <span class="todo">уточняется</span></p>
+          <div class="pm-act"><button class="btn dark" type="button" data-kp="Акция: Anthos L9 в комплектации за 1 990 000 ₽">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/" target="_blank" rel="noopener">Условия</a></div>
+        </div>
+      </article>
+      <article class="pm-card">
+        <a class="pm-ph" href="https://yarmed.com/promotions/x-radius-trio-plus-comfort-3d/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/promo/x-radius-trio-plus.webp" alt="" loading="lazy"></a>
+        <div class="pm-body">
+          <span class="fx-k">Платёж в месяц</span>
+          <h3>Томограф Castellini X-Radius Trio Plus</h3>
+          <p class="pm-price"><b>80 000 ₽/мес</b><span>цена в каталоге 4 820 000 ₽</span></p>
+          <p class="pm-inc">Доставка, монтаж и рабочая станция в подарок. Условия платежа: <span class="todo">уточняется</span></p>
+          <p class="pm-term">Срок акции: <span class="todo">уточняется</span></p>
+          <div class="pm-act"><button class="btn dark" type="button" data-kp="Акция: томограф X-Radius Trio Plus, 80 000 ₽ в месяц">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/x-radius-trio-plus-comfort-3d/" target="_blank" rel="noopener">Условия</a></div>
+        </div>
+      </article>
+      <article class="pm-card">
+        <a class="pm-ph" href="https://yarmed.com/promotions/avtoklav-wind-23-klassa-v-s-vakuumnoy-sushkoy-23-l/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/promo/wind-23.webp" alt="" loading="lazy"></a>
+        <div class="pm-body">
+          <span class="fx-k">Комплект в наличии</span>
+          <h3>Автоклав Runyes Wind 23 класса B с&nbsp;комплектом</h3>
+          <p class="pm-price"><b>150 000 ₽</b><span>автоклав отдельно в каталоге 135 000 ₽</span></p>
+          <p class="pm-inc">Вакуумная сушка, камера 23 л. В комплекте дистиллятор и упаковочная машина.</p>
+          <p class="pm-term">Срок акции: <span class="todo">уточняется</span></p>
+          <div class="pm-act"><button class="btn dark" type="button" data-kp="Акция: автоклав Wind 23 с комплектом за 150 000 ₽">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/avtoklav-wind-23-klassa-v-s-vakuumnoy-sushkoy-23-l/" target="_blank" rel="noopener">Условия</a></div>
+        </div>
+      </article>
+    </div>
+    <a class="btn line pm-more" href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Все акции</a>
+    <!-- блок для телефона: вариант 5 пятой волны -->
+    <div class="pv pv-5"><div class="pv5-stack"><article class="pv5-card c1" style="--i: 0"><div class="pv5-top"><span class="k">Комплектация с ценой</span><span class="pv5-no">1 из 3</span></div><a class="pv5-ph" href="https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/p/ustanovka-anthos-l9.webp" alt="" loading="lazy"></a><h3>Установка Anthos L9 в&nbsp;полной комплектации</h3><p class="pr">1 990 000 ₽</p><p class="nt">базовая в каталоге 1 649 000 ₽</p><p class="inc">В комплектации 14 позиций: скалер U-PZ7, микромоторы i-MMs и i-MMr L, физиодиспенсер, апекслокатор, два стула.</p><p class="term">Срок акции: <span class="todo">уточняется</span></p><div class="act"><button class="btn dark" type="button" data-kp="Акция: Anthos L9 в комплектации за 1 990 000 ₽">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/" target="_blank" rel="noopener">Условия</a></div></article><article class="pv5-card c2" style="--i: 1"><div class="pv5-top"><span class="k">Платёж в месяц</span><span class="pv5-no">2 из 3</span></div><a class="pv5-ph" href="https://yarmed.com/promotions/x-radius-trio-plus-comfort-3d/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/promo/x-radius-trio-plus.webp" alt="" loading="lazy"></a><h3>Томограф Castellini X-Radius Trio Plus</h3><p class="pr">80 000 ₽/мес</p><p class="nt">цена в каталоге 4 820 000 ₽</p><p class="inc">Доставка, монтаж и рабочая станция в подарок. Условия платежа: <span class="todo">уточняется</span></p><p class="term">Срок акции: <span class="todo">уточняется</span></p><div class="act"><button class="btn white" type="button" data-kp="Акция: томограф X-Radius Trio Plus, 80 000 ₽ в месяц">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/x-radius-trio-plus-comfort-3d/" target="_blank" rel="noopener">Условия</a></div></article><article class="pv5-card c3" style="--i: 2"><div class="pv5-top"><span class="k">Комплект в наличии</span><span class="pv5-no">3 из 3</span></div><a class="pv5-ph" href="https://yarmed.com/promotions/avtoklav-wind-23-klassa-v-s-vakuumnoy-sushkoy-23-l/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="start/img/promo/wind-23.webp" alt="" loading="lazy"></a><h3>Автоклав Runyes Wind 23 класса B с&nbsp;комплектом</h3><p class="pr">150 000 ₽</p><p class="nt">автоклав отдельно в каталоге 135 000 ₽</p><p class="inc">Вакуумная сушка, камера 23 л. В комплекте дистиллятор и упаковочная машина.</p><p class="term">Срок акции: <span class="todo">уточняется</span></p><div class="act"><button class="btn grad" type="button" data-kp="Акция: автоклав Wind 23 с комплектом за 150 000 ₽">Получить КП по акции</button><a class="lnk" href="https://yarmed.com/promotions/avtoklav-wind-23-klassa-v-s-vakuumnoy-sushkoy-23-l/" target="_blank" rel="noopener">Условия</a></div></article></div><a class="btn line pv-all" href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Все акции</a></div>
+  </section>
+
+<!-- Широкий баннер: «Inovație în stomatologie» -->
   <section class="in" aria-label="О компании" id="bnSec">
 
     <a class="wide5" href="#services">
@@ -2262,15 +2547,18 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
         <svg aria-hidden="true"><use href="#i-phone"/></svg>
         <span class="fx-k">Позвонить</span>
         <b><a href="tel:+74951201401">+7 (495) 120-14-01</a></b>
-        <p>Отдел продаж. Мобильный: <a href="tel:+79853433387">+7 (985) 343-33-87</a>. Ответим в рабочее время.</p>
+        <p>Отдел продаж. Мобильный: <a href="tel:+79853433387">+7 (985) 343-33-87</a>.</p>
+        <p class="ox-hours"><b>Пн–Пт</b> 9:00–22:00<br><b>Сб–Вс</b> 9:00–23:00</p>
         <div class="row"><button class="btn dark" type="button" data-call>Заказать звонок</button></div>
+
       </div>
       <div class="c c3">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
         <span class="fx-k">Написать</span>
         <b><a href="mailto:sale1@yarmed.com">sale1@yarmed.com</a></b>
         <p>Пришлём КП с ценами, сроком поставки и расчётом лизинга.</p>
-        <div class="row"><button class="btn dark" type="button" data-kp="Подбор оборудования">Получить КП</button><button class="lnk" type="button" data-copy="sale1@yarmed.com">Скопировать адрес</button></div>
+        <div class="row"><button class="btn dark" type="button" data-kp="Подбор оборудования">Получить КП</button><a class="lnk" href="https://t.me/ocean_86" target="_blank" rel="noopener">Написать в Telegram</a>
+</div>
       </div>
     </div>
 
@@ -2306,7 +2594,7 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
       <form novalidate>
         <span class="fx-k">Заявка</span>
         <h2>Соберите коммерческое предложение</h2>
-        <p class="fx-lead">Заполняйте поля, и лист справа соберётся сразу. Товары из корзины попадают в него с ценами.</p>
+        <p class="fx-lead">Заполняйте поля, и лист справа соберётся сразу. Оборудование из списка КП попадает в него с ценами.</p>
         <label class="fl"><input type="text" name="what" placeholder=" "><span>Что нужно</span></label>
         <label class="fl"><input type="text" name="clinic" placeholder=" " autocomplete="organization"><span>Клиника или ИНН</span></label>
         <label class="fl"><input type="tel" name="contact" placeholder=" " autocomplete="tel"><span>Телефон или почта</span></label>
@@ -2362,6 +2650,13 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
         <li><a href="https://yarmed.com/catalog/zubotekhnicheskaya-laboratoriya/" target="_blank" rel="noopener">Зуботехническая лаборатория</a></li>
         <li><a href="https://yarmed.com/info/promotions/" target="_blank" rel="noopener">Акции</a></li>
       </ul></div>
+      <div><h4>Покупателям</h4><ul>
+        <li><a href="https://yarmed.com/howtobuy/" target="_blank" rel="noopener">Как купить</a></li>
+        <li><a href="https://yarmed.com/howtobuy/payments/" target="_blank" rel="noopener">Условия оплаты</a></li>
+        <li><a href="https://yarmed.com/howtobuy/delivery/" target="_blank" rel="noopener">Условия доставки</a></li>
+        <li><a href="https://yarmed.com/include/offer_detail.php" target="_blank" rel="noopener">Оферта</a></li>
+      </ul></div>
+
       <div><h4>Услуги</h4><ul>
         <li><a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener">Стоматология под ключ</a></li>
         <li><a href="https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/" target="_blank" rel="noopener">Лицензирование</a></li>
@@ -2377,7 +2672,10 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
       <div class="ph"><h4>Контакты</h4><ul>
         <li><a href="tel:+74951201401">+7 (495) 120-14-01</a></li>
         <li>+7 (985) 343-33-87</li>
-        <li>sale1@yarmed.com</li>
+        <li><a href="mailto:sale1@yarmed.com">sale1@yarmed.com</a></li>
+        <li><a href="https://t.me/ocean_86" target="_blank" rel="noopener">Telegram</a></li>
+        <li>Пн–Пт 9:00–22:00, Сб–Вс 9:00–23:00</li>
+
         <li>Москва, Кронштадтский бульвар, 5а</li>
       </ul></div>
     </div>
@@ -2388,12 +2686,48 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
   </div>
 </footer>
 
-<nav class="tabbar" aria-label="Быстрое меню">
-  <a href="#catalog"><svg class="ico"><use href="#i-menu"/></svg>Каталог</a>
-  <a href="#services"><svg class="ico"><use href="#i-key"/></svg>Клиника</a>
-  <button class="kpb" type="button" data-kp="Подбор оборудования"><svg class="ico"><use href="#i-doc"/></svg>КП</button>
-  <a href="https://yarmed.com/personal/favorite/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-heart"/></svg>Избранное</a>
-  <a href="https://yarmed.com/basket/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-cart"/></svg>Корзина</a>
+<dialog class="ksh" id="kpSheet" aria-labelledby="kshT">
+  <div class="ksh-in">
+    <div class="ksh-hd"><b class="ksh-t" id="kshT">Добавлено в КП</b><button class="ksh-x" type="button" data-close aria-label="Закрыть">✕</button></div>
+    <div class="ksh-items"></div>
+    <p class="ksh-sum"></p>
+    <div class="ksh-acts">
+      <button class="btn grad" type="button" data-ksh-send>Отправить запрос</button>
+      <button class="btn line" type="button" data-close>Добавить ещё</button>
+    </div>
+    <form class="ksh-form" novalidate hidden>
+      <label>Клиника или ИНН<input type="text" name="clinic" autocomplete="organization"></label>
+      <label>Телефон или почта<input type="tel" name="contact" autocomplete="tel" placeholder="+7"></label>
+      <label class="chk"><input type="checkbox" name="lease">Рассчитать лизинг</label>
+      <label class="chk"><input type="checkbox" name="ok">Согласен на обработку персональных данных</label>
+      <button class="btn grad" type="submit">Отправить запрос</button>
+      <span class="status" role="status"></span>
+    </form>
+    <a class="ksh-open" href="kp.html">Открыть список КП, поменять количество →</a>
+  </div>
+</dialog>
+<dialog class="ksh csh" id="contactSheet" aria-labelledby="cshT">
+  <div class="ksh-in">
+    <div class="ksh-hd"><b class="ksh-t" id="cshT">Связаться с ЯрМедом</b><button class="ksh-x" type="button" data-close aria-label="Закрыть">✕</button></div>
+    <a class="csh-row" href="tel:+74951201401"><svg class="ico"><use href="#i-phone"/></svg><span><b>+7 (495) 120-14-01</b><small>Отдел продаж</small></span></a>
+    <a class="csh-row" href="tel:+79853433387"><svg class="ico"><use href="#i-mobile"/></svg><span><b>+7 (985) 343-33-87</b><small>Мобильный</small></span></a>
+    <a class="csh-row" href="https://t.me/ocean_86" target="_blank" rel="noopener"><svg class="ico"><use href="#s-tg"/></svg><span><b>Написать в Telegram</b><small>Ответим в рабочее время</small></span></a>
+    <button class="csh-row" type="button" data-call data-close><svg class="ico"><use href="#i-phone"/></svg><span><b>Перезвоните мне</b><small>Оставьте номер, менеджер позвонит</small></span></button>
+    <p class="csh-note">Москва, Кронштадтский бульвар, 5а. Пн–Пт 9:00–22:00, Сб–Вс 9:00–23:00 <span class="todo">уточняется</span></p>
+  </div>
+</dialog>
+<nav class="tabbar tb6" aria-label="Быстрое меню">
+  <button type="button" data-tab-cat><svg class="ico"><use href="#i-menu"/></svg>Каталог</button>
+  <a href="pod-klyuch.html"><svg class="ico"><use href="#i-key"/></svg>Клиника</a>
+  <button type="button" data-contact><svg class="ico"><use href="#i-phone"/></svg>Связаться</button>
+  <a href="favorites.html"><span class="tb-ic"><svg class="ico"><use href="#i-heart"/></svg><span class="tb-cnt" data-cnt="fav" hidden>0</span></span>Избранное</a>
+  <a class="kpb" href="kp.html"><span class="tb-ic"><svg class="ico"><use href="#i-doc"/></svg><span class="tb-cnt" data-cnt="kp" hidden>0</span></span>КП</a>
+
+  
+  
+  
+  
+  
 </nav>
 
 </div>
@@ -2407,7 +2741,8 @@ html:root .fx1 form {padding: 24px 20px 22px; gap: 12px; }
 <dialog id="callDlg" aria-labelledby="callTitle">
   <button class="x" type="button" aria-label="Закрыть" data-close>×</button>
   <h3 id="callTitle">Заказать звонок</h3>
-  <p>Перезвоним в рабочее время и поможем с выбором.</p>
+    <p>Перезвоним и поможем с выбором. Работаем пн–пт с 9:00 до 22:00, сб–вс с 9:00 до 23:00.</p>
+
   <form id="callForm" novalidate>
     <label for="c-name">Имя<input type="text" id="c-name" autocomplete="name"></label>
     <label for="c-phone">Телефон<input type="tel" id="c-phone" autocomplete="tel" placeholder="+7"></label>
@@ -2438,6 +2773,22 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
 <script>
 (function () {
   const P = window.PRODUCTS || [];
+  const PROMO = {
+    'ustanovka-anthos-l9': ['Акция: комплектация за 1\u00A0990\u00A0000\u00A0₽', 'https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/'],
+    'ustanovka-castellini-skema8': ['Акция: комплектация за 2\u00A0057\u00A0790\u00A0₽', 'https://yarmed.com/promotions/ctomatologicheskaya-ustanovka-skema-8/'],
+    'avtoklav-anthos-a22': ['По акции 241\u00A0000\u00A0₽', 'https://yarmed.com/promotions/anthos-a-22-avtonomnyy-avtoklav-b-klassa-22-l/']
+  };
+  P.forEach(p => { if (PROMO[p.id]) p.promo = { t: PROMO[p.id][0], url: PROMO[p.id][1] }; });
+  /* новинки действующего сайта (блок «Лучшие предложения», сбор 12.11.2026): названия, цены и ссылки оттуда.
+     Страну пишем только там, где она известна точно. */
+  P.push(...[
+    { id: 'nov-melag-melaquick-12', model: 'MELAquick 12+', kind: 'Автоклав', name: 'Автоклав MELAquick 12+', brand: 'MELAG', country: 'Германия', price: 332500, url: 'https://yarmed.com/catalog/avtoklavy/melaquick-12/', img: 'start/img/p/nov-melaquick-12.webp' },
+    { id: 'nov-melag-vacuklav-24b', model: 'Vacuklav 24 B+', kind: 'Автоклав', name: 'Автоклав Vacuklav 24 B+', brand: 'MELAG', country: 'Германия', price: 367000, url: 'https://yarmed.com/catalog/avtoklavy/vacuklav-24-b/', img: 'start/img/p/nov-vacuklav-24b.webp' },
+    { id: 'nov-romax-f300', model: 'F300', kind: 'Упаковочная машина', name: 'Устройство термозапаивающее Romax F300', brand: 'Romax', country: '', price: 14800, url: 'https://yarmed.com/catalog/upakovochnye-mashiny/ustroystvo-termozapaivayushchee-romax-f300/', img: 'start/img/p/nov-romax-f300.webp' },
+    { id: 'nov-beyke-kamera', model: 'камера с планшетом', kind: 'Интраоральная камера', name: 'Камера интраоральная с планшетом Beyke', brand: 'Beyke', country: '', price: 220000, url: 'https://yarmed.com/catalog/introoralnye-skanery/kamera-intraoralnaya-s-planshetom-beyke/', img: 'start/img/p/nov-beyke-kamera.webp' },
+    { id: 'nov-koungsun-e220', model: 'E220', kind: 'Аппарат для определения цвета', name: 'Koungsun E220, аппарат для определения цвета', brand: 'Koungsun', country: '', price: 29900, url: 'https://yarmed.com/catalog/introoralnye-skanery/koungsun-e220-apparat-dlya-opredeleniya-tsveta/', img: 'start/img/p/nov-koungsun-e220.webp' }
+  ].map(p => Object.assign({ sec: 'novinka', badge: 'Новинка', cut: false }, p)));
+
   const byId = id => P.find(p => p.id === id);
   const rub = n => n.toLocaleString('ru-RU').replace(/ /g, ' ') + ' ₽';
   const lease = (price, n = 36, adv = 0.1, rate = 0.18) => { const s = price * (1 - adv), r = rate / 12; return Math.round(s * r / (1 - Math.pow(1 + r, -n)) / 100) * 100; };
@@ -2503,16 +2854,20 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
   /* ---------- Разделы ---------- */
   const CATS = [
     ['Стоматологические установки', 'start/img/cat/cat-ustanovki.webp', 'от 113 300 ₽', 'https://yarmed.com/catalog/stomatologicheskie-ustanovki/'],
-    ['Рентген и томографы', 'start/img/p/rentgen-vatech-pax-i-3d.webp', 'от 132 500 ₽', 'https://yarmed.com/catalog/rentgenologiya/'],
+    ['Рентген и томографы', 'start/img/p/rentgen-vatech-pax-i-3d.webp', 'от 132 500 ₽', 'https://yarmed.com/catalog/rentgenodiagnostika/'],
+
     ['Стерилизация', 'start/img/p/avtoklav-melag-vacuclave-123.webp', 'от 243 000 ₽', 'https://yarmed.com/catalog/avtoklavy/'],
     ['Наконечники и микромоторы', 'start/img/cat/cat-nakonechniki.webp', 'от 29 900 ₽', 'https://yarmed.com/catalog/turbinnye-nakonechniki/'],
     ['Микроскопы', 'start/img/cat/cat-mikroskopy.webp', 'от 705 000 ₽', 'https://yarmed.com/catalog/mikroskopy/'],
     ['Интраоральные сканеры', 'start/img/cat/cat-skanery.webp', 'от 235 000 ₽', 'https://yarmed.com/catalog/introoralnye-skanery/'],
     ['Компрессоры и аспирация', 'start/img/cat/cat-kompressory.webp', 'от 43 400 ₽', 'https://yarmed.com/catalog/kompressory_/'],
-    ['Эндодонтия', 'start/img/cat/cat-endo.webp', '', 'https://yarmed.com/catalog/'],
-    ['Хирургия и имплантология', 'start/img/cat/cat-khirurgiya.webp', '', 'https://yarmed.com/catalog/'],
+    ['Эндодонтия', 'start/img/cat/cat-endo.webp', '', 'https://yarmed.com/catalog/endodontiya-i-lechenie/'],
+
+    ['Хирургия и имплантология', 'start/img/cat/cat-khirurgiya.webp', '', 'https://yarmed.com/catalog/implantologiya-i-khirurgiya/'],
+
     ['Зуботехническая лаборатория', 'start/img/cat/cat-laboratoriya.webp', '', 'https://yarmed.com/catalog/zubotekhnicheskaya-laboratoriya/'],
-    ['Медицинская мебель', 'start/img/cat/cat-mebel.webp', '', 'https://yarmed.com/catalog/'],
+    ['Медицинская мебель', 'start/img/cat/cat-mebel.webp', '', 'https://yarmed.com/catalog/meditsinskaya-mebel/'],
+
     ['Медицинское оборудование', 'start/img/cat/cat-medoborudovanie.webp', '343 товара', 'https://yarmed.com/catalog/meditsinskoe-oborudovanie/']
   ];
   document.getElementById('catRail').innerHTML = CATS.map(c =>
@@ -2521,17 +2876,19 @@ window.PRODUCTS = [{"id":"ustanovka-castellini-skema5","sec":"ustanovka","model"
   /* ---------- Карточки ---------- */
   const inCart = new Set();
   function card(p) {
-    const badge = p.badge === 'Хит' ? '<span class="badge hit">Хит</span>' : p.badge === 'Акция' ? '<span class="badge sale">Акция</span>' : '';
+    const badge = (p.badge === 'Хит' ? '<span class="badge hit">Хит</span>' : p.badge === 'Новинка' ? '<span class="badge new">Новинка</span>' : '') + (p.promo || p.badge === 'Акция' ? '<span class="badge sale">Акция</span>' : '');
+
     return `<article class="card">
       <a class="im" href="${p.url}" target="_blank" rel="noopener"><span class="badges">${badge}</span><img src="${p.img}" alt="${esc(p.brand + ' ' + p.model)}" loading="lazy"></a>
-      <div class="price">${rub(p.price)}</div>
+      <div class="price">${rub(p.price)}${p.promo ? `<a class="pm-ln" href="${p.promo.url}" target="_blank" rel="noopener">${esc(p.promo.t)}</a>` : ''}</div>
       <div class="lease"><i>Л</i>в лизинг от ${rub(lease(p.price))}/мес</div>
       <a class="nm" href="${p.url}" target="_blank" rel="noopener">${esc(p.name)}</a>
-      <div class="br">${esc(p.brand)}, ${esc(p.country)}</div>
+      <div class="br">${esc(p.brand)}${p.country ? ', ' + esc(p.country) : ''}</div>
       <div class="acts"><button class="kp" type="button" data-kp="${esc(p.brand + ' ' + p.model)}">Получить КП</button><button class="cart" type="button" aria-label="В корзину" aria-pressed="${inCart.has(p.id)}" data-cart="${p.id}"><svg class="ico" style="width:18px;height:18px"><use href="#i-cart"/></svg></button></div>
     </article>`;
   }
-  const SECS = [['ustanovka', 'Установки'], ['rentgen', 'Рентген и КТ'], ['avtoklav', 'Стерилизация'], ['nakonechnik', 'Наконечники'], ['mikroskop', 'Микроскопы'], ['skaner', 'Сканеры'], ['kompressor', 'Компрессоры']];
+  const SECS = [['ustanovka', 'Установки'], ['rentgen', 'Рентген и КТ'], ['avtoklav', 'Стерилизация'], ['nakonechnik', 'Наконечники'], ['mikroskop', 'Микроскопы'], ['skaner', 'Сканеры'], ['kompressor', 'Компрессоры'], ['novinka', 'Новинки']];
+
   const hitTabs = document.getElementById('hitTabs'), hitRail = document.getElementById('hitRail');
   hitTabs.innerHTML = SECS.map((s, i) => `<button type="button" role="tab" aria-selected="${i === 0}" data-sec="${s[0]}">${s[1]}</button>`).join('');
   const showSec = sec => { hitRail.innerHTML = P.filter(p => p.sec === sec).map(card).join(''); hitRail.scrollLeft = 0; };
@@ -2808,7 +3165,7 @@ window.V2 = { st: {"sh": 3, "he": 0, "bt": 2, "ct": 1, "bn": 3, "ht": 1, "kt": 1
     const re = new RegExp('(' + words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/е/g, '[её]') + '[a-zа-яё0-9]*').join('|') + ')', 'gi');
     return String(text).split(re).map((part, i) => i % 2 ? '<mark>' + V.esc(part) + '</mark>' : V.esc(part)).join('');
   }
-  const prod = (p, w) => `<a class="dr-p" href="${p.url}" target="_blank" rel="noopener"><img src="${p.img}" alt="" loading="lazy"><span><b>${hl(p.name, w)}</b><small>${V.esc(p.brand)}, ${V.esc(p.country)}</small></span><em>${V.rub(p.price)}</em></a>`;
+  const prod = (p, w) => `<a class="dr-p" href="${p.url}" target="_blank" rel="noopener"><img src="${p.img}" alt="" loading="lazy"><span><b>${hl(p.name, w)}</b><small>${V.esc(p.brand)}${p.country ? ', ' + V.esc(p.country) : ''}</small></span><em>${V.rub(p.price)}</em></a>`;
   const cat = (c, w) => `<a class="dr-c" href="${c.url}" target="_blank" rel="noopener"><img src="${c.img}" alt="" loading="lazy"><span>${hl(c.n, w)}</span></a>`;
 
   function render(f) {
@@ -2862,7 +3219,8 @@ window.V2 = { st: {"sh": 3, "he": 0, "bt": 2, "ct": 1, "bn": 3, "ht": 1, "kt": 1
   });
 
   /* ---- меню каталога ---- */
-  const LINKS = [['Открытие клиники под ключ', '#services'], ['Комплекты для кабинета', '#kits'], ['Проекты', '#projects'], ['Лизинг', '#kp'], ['Акции', 'https://yarmed.com/info/promotions/'], ['Сервис', 'https://yarmed.com/services/'], ['Контакты', 'https://yarmed.com/contacts/']];
+  const LINKS = [['Открытие клиники под ключ', '#services'], ['Комплекты для кабинета', '#kits'], ['Проекты', '#projects'], ['Лизинг', '#kp'], ['Акции', 'https://yarmed.com/info/promotions/'], ['Как купить', 'https://yarmed.com/howtobuy/'], ['Сервис', 'https://yarmed.com/services/'], ['Контакты', 'https://yarmed.com/contacts/'], ['Написать в Telegram', 'https://t.me/ocean_86']];
+
   const megaHTML = `<div class="mg-in"><div class="mg-cats">${V.CATS.map(c => `<a href="${c.url}" target="_blank" rel="noopener"><img src="${c.img}" alt="" loading="lazy"><span><b>${V.esc(c.n)}</b><em>${V.esc(c.from)}</em></span></a>`).join('')}</div>
     <div class="mg-side"><span class="fx-k">Бренды</span><div class="mg-brands">${BR.map(b => `<a href="${b.url}" target="_blank" rel="noopener" aria-label="${V.esc(b.n)}"><img src="${b.img}" alt="${V.esc(b.n)}" loading="lazy"></a>`).join('')}</div>
     <span class="fx-k">Клинике</span>${LINKS.map(l => `<a href="${l[1]}"${l[1][0] === '#' ? '' : ' target="_blank" rel="noopener"'}>${l[0]}</a>`).join('')}</div></div>`;
@@ -3118,7 +3476,7 @@ window.V2 = { st: {"sh": 3, "he": 0, "bt": 2, "ct": 1, "bn": 3, "ht": 1, "kt": 1
       const items = V.cart(), sum = items.reduce((a, p) => a + p.price, 0);
       f('items').innerHTML = items.length
         ? items.map(p => `<div class="it"><img src="${p.img}" alt=""><b>${V.esc(p.brand + ' ' + p.model)}<small>${V.esc(p.kind)}</small></b><em>${V.rub(p.price)}</em></div>`).join('')
-        : '<div class="none"><i></i><i></i><i></i><span>Товары из корзины появятся здесь. Можно отправить запрос и без них: подберём по описанию.</span></div>';
+        : '<div class="none"><i></i><i></i><i></i><span>Оборудование из списка КП появится здесь. Можно отправить запрос и без них: подберём по описанию.</span></div>';
       f('sum').textContent = sum ? V.rub(sum) : 'по запросу';
       f('lease').textContent = !form.lease.checked ? '' : sum ? 'в лизинг от ' + V.rub(V.lease(sum)) + '/мес, расчёт для примера' : 'расчёт лизинга добавим в КП';
       $$('[data-cart]', root).forEach(b => b.setAttribute('aria-pressed', String(V.cartIds.has(b.dataset.cart))));
@@ -3166,7 +3524,7 @@ window.V3 = { st: {"sh": 0, "he": 5, "bt": 0, "ct": 0, "bn": 0, "ht": 3, "kt": 3
   box.prepend(head);
   const call = document.createElement('div');
   call.className = 'mg-call';
-  call.innerHTML = '<div><span>Отдел продаж</span>' + (tel ? '<a href="' + tel.getAttribute('href') + '">' + tel.textContent.trim() + '</a>' : '') + '</div><button class="btn grad" type="button" data-kp="Подбор оборудования">Получить КП</button>';
+  call.innerHTML = '<div><span>Отдел продаж, ежедневно с 9:00</span>' + (tel ? '<a href="' + tel.getAttribute('href') + '">' + tel.textContent.trim() + '</a>' : '') + '</div><button class="btn grad" type="button" data-kp="Подбор оборудования">Получить КП</button>';
   box.appendChild(call);
   const isOpen = () => hd.classList.contains('mega-open');
   call.querySelector('button').addEventListener('click', () => setTimeout(() => { if (isOpen() && burger) burger.click(); }, 0));
@@ -3265,6 +3623,8 @@ window.V3 = { st: {"sh": 0, "he": 5, "bt": 0, "ct": 0, "bn": 0, "ht": 3, "kt": 3
    вправо возвращают предыдущую. Под стопкой деления по числу товаров и счётчик «2 из 9». */
 (function () {
   const V = window.V3, hits = document.getElementById('hits'), rail = document.getElementById('hitRail');
+  return; /* стопку карточек ведёт скрипт правок (preview/pravki-4/src/common.js) */
+
   if (!hits || !rail) return;
   const on = () => V.st.ht === 3 && V.site.clientWidth <= 900;
   const nav = document.createElement('div');
@@ -3369,5 +3729,560 @@ window.V3 = { st: {"sh": 0, "he": 5, "bt": 0, "ct": 0, "bn": 0, "ht": 3, "kt": 3
 /* ---------- pr ---------- */
 
 /* ---------- fm ---------- */
+</script>
+<script>
+window.V4 = { st: {"sh": 0, "he": 0, "bt": 0, "ct": 0, "bn": 0, "ht": 0, "kt": 0, "sv": 0, "pr": 0, "of": 0, "fm": 0, "ft": 0} };
+/* ---------- правки по разбору акций и действующего сайта (12.11.2026) и по проверке на телефоне (13.11.2026) ---------- */
+
+/* Первый экран: на телефоне слайды без фильма (Stern Weber, Vatech) не листались, и линия хода под ними стояла.
+   Причина: показ ставился на паузу, пока мышь над первым экраном или в нём стоит фокус. Телефон после касания
+   сообщает «мышь вошла» и уже не сообщает «мышь вышла», поэтому пауза оставалась навсегда. Линия под слайдами с фильмом
+   идёт по времени ролика и от этой паузы не зависит, поэтому первые три слайда листались, а последние два нет.
+   Теперь линию под слайдами без фильма ведёт этот скрипт по своему счётчику времени (анимация в стилях отключена
+   в common.css): пауза по наведению работает только с настоящей мышью, кнопка паузы останавливает показ на любом слайде,
+   за экраном показ ждёт. Полоска из делений вверху кадра на телефоне повторяет ту же линию. */
+(function () {
+  const hero = document.getElementById('hero'), bar = document.getElementById('brandbar'), toggle = document.getElementById('filmToggle');
+  const tabs = [...document.querySelectorAll('#brandRail .btab')];
+  if (!hero || !bar || !tabs.length) return;
+  const zones = [hero, bar];
+  const DUR = parseFloat(getComputedStyle(hero).getPropertyValue('--dur')) || 6500;
+  let touchAt = 0;
+  const touchy = () => Date.now() - touchAt < 1500 || !matchMedia('(hover: hover)').matches;
+  const free = () => { if (touchy()) zones.forEach(z => z.classList.remove('paused')); };
+  addEventListener('touchstart', () => { touchAt = Date.now(); free(); }, { capture: true, passive: true });
+  addEventListener('touchend', () => { touchAt = Date.now(); setTimeout(free, 0); }, { capture: true, passive: true });
+  zones.forEach(z => ['mouseenter', 'focusin'].forEach(ev => z.addEventListener(ev, free)));
+
+  /* слайд ведёт фильм (тогда линию двигает скрипт фильма) или этот счётчик */
+  const own = t => !(t.classList.contains('film') && hero.classList.contains('v-film'));
+  let at = -1, acc = 0, last = 0, raf = 0, seen = true, user = false;
+  function frame(now) {
+    raf = 0;
+    if (!seen) return;
+    const i = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true'), t = tabs[i];
+    tabs.forEach((x, k) => { if (k !== i && own(x)) x.querySelector('.prog').style.transform = ''; });
+    if (!t || !own(t)) at = -1;
+    else {
+      if (i !== at) { at = i; acc = 0; }
+      const held = user || (hero.classList.contains('paused') && !touchy());
+      if (!held && last) acc += Math.min(100, now - last);
+      t.querySelector('.prog').style.transform = 'scaleX(' + Math.min(1, acc / DUR).toFixed(4) + ')';
+      if (acc >= DUR) { at = -1; tabs[(i + 1) % tabs.length].click(); }
+    }
+    last = now;
+    raf = requestAnimationFrame(frame);
+  }
+  const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(frame); } };
+  new IntersectionObserver(es => { seen = es[0].isIntersecting; start(); }, { threshold: 0.2 }).observe(hero);
+  /* повторное нажатие на тот же бренд начинает его слайд заново */
+  tabs.forEach((t, k) => t.addEventListener('click', () => { if (k === at) acc = 0; }));
+  if (toggle) toggle.addEventListener('click', () => {
+    user = toggle.getAttribute('aria-pressed') === 'true';
+    toggle.setAttribute('aria-label', user ? 'Запустить показ' : 'Остановить показ');
+  });
+  start();
+})();
+
+/* Каталог на телефоне: нажатие на свёрнутый раздел всегда раскрывает его на месте. В каталог ведёт только
+   «Весь раздел» у раскрытого раздела. Какой раздел был раскрыт, запоминаем в момент касания: так переход не случится,
+   даже если телефон успел раскрыть раздел до самого нажатия. */
+(function () {
+  const acc = document.querySelector('.cx1-acc'), site = document.getElementById('site');
+  if (!acc || !site) return;
+  const phone = () => site.clientWidth <= 900;
+  /* у свёрнутых разделов на телефоне адреса нет вовсе: нажатие на них не может открыть страницу ни в каком браузере */
+  const links = () => acc.querySelectorAll('.pn').forEach(x => {
+    if (!x.dataset.href) x.dataset.href = x.getAttribute('href') || '';
+    if (phone() && !x.classList.contains('on')) x.removeAttribute('href'); else x.setAttribute('href', x.dataset.href);
+  });
+  links();
+  addEventListener('resize', links);
+  acc.addEventListener('mouseover', () => setTimeout(links, 0));
+  document.addEventListener('click', e => { if (e.target.closest('[data-view]')) setTimeout(links, 80); });
+  let was;
+  const mark = () => { was = acc.querySelector('.pn.on'); };
+  acc.addEventListener('touchstart', mark, { capture: true, passive: true });
+  acc.addEventListener('pointerdown', mark, true);
+  acc.addEventListener('click', e => {
+    if (!phone()) return;
+    const p = e.target.closest('.pn');
+    if (!p) return;
+    const open = was === undefined ? acc.querySelector('.pn.on') : was;
+    was = undefined;
+    e.stopPropagation();
+    if (p === open) {
+      /* «Весь раздел» не ловит нажатия сам (весь раздел одна ссылка), поэтому сверяем точку нажатия с его местом */
+      const l = p.querySelector('.in2 i'), r = l && l.getBoundingClientRect();
+      if (!e.detail || (r && e.clientX >= r.left - 14 && e.clientX <= r.right + 14 && e.clientY >= r.top - 14 && e.clientY <= r.bottom + 14)) return;
+    }
+    e.preventDefault();
+    if (p === open) return;
+    acc.querySelectorAll('.pn').forEach(x => x.classList.toggle('on', x === p));
+    links();
+    /* раздел выше свернулся, и нажатый уехал вверх: возвращаем его в поле зрения */
+    const show = () => p.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    requestAnimationFrame(show);
+    setTimeout(show, 420);
+  }, true);
+})();
+
+/* Хиты на телефоне: стопка карточек (прежний скрипт стопки отключён в common.html, этот его заменяет).
+   Карточки листаются только пальцем: влево следующая, вправо предыдущая. Сами они не листаются и не пропадают.
+   Жест считается листанием, только если палец идёт вбок не меньше, чем вверх или вниз, и прошёл хотя бы 10 px:
+   раньше хватало 4 px, и карточка улетала при обычной прокрутке страницы. Карточка идёт за пальцем, следующая под ней
+   в это время подрастает; отпустили дальше пятой части ширины или смахнули быстро: карточка плавно уходит за край,
+   иначе возвращается на место. При движении вправо предыдущая карточка выезжает слева вслед за пальцем.
+   Когда блок впервые попадает на экран, верхняя карточка один раз качается влево: видно, что её можно смахнуть. */
+(function () {
+  const site = document.getElementById('site'), hits = document.getElementById('hits'), rail = document.getElementById('hitRail');
+  if (!site || !hits || !rail) return;
+  const on = () => site.clientWidth <= 900;
+  const nav = document.createElement('div');
+  nav.className = 'hdeck';
+  nav.innerHTML = '<div class="hdeck-seg"></div><span class="hdeck-n" aria-live="polite"></span>';
+  rail.after(nav);
+  const segBox = nav.firstChild, num = nav.lastChild;
+  const OUT = 520; /* мс, столько карточка уходит за край (то же число в common.css) */
+  let cur = 0, was = false;
+  const cards = () => [...rail.children].filter(c => c.classList.contains('card'));
+  const VARS = ['--dx', '--rot', '--q', '--bx', '--bp'];
+  const clean = c => { c.classList.remove('out', 'drag', 'back'); VARS.forEach(v => c.style.removeProperty(v)); };
+
+  function lay() {
+    const cs = cards(), n = cs.length, act = on();
+    if (!act) {
+      if (was) cs.forEach(c => { c.removeAttribute('data-d'); c.inert = false; clean(c); });
+      was = false; return;
+    }
+    was = true;
+    if (cur >= n) cur = 0;
+    cs.forEach((c, i) => { const d = (i - cur + n) % n; c.dataset.d = d < 3 ? d : 'x'; c.inert = d !== 0; });
+    if (segBox.children.length !== n) segBox.innerHTML = cs.map((c, i) => '<button type="button" aria-label="Товар ' + (i + 1) + ' из ' + n + '"><i></i></button>').join('');
+    [...segBox.children].forEach((b, i) => b.setAttribute('aria-current', i === cur ? 'true' : 'false'));
+    num.textContent = n ? (cur + 1) + ' из ' + n : '';
+  }
+
+  /* вперёд: верхняя карточка уходит влево с того места, где её отпустили, и потом незаметно встаёт в конец стопки */
+  function next() {
+    const cs = cards(), n = cs.length;
+    if (n < 2) { lay(); return; }
+    const top = cs[cur];
+    top.classList.remove('drag'); top.classList.add('out');
+    setTimeout(() => {
+      /* ушла за край: без движения встаёт в конец стопки и там проявляется */
+      top.classList.add('drag'); top.classList.remove('out'); VARS.forEach(v => top.style.removeProperty(v));
+      top.style.opacity = '0'; void top.offsetWidth; top.classList.remove('drag'); top.style.opacity = '';
+    }, OUT);
+    cur = (cur + 1) % n;
+    lay();
+  }
+  /* назад: предыдущая карточка приезжает слева (или продолжает путь, если её уже вели пальцем) и ложится сверху */
+  function prev() {
+    const cs = cards(), n = cs.length;
+    if (n < 2) { lay(); return; }
+    cur = (cur - 1 + n) % n;
+    const c = cs[cur];
+    if (c.classList.contains('back')) { void c.offsetWidth; c.classList.remove('drag', 'back'); }
+    else { c.classList.add('drag', 'out'); void c.offsetWidth; c.classList.remove('drag', 'out'); }
+    lay();
+    setTimeout(() => VARS.forEach(v => c.style.removeProperty(v)), OUT);
+  }
+  function jump(i) {
+    const n = cards().length; if (i === cur || i < 0 || i >= n) return;
+    if (i === (cur + 1) % n) next(); else if (i === (cur - 1 + n) % n) prev(); else { cur = i; lay(); }
+  }
+  segBox.addEventListener('click', e => { const b = e.target.closest('button'); if (b) jump([...segBox.children].indexOf(b)); });
+
+  /* палец */
+  let sx = 0, sy = 0, dx = 0, top = null, back = null, mode = 0, moved = 0, W = 1, trail = [];
+  function begin(x, y, target, t) {
+    const cs = cards();
+    top = on() && cs.length > 1 ? cs[cur] || null : null;
+    if (top && (!top.contains(target) || top.classList.contains('out'))) top = null;
+    back = top && cs.length > 2 ? cs[(cur - 1 + cs.length) % cs.length] : null;
+    if (back && back.classList.contains('out')) back = null;
+    sx = x; sy = y; dx = 0; mode = 0; W = top ? top.offsetWidth || 1 : 1; trail = [[t, x]];
+  }
+  /* true, если жест взят карточкой (страница при этом не прокручивается) */
+  function track(x, y, t) {
+    if (!top || mode < 0) return false;
+    trail.push([t, x]); if (trail.length > 8) trail.shift();
+    dx = x - sx; const dy = y - sy, ax = Math.abs(dx), ay = Math.abs(dy);
+    if (!mode) {
+      if (ax < 10 && ay < 10) return ax > ay;
+      if (ax < ay) { mode = -1; return false; }
+      mode = 1; rail.classList.add('dragging'); rail.classList.remove('nudge'); top.classList.add('drag');
+      sx = x - Math.sign(dx) * 2; dx = x - sx; /* без рывка на первые 10 px */
+    }
+    const p = Math.min(1, Math.abs(dx) / (W * 0.62));
+    if (dx <= 0 || !back) {
+      /* влево: карточка идёт за пальцем, следующая подрастает. Вправо без предыдущей карточки: тянется с сопротивлением */
+      const m = dx <= 0 ? dx : dx * 0.3;
+      top.style.setProperty('--dx', m.toFixed(1) + 'px');
+      top.style.setProperty('--rot', (m * 0.035).toFixed(2) + 'deg');
+      top.style.removeProperty('--q');
+      rail.style.setProperty('--p', dx <= 0 ? p.toFixed(3) : '0');
+      if (back) clean(back);
+    } else {
+      /* вправо: верхняя карточка чуть отступает, предыдущая выезжает слева вслед за пальцем */
+      top.style.setProperty('--dx', '0px'); top.style.setProperty('--rot', '0deg');
+      top.style.setProperty('--q', p.toFixed(3));
+      rail.style.setProperty('--p', '0');
+      back.classList.add('back', 'drag');
+      back.style.setProperty('--bx', Math.min(W * 1.12, dx * 1.12).toFixed(1) + 'px');
+      back.style.setProperty('--bp', Math.min(1, dx / W).toFixed(3));
+    }
+    return true;
+  }
+  function finish(t, done) {
+    const c = top, b = back; top = back = null;
+    if (!c || mode !== 1) { mode = 0; return; }
+    mode = 0;
+    /* скорость пальца за последние 120 мс: быстрый короткий смах тоже листает */
+    const old = trail.find(s => t - s[0] <= 120) || trail[trail.length - 1], last = trail[trail.length - 1];
+    const v = (last[0] - old[0]) > 8 ? (last[1] - old[1]) / (last[0] - old[0]) : 0;
+    const far = Math.abs(dx) > Math.max(64, W * 0.2), fast = Math.abs(v) > 0.3 && v * dx > 0 && Math.abs(dx) > 28;
+    moved = Date.now();
+    void c.offsetWidth;
+    rail.classList.remove('dragging'); rail.style.removeProperty('--p');
+    if (done && (far || fast) && dx < 0) { next(); return; }
+    if (done && (far || fast) && dx > 0 && b) { c.classList.remove('drag'); ['--dx', '--rot', '--q'].forEach(v => c.style.removeProperty(v)); prev(); return; }
+    /* не дотянули: всё возвращается на место */
+    c.classList.remove('drag'); ['--dx', '--rot', '--q'].forEach(v => c.style.removeProperty(v));
+    if (b && b.classList.contains('back')) {
+      b.classList.remove('drag'); b.style.setProperty('--bx', '0px'); b.style.setProperty('--bp', '0');
+      setTimeout(() => { if (b.classList.contains('back') && b !== cards()[cur]) { b.classList.add('drag'); b.classList.remove('back'); VARS.forEach(v => b.style.removeProperty(v)); void b.offsetWidth; b.classList.remove('drag'); } }, OUT);
+    }
+  }
+  rail.addEventListener('touchstart', e => { if (e.touches.length === 1) begin(e.touches[0].clientX, e.touches[0].clientY, e.target, e.timeStamp); else finish(e.timeStamp, false); }, { passive: true });
+  rail.addEventListener('touchmove', e => {
+    if (e.touches.length !== 1) return;
+    if (!e.cancelable && mode !== 1) { mode = -1; return; } /* страница уже прокручивается: карточку не трогаем */
+    if (track(e.touches[0].clientX, e.touches[0].clientY, e.timeStamp) && e.cancelable) e.preventDefault();
+  }, { passive: false });
+  rail.addEventListener('touchend', e => finish(e.timeStamp, true));
+  rail.addEventListener('touchcancel', e => finish(e.timeStamp, false));
+  let pid = null;
+  rail.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button) return; pid = e.pointerId; begin(e.clientX, e.clientY, e.target, e.timeStamp); });
+  rail.addEventListener('pointermove', e => { if (e.pointerId !== pid) return; if (track(e.clientX, e.clientY, e.timeStamp) && mode === 1) { try { rail.setPointerCapture(pid); } catch (err) {} } });
+  const mend = e => { if (e.pointerId !== pid) return; pid = null; finish(e.timeStamp, e.type === 'pointerup'); };
+  rail.addEventListener('pointerup', mend);
+  rail.addEventListener('pointercancel', mend);
+  rail.addEventListener('click', e => { if (Date.now() - moved < 350) { e.preventDefault(); e.stopPropagation(); } }, true);
+  rail.addEventListener('dragstart', e => { if (on()) e.preventDefault(); });
+
+  new MutationObserver(() => { cur = 0; cards().forEach(clean); lay(); }).observe(rail, { childList: true });
+  addEventListener('resize', lay);
+  document.addEventListener('click', e => { if (e.target.closest('[data-view]')) setTimeout(lay, 80); });
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting && on()) { rail.classList.add('nudge'); io.disconnect(); setTimeout(() => rail.classList.remove('nudge'), 2600); } }, { threshold: 0.55 });
+  io.observe(rail);
+  lay();
+})();
+
+/* Наши проекты на телефоне: лента сверху вниз. Линия слева заполняется по мере прокрутки, номер загорается,
+   когда линия дошла до карточки, а сама карточка в этот момент проявляется. Стили в common.css. */
+(function () {
+  const site = document.getElementById('site'), box = document.querySelector('.px1');
+  if (!site || !box) return;
+  const rows = [...box.querySelectorAll('.rw')];
+  if (!rows.length) return;
+  const on = () => site.clientWidth <= 900;
+  box.classList.add('anim');
+  let raf = 0;
+  function paint() {
+    raf = 0;
+    if (!on()) { rows.forEach(r => r.classList.add('in', 'hit')); return; }
+    const top = box.getBoundingClientRect().top, vh = site.classList.contains('site') && document.body.classList.contains('view-phone') ? site.getBoundingClientRect().top + site.clientHeight : innerHeight;
+    const node = r => r.offsetTop + 29;                 /* середина кружка с номером от верха ленты */
+    const end = node(rows[rows.length - 1]) - 30, mark = vh * 0.62 - top - 30; /* линия идёт до уровня 62% высоты экрана */
+    const fill = Math.max(0, Math.min(end, mark));
+    box.style.setProperty('--pl', end + 'px');
+    box.style.setProperty('--pf', fill.toFixed(1) + 'px');
+    rows.forEach(r => {
+      const hit = fill + 30 >= node(r) - 1;
+      r.classList.toggle('hit', hit);
+      if (hit || r.getBoundingClientRect().top < vh * 0.8) r.classList.add('in');
+    });
+  }
+  const ask = () => { if (!raf) raf = requestAnimationFrame(paint); };
+  addEventListener('scroll', ask, { passive: true });
+  site.addEventListener('scroll', ask, { passive: true });
+  addEventListener('resize', ask);
+  addEventListener('load', ask);
+  document.addEventListener('click', e => { if (e.target.closest('[data-view]')) setTimeout(ask, 120); });
+  new MutationObserver(ask).observe(box.closest('section') || box, { attributes: true, attributeFilter: ['class'] });
+  ask();
+})();
+</script>
+
+<script>
+/* Акции на телефоне: вариант 5 пятой волны (preview/varianty-5) */
+(function () {
+  const root = document.documentElement, site = document.getElementById('site'), promo = document.getElementById('promo');
+  if (!promo) return;
+  const phone = () => site.clientWidth <= 900;
+  const cur = 5;
+
+  const $$ = (s, el) => [...(el || promo).querySelectorAll(s)];
+
+  /* 5. Наезжающие карточки: одна высота у всех, и карточка под наехавшей чуть уменьшается */
+  (function () {
+    const cards = $$('.pv5-card');
+    if (!cards.length) return;
+    const fit = () => {
+      cards.forEach(c => { c.style.minHeight = ''; });
+      if (cur !== 5 || !phone()) return;
+      const h = Math.max(...cards.map(c => c.offsetHeight));
+      cards.forEach(c => { c.style.minHeight = h + 'px'; });
+    };
+    let raf = 0;
+    const paint = () => {
+      raf = 0;
+      if (cur !== 5 || !phone()) return;
+      cards.forEach((c, i) => {
+        const n = cards[i + 1];
+        if (!n) return;
+        const r = c.getBoundingClientRect(), k = Math.max(0, Math.min(1, (r.top + c.offsetHeight - n.getBoundingClientRect().top) / (c.offsetHeight - 14)));
+        c.style.setProperty('--s', (1 - 0.05 * k).toFixed(4));
+      });
+    };
+    const ask = () => { if (!raf) raf = requestAnimationFrame(paint); };
+    addEventListener('scroll', ask, { passive: true }); site.addEventListener('scroll', ask, { passive: true });
+    addEventListener('resize', () => { fit(); ask(); });
+    addEventListener('pmvar', () => { fit(); ask(); });
+    addEventListener('load', () => { fit(); ask(); });
+    document.addEventListener('click', e => { if (e.target.closest('[data-view]')) setTimeout(() => { fit(); ask(); }, 120); });
+    fit(); ask();
+  })();
+})();
+</script>
+<script>
+window.V6 = { st: {"sh": 0, "he": 0, "bt": 0, "ct": 0, "bn": 0, "ht": 0, "kt": 0, "sv": 0, "pr": 0, "of": 0, "fm": 0, "ft": 0} };
+/* ---------- Список «КП» и избранное: общее для главной и остальных страниц макета ----------
+   Позиция списка: { id, name, kind, note, price (число или null, если цену уточнит менеджер), img, url, qty }.
+   Хранится в браузере посетителя (localStorage), без регистрации. На Битриксе это корзина модуля «Интернет-магазин». */
+(function () {
+  const mem = {};
+  const KEYS = { kp: 'ym-kp', fav: 'ym-fav', sent: 'ym-sent' };
+  const read = k => { try { const v = localStorage.getItem(KEYS[k]); if (v) return JSON.parse(v); } catch (e) {} return mem[k] || (k === 'sent' ? null : []); };
+  const write = (k, v) => { mem[k] = v; try { localStorage.setItem(KEYS[k], JSON.stringify(v)); } catch (e) {} dispatchEvent(new CustomEvent('ymstore', { detail: k })); };
+  const rub = n => Math.round(n).toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽';
+  /* тот же пример расчёта, что на главной: аванс 10 %, 36 месяцев */
+  const lease = (price, n = 36, adv = 0.1, rate = 0.18) => { const s = price * (1 - adv), r = rate / 12; return Math.round(s * r / (1 - Math.pow(1 + r, -n)) / 100) * 100; };
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const word = (n, one, few, many) => { const a = n % 10, b = n % 100; return n + ' ' + (a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many); };
+
+  const YM = window.YM = {
+    rub, lease, esc, word,
+    kp: () => read('kp'),
+    fav: () => read('fav'),
+    inKp: id => read('kp').some(x => x.id === id),
+    inFav: id => read('fav').some(x => x.id === id),
+    /* добавить позиции; уже лежащие в списке не дублируются. Возвращает, сколько добавилось новых */
+    addKp(items) {
+      const list = read('kp'); let added = 0;
+      items.forEach(it => { if (!list.some(x => x.id === it.id)) { list.push(Object.assign({ qty: 1 }, it)); added++; } });
+      write('kp', list); return added;
+    },
+    removeKp(id) { write('kp', read('kp').filter(x => x.id !== id)); },
+    setQty(id, q) { write('kp', read('kp').map(x => x.id === id ? Object.assign({}, x, { qty: Math.max(1, Math.min(99, q)) }) : x)); },
+    clearKp() { write('kp', []); },
+    toggleFav(it) {
+      const list = read('fav'), on = list.some(x => x.id === it.id);
+      write('fav', on ? list.filter(x => x.id !== it.id) : list.concat([it])); return !on;
+    },
+    setFav(list) { write('fav', list); },
+    sum: list => list.reduce((a, x) => a + (x.price || 0) * (x.qty || 1), 0),
+    unpriced: list => list.filter(x => !x.price).length,
+    /* отправленный запрос: страница «Запрос отправлен» показывает его номер и состав */
+    send(req) {
+      const no = 'ЯМ-' + String(Date.now()).slice(-6);
+      write('sent', Object.assign({ no, at: new Date().toISOString() }, req));
+      return no;
+    },
+    sent: () => read('sent'),
+    /* счётчики в шапке и нижней панели: любой элемент с data-cnt="kp" или data-cnt="fav" */
+    paint() {
+      const n = { kp: read('kp').length, fav: read('fav').length };
+      document.querySelectorAll('[data-cnt]').forEach(c => { const v = n[c.dataset.cnt] || 0; c.textContent = v; c.hidden = !v; });
+    }
+  };
+  addEventListener('ymstore', () => YM.paint());
+  /* другая вкладка поменяла список: обновляем счётчики и здесь */
+  addEventListener('storage', e => { if (Object.values(KEYS).includes(e.key)) dispatchEvent(new CustomEvent('ymstore', { detail: 'other' })); });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => YM.paint()); else YM.paint();
+})();
+
+/* ---------- Главная: список «КП» вместо корзины, избранное, ссылки на отдельные страницы (13.11.2026) ---------- */
+(function () {
+  const YM = window.YM, P = window.PRODUCTS || [];
+  const $ = (s, r) => (r || document).querySelector(s), $$ = (s, r) => [...(r || document).querySelectorAll(s)];
+  const byId = id => P.find(p => p.id === id);
+  const item = (p, extra) => Object.assign({ id: p.id, name: p.brand + ' ' + p.model, kind: p.kind || '', price: p.price || null, img: p.img, url: p.url }, extra || {});
+  const imgOf = id => (byId(id) || {}).img || '';
+
+  /* ---- что кладёт в КП каждая кнопка «Получить КП» без товара в карточке ---- */
+  const HERO = { 'Anthos L9': 'ustanovka-anthos-l9', 'Castellini SKEMA 8': 'ustanovka-castellini-skema8', 'Stern Weber S380': 'ustanovka-sternweber-s380' };
+  const PICK = {
+    'Автоклав Melag': () => ({ id: 'pick-melag', name: 'Автоклав MELAG класса B', kind: 'Модель подберёт менеджер', price: null, img: imgOf('avtoklav-melag-vacuclave-123'), url: 'https://yarmed.com/catalog/avtoklavy/' }),
+    'Томограф Vatech': () => ({ id: 'pick-vatech', name: 'Томограф Vatech', kind: 'Модель подберёт менеджер', price: null, img: imgOf('rentgen-vatech-pax-i-3d'), url: 'https://yarmed.com/vendors/vatech/' })
+  };
+  const promoImg = name => { const i = $(`img[src*="promo/${name}"]`); return i ? i.getAttribute('src') : ''; };
+  const PROMO = [
+    ['Акция: Anthos L9', () => ({ id: 'promo-anthos-l9', name: 'Anthos L9 в полной комплектации', kind: 'Акция: 14 позиций в комплекте', price: 1990000, img: imgOf('ustanovka-anthos-l9'), url: 'promotions.html#anthos-l9' })],
+    ['Акция: томограф X-Radius', () => ({ id: 'promo-x-radius', name: 'Томограф Castellini X-Radius Trio Plus', kind: 'Акция: 80 000 ₽ в месяц, условия уточняются', price: 4820000, img: promoImg('x-radius'), url: 'promotions.html#x-radius' })],
+    ['Акция: автоклав Wind 23', () => ({ id: 'promo-wind-23', name: 'Автоклав Runyes Wind 23 с комплектом', kind: 'Акция: дистиллятор и упаковочная машина', price: 150000, img: promoImg('wind-23'), url: 'promotions.html#wind-23' })]
+  ];
+
+  function resolve(b) {
+    if (b.dataset.pid) { const p = byId(b.dataset.pid); return p ? { items: [item(p)] } : null; }
+    if (b.classList.contains('kx1-go')) {
+      const box = b.closest('.kx1-sum') && b.closest('.kx1-sum').parentElement;
+      const ids = box ? $$('input[data-id]:checked', box).map(i => i.dataset.id) : [];
+      const t = box && $('h3', box) ? $('h3', box).textContent : 'Комплект';
+      const items = ids.map(byId).filter(Boolean).map(p => item(p, { kind: (p.kind || '') + ' · ' + t }));
+      return items.length ? { items, label: t } : null;
+    }
+    const t = b.dataset.kp || '';
+    if (HERO[t]) return { items: [item(byId(HERO[t]))] };
+    if (PICK[t]) return { items: [PICK[t]()] };
+    const pr = PROMO.find(x => t.startsWith(x[0])); if (pr) return { items: [pr[1]()] };
+    const p = P.find(x => x.brand + ' ' + x.model === t); if (p) return { items: [item(p)] };
+    return null; // «Подбор оборудования», «Открытие клиники под ключ»: прежняя форма
+  }
+
+  /* ---- карточки товаров: корзина становится сердечком, «Получить КП» узнаёт свой товар ---- */
+  const HEART = '<svg class="ico" style="width:18px;height:18px"><use href="#i-heart"/></svg>';
+  function convert(root) {
+    if (!root.querySelectorAll) return;
+    $$('[data-cart]', root).forEach(b => {
+      if (b.closest('.fx1')) return; // кнопки «Добавить в КП» у живого листа КП ведут в список, а не в избранное
+      const id = b.dataset.cart; b.removeAttribute('data-cart');
+      b.dataset.fav = id; b.classList.add('fav'); b.setAttribute('aria-label', 'В избранное');
+      b.setAttribute('aria-pressed', String(YM.inFav(id))); b.innerHTML = HEART;
+      const k = b.parentElement && $('[data-kp]', b.parentElement);
+      if (k) { k.dataset.pid = id; markK(k); }
+    });
+  }
+  /* кнопка товара, который уже в списке: «В КП ✓», нажатие снова открывает шторку */
+  function markK(k) {
+    if (!k.dataset.t) k.dataset.t = k.textContent;
+    const on = YM.inKp(k.dataset.pid);
+    k.classList.toggle('in-kp', on); k.textContent = on ? 'В КП ✓' : k.dataset.t;
+  }
+  function repaint() {
+    $$('[data-fav]').forEach(b => b.setAttribute('aria-pressed', String(YM.inFav(b.dataset.fav))));
+    $$('[data-kp][data-pid]').forEach(markK);
+  }
+
+  /* ---- ссылки шапки, меню, подвала и «Все …» ведут на отдельные страницы, а не к блокам главной ---- */
+  const MAP = {
+    '#services': 'pod-klyuch.html', '#kits': 'osnashchenie.html', '#projects': 'projects.html',
+    'https://yarmed.com/info/promotions/': 'promotions.html', 'https://yarmed.com/services/': 'servis.html',
+    'https://yarmed.com/vendors/': 'brands.html', 'https://yarmed.com/about/': 'about.html', 'https://yarmed.com/contacts/': 'contacts.html',
+    'https://yarmed.com/basket/': 'kp.html', 'https://yarmed.com/personal/favorite/': 'favorites.html', 'https://yarmed.com/info/reviews/': 'projects.html',
+    'https://yarmed.com/catalog/': 'catalog.html', 'https://yarmed.com/howtobuy/': 'kak-kupit.html',
+    'https://yarmed.com/promotions/stomatologicheskaya-ustanovka-anthos-l9/': 'promotions.html#anthos-l9',
+    'https://yarmed.com/promotions/x-radius-trio-plus-comfort-3d/': 'promotions.html#x-radius',
+    'https://yarmed.com/promotions/avtoklav-wind-23-klassa-v-s-vakuumnoy-sushkoy-23-l/': 'promotions.html#wind-23'
+  };
+  function relink(root) {
+    if (!root.querySelectorAll) return;
+    const list = root.matches && root.matches('a[href]') ? [root] : $$('a[href]', root);
+    list.forEach(a => {
+      const h = a.getAttribute('href'), txt = a.textContent.trim();
+      let to = MAP[h];
+      if (h === '#kp') to = /Лизинг/i.test(txt) ? 'leasing.html' : 'kp.html';
+      if (h === 'https://yarmed.com/services/meditsinskie-tsentry-pod-klyuch/') to = /Лицензир/i.test(txt) ? 'licenziya.html' : 'pod-klyuch.html';
+      if (!to) return;
+      a.setAttribute('href', to); a.removeAttribute('target'); a.removeAttribute('rel');
+    });
+  }
+  const run = n => { convert(n); relink(n); };
+  run(document.body);
+  new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1) run(n); }))).observe(document.body, { childList: true, subtree: true });
+
+  /* ---- шторка «Добавлено в КП» ---- */
+  const sh = $('#kpSheet'), shForm = $('.ksh-form', sh);
+  function openSheet(added, fresh) {
+    const list = YM.kp(), sum = YM.sum(list), un = YM.unpriced(list);
+    $('.ksh-t', sh).textContent = fresh ? (added.length > 1 ? 'Добавлено в КП: ' + YM.word(added.length, 'позиция', 'позиции', 'позиций') : 'Добавлено в КП') : 'Уже в списке КП';
+    $('.ksh-items', sh).innerHTML = added.slice(0, 3).map(it => `<div class="ksh-it"><img src="${YM.esc(it.img)}" alt=""><span><b>${YM.esc(it.name)}</b><small>${YM.esc(it.kind)}</small></span><em>${it.price ? YM.rub(it.price) : 'цена по запросу'}${it.price ? `<i>в лизинг от ${YM.rub(YM.lease(it.price))}/мес</i>` : ''}</em></div>`).join('')
+      + (added.length > 3 ? `<p class="ksh-more">и ещё ${YM.word(added.length - 3, 'позиция', 'позиции', 'позиций')}</p>` : '');
+    $('.ksh-sum', sh).innerHTML = `В списке КП ${YM.word(list.length, 'позиция', 'позиции', 'позиций')}${sum ? ` на <b>${YM.rub(sum)}</b>` : ''}${un ? `<span>${un === list.length ? 'цены уточнит менеджер' : 'у ' + YM.word(un, 'позиции', 'позиций', 'позиций') + ' цену уточнит менеджер'}</span>` : ''}`;
+    shForm.hidden = true; $('.ksh-acts', sh).hidden = false; $('.status', shForm).textContent = '';
+    if (!sh.open) sh.showModal();
+  }
+  $('[data-ksh-send]', sh).addEventListener('click', () => { $('.ksh-acts', sh).hidden = true; shForm.hidden = false; shForm.clinic.focus(); });
+  shForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const st = $('.status', shForm);
+    if (shForm.contact.value.trim().length < 5) { st.textContent = 'Укажите телефон или почту, чтобы мы могли ответить.'; return; }
+    if (!shForm.ok.checked) { st.textContent = 'Отметьте согласие на обработку данных.'; return; }
+    YM.send({ type: 'КП', items: YM.kp(), clinic: shForm.clinic.value.trim(), contact: shForm.contact.value.trim(), lease: shForm.lease.checked, from: 'шторка на главной' });
+    YM.clearKp(); location.href = 'sent.html';
+  });
+  [sh, $('#contactSheet')].forEach(d => d && d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-close]')) d.close(); }));
+
+  /* ---- нажатия: раньше обработчиков страницы, чтобы старая форма и корзина не срабатывали ---- */
+  document.addEventListener('click', e => {
+    const f = e.target.closest('[data-fav]');
+    if (f) {
+      e.preventDefault(); e.stopImmediatePropagation();
+      const p = byId(f.dataset.fav); if (p) YM.toggleFav(item(p));
+      return;
+    }
+    const q = e.target.closest('.fx1 [data-cart]');
+    if (q) {
+      e.preventDefault(); e.stopImmediatePropagation();
+      const p = byId(q.dataset.cart); if (!p) return;
+      YM.inKp(p.id) ? YM.removeKp(p.id) : YM.addKp([item(p)]);
+      return;
+    }
+    if (e.target.closest('[data-tab-cat]')) { e.preventDefault(); e.stopImmediatePropagation(); const c = $('[data-hx-cat]'); if (c) c.click(); return; }
+    if (e.target.closest('[data-contact]')) { e.preventDefault(); e.stopImmediatePropagation(); $('#contactSheet').showModal(); return; }
+    const k = e.target.closest('[data-kp]');
+    if (!k) return;
+    const r = resolve(k);
+    if (!r) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    const fresh = YM.addKp(r.items) > 0;
+    openSheet(r.items, fresh);
+  }, true);
+
+  /* ---- живой лист КП в блоке заявки берёт позиции из списка КП ---- */
+  const V2 = window.V2;
+  function bridge() {
+    if (!V2) return;
+    V2.cartIds = new Set(YM.kp().map(x => x.id));
+    V2.cart = () => YM.kp().map(x => ({ brand: '', model: x.name + (x.qty > 1 ? ' × ' + x.qty : ''), kind: x.kind, price: (x.price || 0) * (x.qty || 1), img: x.img }));
+    dispatchEvent(new CustomEvent('v2cart'));
+  }
+  addEventListener('ymstore', () => { repaint(); bridge(); });
+  bridge();
+
+  /* ---- любая отправленная форма главной ведёт на страницу «Запрос отправлен» ---- */
+  document.addEventListener('submit', e => {
+    const form = e.target;
+    setTimeout(() => {
+      const st = $('.status', form);
+      if (!st || !/^Это макет/.test(st.textContent)) return;
+      const val = n => { const el = form.querySelector(n); return el ? el.value.trim() : ''; };
+      const call = form.id === 'callForm';
+      const fx = form.closest('.fx1');
+      YM.send({
+        type: call ? 'Звонок' : 'КП', items: call ? [] : YM.kp(),
+        what: val('#k-what') || val('#f-what') || val('[name="what"]'),
+        clinic: val('#k-clinic') || val('#f-clinic') || val('[name="clinic"]'),
+        contact: val('#c-phone') || val('#k-phone') || val('#f-phone') || val('[name="contact"]'),
+        name: val('#c-name'), lease: !!(form.querySelector('#k-lease:checked, #f-lease:checked, [name="lease"]:checked')),
+        from: call ? 'заказ звонка' : fx ? 'живой лист КП на главной' : 'форма КП на главной'
+      });
+      if (!call) YM.clearKp();
+      location.href = 'sent.html';
+    }, 0);
+  });
+})();
 </script>
 </html>
