@@ -2226,7 +2226,7 @@ html:root .hx-ic .hx-kpl, html:root .hx-ic .hx-fav {display: none; }
 <main id="top">
   <!-- Первый экран на всю ширину: оборудование на студийном фоне -->
   <section class="hero full v-film" id="hero" aria-roledescription="карусель" aria-label="Предложения ЯрМеда">
-    <div class="hfilm" aria-hidden="true"><video muted playsinline preload="metadata" data-src="home-v4-film/film/film-9.mp4" data-src-m="home-v4-film/film/film-9-m.mp4"></video></div>
+    <div class="hfilm" aria-hidden="true"><video muted autoplay playsinline preload="auto" data-src="home-v4-film/film/film-9.mp4" data-src-m="home-v4-film/film/film-9-m.mp4"><source src="home-v4-film/film/film-9-m.mp4" type="video/mp4" media="(max-width: 900px)"><source src="home-v4-film/film/film-9.mp4" type="video/mp4"></video></div>
     <div class="slides" id="slides">
 
       <article class="slide film-ch" id="s0" style="--sbg:#D9DEE7" aria-roledescription="слайд" aria-label="1 из 4">
@@ -3087,15 +3087,11 @@ window.PRODUCTS = [{"id":"ustanovka-sternweber-s380","sec":"ustanovka","model":"
   film.addEventListener('loadedmetadata', () => { if (pending !== null) { film.currentTime = pending; pending = null; } });
   function load() {
     const want = small() ? film.dataset.srcM : film.dataset.src;
-    if (film.getAttribute('src') === want) return;
+    if (film.getAttribute('src') === want || film.currentSrc === new URL(want, location.href).href) return;
     if (film.getAttribute('src')) pending = film.currentTime;
     film.muted = true; film.defaultMuted = true; film.playsInline = true; film.preload = 'auto';
     film.src = want;
-    warm = false; clearTimeout(warmT);
-    warmT = setTimeout(() => { warm = true; sync(); }, 2500);
   }
-  let warm = false, warmT = 0;
-  film.addEventListener('canplaythrough', () => { if (!warm) { warm = true; clearTimeout(warmT); sync(); } });
   let armed = false;
   function retry() {
     if (armed) return;
@@ -3109,7 +3105,6 @@ window.PRODUCTS = [{"id":"ustanovka-sternweber-s380","sec":"ustanovka","model":"
     if (!(filmMode() && isCh(cur))) { film.pause(); hero.classList.remove('film-on', 'film-live'); if (!filmMode()) clearProg(); return; }
     hero.classList.add('film-live');
     load();
-    if (!warm && film.readyState < 4) { film.pause(); return; }
     if (visible && !userPaused) { const pr = film.play(); if (pr) pr.catch(() => { if (film.paused) retry(); }); } else film.pause();
   }
   function tick() {
@@ -3142,6 +3137,7 @@ window.PRODUCTS = [{"id":"ustanovka-sternweber-s380","sec":"ustanovka","model":"
   document.querySelectorAll('[data-fmode]').forEach(b => b.addEventListener('click', () => { setMode(b.dataset.fmode); try { localStorage.setItem('ym-fmode', b.dataset.fmode); } catch (e) {} }));
   document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => setTimeout(sync, 80)));
   window.heroVideo(cur);
+  if (!film.paused && film.readyState > 2 && filmMode() && isCh(cur)) { hero.classList.add('film-on'); tick(); }
 })();
 </script>
 <script>
