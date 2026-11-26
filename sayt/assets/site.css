@@ -1076,3 +1076,18 @@ a.svc:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow
   .steps li:last-child { grid-column: auto !important; }
   .pill4 .svcs { grid-template-columns: 1fr; }
 }
+
+/* 26.11.2026: ролики производителей (обложка → плеер youtube-nocookie по клику), РУ, отзывы */
+.vid.yts .yt { background: #0F1B2D; color: #fff; border-radius: 18px; overflow: hidden; display: grid; align-content: end; padding: 0; aspect-ratio: auto; }
+.vid.yts .yt button, .vid.yts .yt iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; padding: 0; background: #0F1B2D; cursor: pointer; position: relative; }
+.vid.yts .yt button img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .85; background: none; }
+.vid.yts .yt button:hover img { opacity: 1; }
+.vid.yts .yt b { display: block; padding: 12px 16px 0; }
+.vid.yts .yt small { display: block; padding: 2px 16px 14px; opacity: .7; }
+.pd-sec .ru { margin: 0 0 12px; font-weight: 600; }
+.bdeal { display: flex; gap: 8px; align-items: flex-start; }
+.revs { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.revs article { border: 1px solid #E3E8EF; border-radius: 18px; padding: 20px; display: grid; gap: 8px; }
+.revs article p { margin: 0; }
+.revs article small { opacity: .7; }
+@media (max-width: 640px) { .vid.yts { grid-template-columns: 1fr; } }

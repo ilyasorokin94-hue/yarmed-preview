@@ -8,7 +8,7 @@
   const write = (k, v) => { mem[k] = v; try { localStorage.setItem(KEYS[k], JSON.stringify(v)); } catch (e) {} dispatchEvent(new CustomEvent('ymstore', { detail: k })); };
   const rub = n => Math.round(n).toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽';
   /* тот же пример расчёта, что на главной: аванс 10 %, 36 месяцев */
-  const lease = (price, n = 36, adv = 0.1, rate = 0.18) => { const s = price * (1 - adv), r = rate / 12; return Math.round(s * r / (1 - Math.pow(1 + r, -n)) / 100) * 100; };
+  const lease = (price, n = 36, adv = 0.1, rate = 0.18) => { const s = price * (1 - adv); return Math.round(s * (1 / n + 0.014152) / 100) * 100; };
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const word = (n, one, few, many) => { const a = n % 10, b = n % 100; return n + ' ' + (a === 1 && b !== 11 ? one : a >= 2 && a <= 4 && (b < 12 || b > 14) ? few : many); };
 
@@ -387,14 +387,16 @@
     location.href = 'sent.html';
   }));
 
-  /* ---------- калькулятор лизинга: аннуитет при удорожании ~18 % годовых (как YM.lease) ---------- */
+  /* ---------- калькулятор лизинга: модель лизинговой компании-партнёра (сверено 19.11.2026, см. tekst/otvety.py) ----------
+     платёж = (цена − аванс) × (1 / срок + месячное удорожание), с НДС; экономия по налогам до 1/3 суммы договора */
   $$('[data-calc]').forEach(box => {
     const inp = n => $(`input[name=${n}]`, box), put = (n, v) => $$(`[data-o=${n}]`, box).forEach(o => (o.textContent = v));
+    const k = +box.dataset.rate || 0.014152;
     const calc = () => {
-      const price = +inp('price').value, adv = +inp('adv').value / 100, term = +inp('term').value, r = 0.18 / 12;
-      const pay = Math.round(price * (1 - adv) * r / (1 - Math.pow(1 + r, -term)) / 100) * 100;
+      const price = +inp('price').value, adv = +inp('adv').value / 100, term = +inp('term').value;
+      const pay = Math.round(price * (1 - adv) * (1 / term + k)), total = pay * term + price * adv, tax = total / 3;
       put('price', YM.rub(price)); put('adv', Math.round(adv * 100) + ' %'); put('term', term + ' мес.');
-      put('pay', YM.rub(pay)); put('advr', YM.rub(price * adv)); put('total', YM.rub(pay * term + price * adv));
+      put('pay', YM.rub(pay)); put('advr', YM.rub(price * adv)); put('total', YM.rub(total)); put('tax', YM.rub(tax)); put('cost', YM.rub(total - tax));
       $$('.cl-pick button', box).forEach(b => b.classList.toggle('on', +b.dataset.p === price));
     };
     $$('input', box).forEach(i => i.addEventListener('input', calc));
@@ -413,3 +415,15 @@
     b.addEventListener('click', () => r.scrollBy({ left: r.clientWidth * 0.8, behavior: reduce ? 'auto' : 'smooth' }));
   });
 })();
+
+/* 26.11.2026: ролик производителя открывается по клику, без загрузки YouTube заранее */
+document.addEventListener('click', function (e) {
+  var b = e.target.closest && e.target.closest('[data-yt]');
+  if (!b) return;
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1&rel=0';
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  f.allowFullscreen = true;
+  f.title = b.getAttribute('aria-label') || 'Видео';
+  b.replaceWith(f);
+});
