@@ -122,6 +122,19 @@
   <url><loc>https://yarmed.com/catalog/fiziodispensery/kavo/</loc></url>
   <url><loc>https://yarmed.com/catalog/fiziodispensery/nsk/</loc></url>
   <url><loc>https://yarmed.com/catalog/fiziodispensery/dte/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/kavo/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/nsk/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/w-h/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/dentsply-sirona/</loc></url>
+  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/kavo/</loc></url>
+  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nsk/</loc></url>
+  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/dentsply-sirona/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/kavo/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/nsk/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/w-h/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/dentsply-sirona/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/coxo/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/hakori/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/kavo/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/w-h/</loc></url>
@@ -134,21 +147,8 @@
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/w-h/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/dentsply-sirona/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/hakori/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/kavo/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/nsk/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/w-h/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/dentsply-sirona/</loc></url>
-  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/kavo/</loc></url>
-  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nsk/</loc></url>
-  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/dentsply-sirona/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/kavo/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/kavo/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/nsk/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/w-h/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/dentsply-sirona/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/coxo/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/hakori/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/nsk/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/dentsply-sirona/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/j-morita/</loc></url>
@@ -247,6 +247,10 @@
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/kavo-estetica-e50-life-s-tm-svetilnik-540-led/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/kavo-primus-1058-life/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/kavo-estetica-e30/</loc></url>
+  <url><loc>https://yarmed.com/catalog/fiziodispensery/fiziodispenser-kavo-expertsurg-lux/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/povyshayushchiy-nakonechnik-kavo-expertmatic-e25-l-1-5/</loc></url>
+  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e15-l/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e20-l-1-1/</loc></url>
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-pan-exam-plus-3d/</loc></url>
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-pan-exam-plus-3d-ceph/</loc></url>
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-op-3d-pro/</loc></url>
@@ -268,7 +272,6 @@
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-pan-exam-plus-3d-ceph-2-datchika/</loc></url>
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-pan-exam-plus-ceph/</loc></url>
   <url><loc>https://yarmed.com/catalog/3d-i-2d-rentgen-apparaty/kavo-op300-maxio/</loc></url>
-  <url><loc>https://yarmed.com/catalog/fiziodispensery/fiziodispenser-kavo-expertsurg-lux/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/kavo-intra-lux-kl-703-led-mikromotor-elektricheskiy/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/kavo-intramatic-k-lux-200-mikromotor-elektricheskiy/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/kavo-intramatic-lux-motor-181-m-mikromotor-vozdushnyy/</loc></url>
@@ -278,14 +281,11 @@
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/pryamoy-nakonechnik-kavo-surgmatic-s11-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/kavo-intramatic-lux-motor-181-l-mikromotor-vozdushnyy-s-optikoy/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-surgmatic-s201-xl/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/povyshayushchiy-nakonechnik-kavo-expertmatic-e25-l-1-5/</loc></url>
-  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e15-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-surgmatic-s201-c/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-surgmatic-s201-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-experttorque-e680-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nakonechnik-pryamoy-khirurgicheskiy-kavo-intra-3610-n3/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/pryamoy-nakonechnik-kavo-surgmatic-s11-c/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e20-l-1-1/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/pryamoy-nakonechnik-kavo-mastermatic-m10-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-kavo-expertmatic-e20-c-1-1/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/uglovoy-nakonechnik-kavo-mastermatic-m29-l/</loc></url>
@@ -298,11 +298,25 @@
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-smarttorque-s605-c-mini/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-smarttorque-s609-c/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-kavo-mastertorque-mini-lux-m8700-l/</loc></url>
+  <url><loc>https://yarmed.com/catalog/fiziodispensery/nsk-surgic-pro2-opt/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-surgic-pro-sgl70/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-nsk-ti-max-x-sg20l/</loc></url>
+  <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-nlx-plus/</loc></url>
+  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nsk-sgs-e2s/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ti-max-x65l/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/golovka-nsk-ifx75-dlya-endomotorov-endo-mate-at/</loc></url>
+  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-sgs-es/</loc></url>
+  <url><loc>https://yarmed.com/catalog/endomotory/endomotor-nsk-endo-mate-dt/</loc></url>
+  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/nsk-ti-max-z25l/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/mikromotor-s-kabelem-dlya-nsk-endo-mate-dt-dentsply-x-smart/</loc></url>
+  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/nsk-s-max-m95l/</loc></url>
   <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/nsk-s-max-m95/</loc></url>
+  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-s-max-pico/</loc></url>
+  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ex-6d/</loc></url>
+  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-pana-max-plus-su/</loc></url>
+  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-pana-max-plus-mu/</loc></url>
+  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-pana-max-plus-mu-m4-s-minigolovkoy-nsk/</loc></url>
+  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ex-5b/</loc></url>
   <url><loc>https://yarmed.com/catalog/apparaty-air-flow/chistyashchiy-poroshok-nsk-flash-pearl-100x15gr/</loc></url>
   <url><loc>https://yarmed.com/catalog/endomotory/podstavka-dlya-mikromotora-nsk-endo-mate-dt-densply-x-smart/</loc></url>
   <url><loc>https://yarmed.com/catalog/fiziodispensery/fiziodispenser-nsk-surgic-pro-opt-s-nakonechnikom-ti-max-x-sg20l/</loc></url>
@@ -328,29 +342,15 @@
   <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/nsk-s-max-m25/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-s-max-m65/</loc></url>
   <url><loc>https://yarmed.com/catalog/perekhodniki/nsk-ptl-cl-led/</loc></url>
-  <url><loc>https://yarmed.com/catalog/fiziodispensery/nsk-surgic-pro2-opt/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-sg50led/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-nlx-nano-s230/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/uglovoy-nakonechnik-nsk-ti-max-x-sg20l/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-nbx-mcb-led/</loc></url>
-  <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-nlx-plus/</loc></url>
-  <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nsk-sgs-e2s/</loc></url>
-  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-sgs-es/</loc></url>
-  <url><loc>https://yarmed.com/catalog/endomotory/endomotor-nsk-endo-mate-dt/</loc></url>
-  <url><loc>https://yarmed.com/catalog/uglovye-nakonechniki/nsk-ti-max-z25l/</loc></url>
   <url><loc>https://yarmed.com/catalog/ponizhayushchie-nakonechniki/nsk-ti-max-x-sg93/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-ti-max-x700l-s-optikoy/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-dyna-led-m500lg-m4-minigolovka-i-vstroennyy/</loc></url>
-  <url><loc>https://yarmed.com/catalog/povyshayushchie-nakonechniki/nsk-s-max-m95l/</loc></url>
   <url><loc>https://yarmed.com/catalog/mikromotory-i-perekhodniki/nsk-nlx-cd/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-s-max-m500-s-minigolovkoy/</loc></url>
-  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-s-max-pico/</loc></url>
-  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ex-6d/</loc></url>
-  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-pana-max-plus-su/</loc></url>
   <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ex-6bm/</loc></url>
-  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/nakonechnik-nsk-pana-max-plus-mu/</loc></url>
-  <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-pana-max-plus-mu-m4-s-minigolovkoy-nsk/</loc></url>
-  <url><loc>https://yarmed.com/catalog/pryamye-nakonechniki/nsk-ex-5b/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-pana-max-su-m4/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-pana-max-tu-m4/</loc></url>
   <url><loc>https://yarmed.com/catalog/turbinnye-nakonechniki/turbinnyy-nakonechnik-nsk-ti-max-x500l-s-minigolovkoy/</loc></url>
@@ -387,16 +387,16 @@
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/durr-dental-v-300-s/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/durr-dental-vs-250-s/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/durr-dental-v-250/</loc></url>
+  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-cliniclave-45-melag/</loc></url>
+  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-cliniclave-45-m-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/melag-melatherm-10-moyka-dezinfektor-so-vstavkami/</loc></url>
+  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-vacuklav-24-b-l-plus-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/vacuclave-123-parovoy-sterilizator-avtoklav-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/melag-vacuclave-550/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/melag-vacuclave-118/</loc></url>
   <url><loc>https://yarmed.com/catalog/upakovochnye-mashiny/melag-melaseal-rh-100-plus-comfort/</loc></url>
   <url><loc>https://yarmed.com/catalog/distillyatory/melag-meladest-65/</loc></url>
-  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-cliniclave-45-melag/</loc></url>
-  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-cliniclave-45-m-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-vacuklav-43-b-plus-evolution-melag/</loc></url>
-  <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-vacuklav-24-b-l-plus-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-vacuklav-23-b-plus-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-vacuklav-24-b-plus-melag/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/avtoklav-euroklav-23-vs-melag/</loc></url>
@@ -633,8 +633,13 @@
   <url><loc>https://yarmed.com/catalog/apparaty-dlya-chistki-smazki-nakonechnikov/apparat-dlya-smazki-i-chistki-nakonechnikov-woson/</loc></url>
   <url><loc>https://yarmed.com/catalog/upakovochnye-mashiny/zapechatyvayushchee-ustroystvo-woson-seal-100-selin/</loc></url>
   <url><loc>https://yarmed.com/catalog/distillyatory/distillyator-woson/</loc></url>
+  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-x/</loc></url>
+  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-t/</loc></url>
+  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-c/</loc></url>
+  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-i/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-ss300-bezmaslyanyy-kompressor-dlya-7-8-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-p3-c/</loc></url>
+  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-p3-i/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-ss220-kompressor-dlya-6-ti-stomatologicheskikh-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/avtoklavy/lifedent-apollo-29b-avtoklav-klassa-v-obem-29-l/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-ss150-bezmaslyanyy-kompressor-dlya-3-4-ustanovok/</loc></url>
@@ -643,24 +648,19 @@
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sp220-bezmaslyanyy-kompressor-dlya-4-5-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sa300-bezmaslyanyy-kompressor-dlya-6-7-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/nastennye-i-mobilnye-rentgeny/lifedent-le-ray-w-nastennyy-rentgenovskiy-apparat/</loc></url>
+  <url><loc>https://yarmed.com/catalog/portativnye-rentgeny/lifedent-le-ray-p-portativnyy-rentgenovskiy-apparat/</loc></url>
+  <url><loc>https://yarmed.com/catalog/portativnye-rentgeny/lifedent-le-ray-g-portativnyy-rentgenovskiy-apparat/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/lifedent-vc30-aspiratsionnaya-sistema-vlazhnogo-tipa-dlya-3-4-ustanovo/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/lifedent-vc20-aspiratsionnaya-sistema-vlazhnogo-tipa-dlya-2-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/lifedent-vc10-aspiratsionnaya-sistema-vlazhnogo-tipa-dlya-1-ustanovki/</loc></url>
   <url><loc>https://yarmed.com/catalog/upakovochnye-mashiny/lifedent-x330-zapechatyvayushchaya-mashinka/</loc></url>
-  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-x/</loc></url>
-  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-t/</loc></url>
-  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-c/</loc></url>
-  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-e9-i/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-p3-t/</loc></url>
-  <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/lifedent-p3-i/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sp150-bezmaslyanyy-kompressor-dlya-3-4-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sa220-bezmaslyanyy-kompressor-dlya-4-5-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sp075-bezmaslyanyy-kompressor-dlya-1-2-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sa150-bezmaslyanyy-kompressor-dlya-3-4-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/kompressory_/lifedent-sa075-bezmaslyanyy-kompressor-dlya-1-2-ustanovok/</loc></url>
   <url><loc>https://yarmed.com/catalog/aspiratsionnoe-oborudovanie/lifedent-vc30-plus/</loc></url>
-  <url><loc>https://yarmed.com/catalog/portativnye-rentgeny/lifedent-le-ray-p-portativnyy-rentgenovskiy-apparat/</loc></url>
-  <url><loc>https://yarmed.com/catalog/portativnye-rentgeny/lifedent-le-ray-g-portativnyy-rentgenovskiy-apparat/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/anya-ay-a-4800ii-s-sensornym-upravleniem/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/anya-y-a-4800ii-khirurgiya-s-26-diodnym-svetom/</loc></url>
   <url><loc>https://yarmed.com/catalog/stomatologicheskie-ustanovki/anya-ay-a-4800-ii-s-8-diodnym-svetilnikom/</loc></url>
